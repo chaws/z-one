@@ -1,5 +1,6 @@
 ################################################################################
-#		Makefile - Compila um conjunto de código em C, por Charles e Rodrigo
+#		Makefile - Compila um conjunto de código em C++, criado originalmente 
+# por Rodrigo Siqueira, modificado por Charles Oliveira
 #
 #Este Makefile tem por objetivo juntar o código feito com base na seguinte 
 #estrutura de arquivos:
@@ -29,12 +30,13 @@ PACKINC		=	inc
 PACKSRC		=	src	
 PACKOBJ		=	obj
 #Flags
-CC			= gcc
+CC			= g++
 LPTHREAD	= -lpthread
+SDL			= `sdl-config --libs --cflags`
 CUNIT		= -lcunit
 CFLAGS		= -Wall -I./$(PACKINC)
 #Monta uma lista com todos os arquivos fontes em código C
-CSOURCES	= $(wildcard src/*c)
+CSOURCES	= $(wildcard src/*cpp)
 
 ################################################################################
 ##############################             #####################################
@@ -42,7 +44,7 @@ CSOURCES	= $(wildcard src/*c)
 ##############################             #####################################
 ################################################################################
 
-all: rsgama
+all: game
 
 ################################################################################
 #	Alvo principal, cujo objetivo é gerar o binário do aplicativo. As
@@ -54,8 +56,8 @@ all: rsgama
 #	*Após ter feito a troca, a dependência chama o alvo inciado por obj/%.o.
 ################################################################################
 
-rsgama: $(CSOURCES:src/%.c=obj/%.o)
-	$(CC) $(CFLAGS) $^ -o bin/$@ $(LPTHREAD)
+game: $(CSOURCES:src/%.cpp=obj/%.o)
+	$(CC) $(CFLAGS) $^ -o bin/$@ $(LPTHREAD) $(SDL)
 	
 ################################################################################
 #Alvo gerador de arquivos objetos.
@@ -64,7 +66,7 @@ rsgama: $(CSOURCES:src/%.c=obj/%.o)
 #foram marcada para obj/%.o
 ################################################################################
 
-obj/%.o: src/%.c
+obj/%.o: src/%.cpp
 	$(CC) $(FLAGS) -c $< -o $@ $(CFLAGS) 
 
 ################################################################################
