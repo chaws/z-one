@@ -1,0 +1,6 @@
+It's an example program written by thecplusplusguy:
+http://www.youtube.com/user/thecplusplusguy
+To compile you need to link it to SDL -lSDL
+To run the program, you need a 2000x480 background image called endless.bmp
+A blocks.bmp (which contain all of you 50x50 blocks, it's the same as you use in the sidescroller program)
+And a 80x40 enemy.bmp image, which contain the enemy.
