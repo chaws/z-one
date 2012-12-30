@@ -1,53 +1,244 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[latin1]{inputenc}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
+\pagestyle{empty}
+
 \author{Z-One Team}
-\title{Documento de Design}
+\title{Ninja Siege - Documento de Design}
+
+
+
 \begin{document}
 
-\begin{flushleft}
-{\bf Universidade de Brasília - Faculdade Gama}\\
-{\bf Disciplina:} Introdução aos Jogos Eletronicos\\
-{\bf Professor:} Edson Alves\\
-{\bf Alunos:}\\
-Tiago Gomes Pereira	09/0134222\\
-Matheus Fonseca	10/0054650\\
-Charles Oliveira	09/0043006\\  
-Pedro Zanini	10/47337\\
-\end{flushleft}
+\maketitle 
 
-
-
-\begin{center}
-Ninja Siege (Cerco Ninja)
-Documento de Design
-\end{center}
+\tableofcontents
 
 \section{Introdução}
-	Este documento aborda as características estruturais do jogo a ser produzido pela Z-One Team. Serão detalhados o ambiente do jogo, isto é, em que momento da historia ele se passa e os elementos fundamentais que definem o jogo. Dentre os elementos especificados estarão os inimigos, torres, mercado de jogo, mapas, etc.
+	Este documento aborda as características estruturais do jogo a ser produzido pela Z-One Team. Serão detalhados o ambiente do jogo, isto é, em que momento da historia ele se passa e os elementos fundamentais que definem o jogo. Dentre os elementos especificados estarão os inimigos, torres, mercado de jogo, mapas, etc.\\
 
 \section{Premissa e Ambientação do Jogo}
-	Século XV, Japão Feudal, os ninjas de todo mundo se reuniram para reunião secreta mais importante dos ninjas, a escolha do novo Mestre Supremo dos Ninjas. A reunião é no topo da Torre da Escuridão, uma torre de 12 andares que é o centro de comando de todos os ninjas.
-
-	Mas os detalhes dessa reunião chegaram aos ouvidos dos maiores inimigos dos ninjas: os piratas e os samurais. Eles resolveram aproveitar essa oportunidade para fazer um cerco e atacar os ninjas enquanto estão dentro de sua torre e acabar de vez com as maiores lideranças ninjas.
-
-    Você, como o novo mestre supremo dos ninjas, \textbf{Sr. Myagi}, deve guiar os seus ninjas até a base da torre se defendendo dos piratas e samurais que tem como objetivo invadir e matar o \textbf{Sr. Myagi}.
+	Século XV, Japão Feudal, os ninjas de todo mundo se reuniram para reunião secreta mais importante dos ninjas, a escolha do novo Mestre Supremo dos Ninjas. A reunião é no topo da Torre da Escuridão, uma torre de 12 andares que é o centro de comando de todos os ninjas.\\
+	Mas os detalhes dessa reunião chegaram aos ouvidos dos maiores inimigos dos ninjas: os piratas e os samurais. Eles resolveram aproveitar essa oportunidade para fazer um cerco e atacar os ninjas enquanto estão dentro de sua torre e acabar de vez com as maiores lideranças ninjas.\\
+    Você, como o novo mestre supremo dos ninjas, \textbf{Sr. Myagi}, deve guiar os seus ninjas até a base da torre se defendendo dos piratas e samurais que tem como objetivo invadir e matar o \textbf{Sr. Myagi}.\\
 
 \section{Elementos do Jogo}
+
 \subsection{Waves}
-Cada andar possui um número de ondas contínuas de inimigos, podendo variar dependendo do andar. No início do jogo o jogador pode tomar o tempo que for necessário para gastar os recursos iniciais construindo suas torres. Apos construir suas torres e se sentir satisfeito ele inicia o jogo e as ondas de inimigos atacam continuamente com intervalos entre as ondas.
-O jogador possuirá a opção de mandar a proxima onda mais cedo. E quando o jogo estiver pausado o jogador não poderá construir torres.
+	Cada andar possui um número de ondas contínuas de inimigos, podendo variar dependendo do andar. No início do jogo o jogador pode tomar o tempo que for necessário para gastar os recursos iniciais construindo suas torres. Apos construir suas torres e se sentir satisfeito ele inicia o jogo e as ondas de inimigos atacam continuamente com intervalos entre as ondas.\\
+	O jogador possuirá a opção de mandar a proxima onda mais cedo. E quando o jogo estiver pausado o jogador não poderá construir torres.\\
+
 \subsection{Inimigos}
 \subsubsection{Samurais}
+\begin{itemize}
+\item \textbf{Soldado (Ashigaru):} Samurai de classe baixa equipado com um par de facas.
+	\begin{itemize}
+	\item Velocidade: Média
+	\item Vida: Baixa
+	\item Resistência: Média
+	\end{itemize}
+\item \textbf{Retalhador (Batosai):} Samurai com sede de sangue, extremamente veloz e fatal, ficando equipado com duas katanas.
+	\begin{itemize}
+	\item Velocidade: Alta
+	\item Vida: Baixa
+	\item Resistência: Baixa
+	\end{itemize}
+\item \textbf{Mestre do Dojo:} Samurai experiente em batalhas equipado com um uma katana.
+	\begin{itemize}
+	\item Velocidade: Baixa
+	\item Vida: Média
+	\item Resistência: Alta
+	\end{itemize}
+\item \textbf{Espada-Santa:} Samurai que possui técnicas supremas, secretas e sobre-humanas.
+	\begin{itemize}
+	\item Velocidade: Média
+	\item Vida: Alta
+	\item Resistência: Média
+	\end{itemize}
+\end{itemize}
+
 \subsubsection{Piratas}
+\begin{itemize}
+\item \textbf{Saqueadores:} Pirata comum equipado um mosquete (Estilo: Normal).
+	\begin{itemize}
+	\item Velocidade:
+	\item Vida:
+	\item Resistência:
+	\end{itemize}
+\item \textbf{Corsários:} Pirata saqueador de grandes embarcaçoes, equipado com um sabre (Estilo: Rápido).
+	\begin{itemize}
+	\item Velocidade:
+	\item Vida:
+	\item Resistência:
+	\end{itemize}
+\item \textbf{Perna de pau:} Pirata experiente com deficiência em uma perna, equipado com um punhal (Estilo: Resistente e lento).
+	\begin{itemize}
+	\item Velocidade:
+	\item Vida:
+	\item Resistência:
+	\end{itemize}
+\item \textbf{Capitão:} Pirata comandante, extremamente cruel e cauteloso, equipado com um gancho e um sabre (Estilo:Boss).
+	\begin{itemize}
+	\item Velocidade:
+	\item Vida:
+	\item Resistência:
+	\end{itemize}
+\end{itemize}
 
 \subsection{Torres}
+	As torres serão os Ninjas. Desde antigamente os ninjas são mortais inimigos de samurais e
+piratas. Durante o jogo os Piratas e Samurais tentam chegar até o mestre supremo dos ninjas. Cada
+ninja pode ser evoluido, aumentando seus atributos, como o dano causado e a velocidade de ataque.\\
 \subsubsection{Curto Alcance}
+\begin{itemize}
+\item Katana Ninja
+\item Nunchaku Ninja
+\item Manriki Ninja
+\end{itemize}
+
 \subsubsection{Longo Alcance}
+\begin{itemize}
+\item Kunai Ninja
+\item Shuriken Ninja
+\item Ninja Jogador de Bombas
+\item Ninja que joga facas
+\end{itemize}
+
 \subsubsection{Armadilhas}
+\begin{itemize}
+\item Armadilha de Urso
+\item Parede com Espinhos
+\end{itemize}
 
 \subsection{Percurso}
+	Cada mapa terá um caminho fixo que os inimigos irão percorrer. Cada mapa representa um
+andar e o jogo terá no total 12 andares. Em cada mapa também será definido o número máximo de
+torres que podem ser instaladas e o número máximo de ondas.\\
+\subsubsection{Posicionamento das Torres}
+	O posicionamento das torres será variável. O jogador poderá posiciona-las em qualquer lugar no
+mapa em que se possa construir torres, ou seja, qualquer lugar que não seja o caminho ou obstáculos
+(pilastras, mesas, outras torres, etc). Os lugares possíveis de posicionamento de torres serão específicos
+de cada mapa.\\
+\subsubsection{Relação Torre X Inimigo}
+	Samurais e piratas não podem destruir ninjas, com exceção do ninja superior.\\
+
 \subsection{Mapas}
+	O jogo possuirá 13 mapas, sendo que 12 mapa representará um ambiente da torre (um andar) e
+um ambiente externo, o jardim. Os ambientes serão:
+\begin{enumerate}
+\item Jardim externo
+MATHEUS
+\item Saguão de Entrada
+TIAGO
+\item Sala de Treinos (Dojo)
+CHARLES
+\item Sala de jantar
+PEDRO
+\item Sala de Armas
+PEDRO
+\item Sala de banhos
+CHARLES
+\item Biblioteca
+MATHEUS
+\item Sala das Artes Negras
+TIAGO
+\item Armazém (onde os mantimentos são guardados)
+PEDRO
+\item Dormitório
+MATHEUS
+\item Masmorras
+TIAGO
+\item Sala da Guarda
+CHARLES
+\item Sala de Reuniões
+TIAGO
+
+\end{enumerate}
+
+\section{Mercado do jogo}
+\subsection{Moeda}
+	Para compra de torres e aquisição de melhorias das mesmas será necessária o gasto de pontos
+de experiência "exp". A experiência é adquirida ao destruir uma unidade inimiga (varia em relação a
+dificuldade da unidade inimiga).
+\subsection{Evolução de unidades}
+	Cada torre em jogo terá três níveis de evolução (o primeiro nível é o estado inicial). Cada
+evolução terá um custo de experiência variável, onde quanto maior o nível, maior é o custo.
+
+\section{Interfaces}
+\subsection{Audio}
+Haverá música de fundo para navegação de menus e enquanto não tiver acontecendo ataques
+para cada fase. Para cada ataque das torres será tocado um som da arma usada. Ex: o som de uma lança
+ao se usar uma Katana Ninja.
+\subsection{Video}
+O jogo terá uma visão over-head. As torres/inimigos no entanto serão vistas de lado. A câmera
+será fixa, assim como o mapa do jogo, durante todas as etapas do jogo. Terá o tamanho de 800x600
+pixels, ou seja, o tamanho do mapa é no máximo do tamanho da tela.
+\subsection{Controles}
+Haverá o posicionamento das torres através da movimentação do mouse. O jogador mais
+experiênte pode usufruir das teclas de atalho para selecionar uma torre e coloca-la no mapa apertando
+letras do teclado, assim a torre pode ser posicionada com o auxílio do mouse.
+
+\section{Plataforma}
+	O Ninja Seige rodará apenas em ambiente Linux.
+
+\section{Audiência}
+	O jogo foca pessoas de idade entre 10 a 30 anos de idade não importando o gênero. Jogadores
+com qualquer renda, que dispuserem de um computador, poderão se divertir com o Ninja Seige. O jogo
+também é voltado para o perfil mais casual, pois tem o objetivo de entreter a pessoa com um
+passatempo divertido.
+
+\section{Desenvolvimento}
+\subsection{Linguagem compilada}
+	Será utilizado o C++ como linguagem, pois contempla todos os recursos de baixo nível da
+linguagem C, como gerenciamento manual de memória, manipulação de ponteiros e linguagem próxima
+do nível de máquina, ao mesmo tempo em que contempla recursos de linguagem de alto nível, como
+orientação a objetos e uso de namespaces. Em concomitância com o C++ será utilizada a biblioteca SDL
+1.2.15 para Linux. O ambiente de desenvolvimento será Ubuntu. O compilador a ser utilizado será o g++.
+
+\subsection{Linguagem de script}
+	Será utilizado o Python 2.7 como linguagem de script pelo domínio que os integrantes de
+programação já possuem da linguagem e por já ser nativa de sistemas Linux. Python é uma linguagem
+multiparadigmas que permite programação estruturada, orientada a objetos e ainda permite programar
+com paradigma funcional, este que é visto em linguagens de nível bastante alto. Como é uma linguagem
+interpretada, questões que poderão sofrer grandes alterações durante o desenvolvimento (ex:
+Inteligência Artificial) serão desenvolvidas na linguagem Python, eliminando o tempo de re-compilação
+em cada modificação.
+
+\subsection{Documentação}
+	O Doxygen é uma ferramenta para documentação de código bastante completa e pode ser
+usada em C, C++, java, Python entre outras. Ele permite a criação de páginas html que documentam
+todo o código de uma forma elegante e completa como referência cruzada entre entidades e estruturas
+do código como também mostra partes do código em si. O doxygen ainda permite a geração de páginas
+man e documentos latex.
+
+\subsection{Compartilhamento de código}
+	O SVN é uma ferramenta para desenvolvimento de código em equipe utilizada para manter
+versões e builds do código em um único lugar. A utilização do SVN evita repetição e perda de
+versionamento de código, aspecto fundamental em projetos em grupo <http://code.google.com/p/z-
+one/>.
+
+\subsection{Editor de Texto}
+	O editor de texto a ser utilizado será o gedit, no ambiente Linux, com os seguintes plugins:
+\begin{itemize}
+\item Autocomplete
+\item Class Browser
+\item Code Comment
+\item Gemini
+\item Snippets
+\item Terminal
+\end{itemize}
+	A utilização dos plugins tem como objetivo auxiliar na tarefa de programação trazendo diversas
+funções de grande utilidade na hora de programar.
+
+\section{Anexos}
+\subsection{Mapas}
+
+
 \end{document}
