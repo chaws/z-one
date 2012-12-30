@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.12.5)  29 DEC 2012 11:44
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.12.5)  30 DEC 2012 14:00
 entering extended mode
  %&-line parsing enabled.
 **documento_design.tex
@@ -381,14 +381,14 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 20.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) (./documento_design.toc)
+) (./documento_design.toc
+[1
+
+])
 \tf@toc=\write3
 \openout3 = `documento_design.toc'.
 
 
-[1
-
-]
 Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
@@ -443,6 +443,6 @@ Here is how much of TeX's memory you used:
  5355 multiletter control sequences out of 15000+50000
  15374 words of font info for 47 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,6n,24p,401b,214s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,24p,401b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on documento_design.dvi (7 pages, 21380 bytes).
+Output written on documento_design.dvi (7 pages, 21776 bytes).
