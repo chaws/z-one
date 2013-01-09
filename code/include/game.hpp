@@ -6,12 +6,15 @@
 #include "SDL/SDL_ttf.h"
 #include "SDL/SDL_image.h"
 
+using namespace std;
+
 class Game{
     // Constantes
     static const int SCREEN_WIDTH = 800;    
 	static const int SCREEN_HEIGHT = 600;
 	static const int BPP = 32;
 	static const int FPS = 30;
+	static const Uint32 VIDEO_OPTIONS = SDL_HWSURFACE | SDL_DOUBLEBUF;
     
     // Atributos
     SDL_Surface *screen;
@@ -28,4 +31,5 @@ class Game{
 		Game();
 		~Game();
 		void start();
-}
+		void delay(int usec);
+};

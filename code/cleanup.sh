@@ -13,3 +13,15 @@ cd include
 rm -f *~
 rm -f config.h config.h.in stamp-h1 Makefile.in Makefile
 cd ..
+
+# src
+cd src
+rm -f *~
+rm -f config.h config.h.in stamp-h1 Makefile.in Makefile
+rm -f *.o
+rm -f ninjasiege
+cd ..
+
+# media
+cd media
+rm -f Makefile.in Makefile
