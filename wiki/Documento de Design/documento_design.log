@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.12.5)  30 DEC 2012 14:00
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2012.12.5)  10 JAN 2013 00:16
 entering extended mode
  %&-line parsing enabled.
 **documento_design.tex
@@ -8,8 +8,8 @@ Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
 (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size10.clo
-File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texmf-texlive/tex/latex/base/size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -358,91 +358,257 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 )
+(/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count100
+\Gm@cntv=\count101
+\c@Gm@tempcnt=\count102
+\Gm@bindingoffset=\dimen115
+\Gm@wd@mp=\dimen116
+\Gm@odd@mp=\dimen117
+\Gm@even@mp=\dimen118
+\Gm@dimlist=\toks22
+
+(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
 (./documento_design.aux)
 \openout1 = `documento_design.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
- (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+
+*geometry auto-detecting driver*
+*geometry detected driver: dvips*
+-------------------- Geometry parameters
+paper: a4paper
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 71.13188pt, 455.24411pt, 71.13188pt
+v-parts: 71.13188pt, 702.78308pt, 71.13188pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: dvips
+-------------------- Page layout dimensions and switches
+\paperwidth  597.50787pt
+\paperheight 845.04684pt
+\textwidth  455.24411pt
+\textheight 702.78308pt
+\oddsidemargin  -1.1381pt
+\evensidemargin -1.1381pt
+\topmargin  -38.1381pt
+\headheight 12.0pt
+\headsep    25.0pt
+\footskip   30.0pt
+\marginparwidth 35.0pt
+\marginparsep   10.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--30
+
+ []
+
+[1
+
+] (./documento_design.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 5.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) (./documento_design.toc
-[1
-
-])
+))
 \tf@toc=\write3
 \openout3 = `documento_design.toc'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 25--26
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 28--31
+ [2]
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--37
+Underfull \hbox (badness 10000) in paragraph at lines 44--47
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 41.
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 57.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
- [2]
-Overfull \hbox (0.72726pt too wide) in paragraph at lines 81--82
-[]\T1/cmr/bx/n/10 Perna de pau: \T1/cmr/m/n/10 Pi-rata ex-pe-ri-ente com defi-c
-iên-cia em uma perna, equipado
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 112--115
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 136--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--129
+Underfull \hbox (badness 10000) in paragraph at lines 140--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-[4] [5] [6] [7] (./documento_design.aux) ) 
+[5] [6]
+! Undefined control sequence.
+l.232 ... hardware de video de forma simples. \url
+                                                  {http://www.libsdl.org/}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[7]
+! Undefined control sequence.
+l.235 ...cuÃ§Ã£o de sons de vÃ¡rios formatos. \url
+                                                  {http://www.libsdl.org/pro...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.235 ... \url{http://www.libsdl.org/projects/SDL_
+                                                  mixer/docs/index.html}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+l.235 ...l.org/projects/SDL_mixer/docs/index.html}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.236 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (144.18059pt too wide) in paragraph at lines 235--236
+\T1/cmr/m/n/12 fica a ma-nip-u-lação e ex-e-cução de sons de vários for-matos. 
+http://www.libsdl.org/projects/SDL$[]\OML/cmm/m/it/12 ixer=docs=index:html$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.241 	Imagens: SDL_
+                    image, biblioteca para manipulaÃ§Ã£o de imagens utilizad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+LaTeX Warning: Command \c invalid in math mode on input line 241.
+
+
+LaTeX Warning: Command \~ invalid in math mode on input line 241.
+
+! Undefined control sequence.
+l.241 ...agens utilizada em conjunto com SDL. \url
+                                                  {http://www.libsdl.org/pro...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.242 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Missing character: There is no ç in font cmr12!
+Missing character: There is no ã in font cmr12!
+
+Overfull \hbox (322.7856pt too wide) in paragraph at lines 241--242
+\T1/cmr/m/n/12 Imagens: SDL$[]\OML/cmm/m/it/12 mage; bibliotecaparamanipulaodei
+magensutilizadaemconjuntocomSDL:[]$ 
+ []
+
+! Undefined control sequence.
+l.244 ...diversas linguagens, entre elas C++. \url
+                                                  {www.wxwidgets.org/}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[8] [9] (./documento_design.aux) )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 235 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 2200 strings out of 495062
- 23924 string characters out of 1182644
- 78344 words of memory out of 3000000
- 5355 multiletter control sequences out of 15000+50000
- 15374 words of font info for 47 fonts, out of 3000000 for 9000
+ 2582 strings out of 495062
+ 29758 string characters out of 1182644
+ 88293 words of memory out of 3000000
+ 5724 multiletter control sequences out of 15000+50000
+ 14459 words of font info for 40 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 27i,6n,24p,401b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,4n,32p,401b,242s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on documento_design.dvi (7 pages, 21776 bytes).
+Output written on documento_design.dvi (9 pages, 26680 bytes).
