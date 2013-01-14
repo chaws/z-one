@@ -1,6 +1,21 @@
 var searchData=
 [
-  ['sprite',['Sprite',['../classSprite.html',1,'']]],
-  ['sprite_2ecpp',['sprite.cpp',['../sprite_8cpp.html',1,'']]],
-  ['sprite_2eh',['sprite.h',['../sprite_8h.html',1,'']]]
+  ['saint_5fsword',['SAINT_SWORD',['../commonTypes_8hpp.html#ad2c3439c0fbb853c45129639d2581c51a145d8a37aa05318056a6820f6a346454',1,'commonTypes.hpp']]],
+  ['sample',['sample',['../structsample.html',1,'']]],
+  ['screen',['Screen',['../classScreen.html',1,'']]],
+  ['screen_2ecpp',['screen.cpp',['../screen_8cpp.html',1,'']]],
+  ['screen_2ehpp',['screen.hpp',['../screen_8hpp.html',1,'']]],
+  ['setting',['SETTING',['../commonTypes_8hpp.html#a7899b65f1ea0f655e4bbf8d2a5714285a507d4abb22dba9cbdca7d21e3e99c931',1,'commonTypes.hpp']]],
+  ['showentry',['showEntry',['../classGame.html#a4714f779d48898000498ef1d15c4b4a1',1,'Game']]],
+  ['showmenu',['showMenu',['../classGame.html#aca2a9e5c2c98b559e028b0d16f141eee',1,'Game']]],
+  ['shuriken_5fninja',['SHURIKEN_NINJA',['../commonTypes_8hpp.html#ad2c3439c0fbb853c45129639d2581c51a5d349d25a432b63352efdf9015334533',1,'commonTypes.hpp']]],
+  ['shutdown',['shutdown',['../classGame.html#aee1b95e6fd0cb0f441c3b7cef73b1abe',1,'Game']]],
+  ['sound',['Sound',['../classSound.html',1,'']]],
+  ['sound_2ecpp',['sound.cpp',['../sound_8cpp.html',1,'']]],
+  ['sound_2ehpp',['sound.hpp',['../sound_8hpp.html',1,'']]],
+  ['sounds',['sounds',['../sound_8cpp.html#abe2ff6807676346b4e46f42f993feeda',1,'sound.cpp']]],
+  ['spritestep',['spriteStep',['../classAgent.html#a5bc1668e5b5ce7e99e83b3d472a38885',1,'Agent']]],
+  ['start',['start',['../classGame.html#a7c6e55bd6f4c2d966b8e9a35f7a0d421',1,'Game']]],
+  ['starting',['STARTING',['../commonTypes_8hpp.html#a7899b65f1ea0f655e4bbf8d2a5714285a88bb48a005cb978e429b9dc98d2480ec',1,'commonTypes.hpp']]],
+  ['status',['status',['../classGame.html#afdedacb5e26c66f6ed713f7963569a30',1,'Game']]]
 ];

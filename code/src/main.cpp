@@ -1,25 +1,35 @@
+/**
+ *@file main.cpp
+ *@date 10/01/2013
+ *@author Matheus Fonseca
+ *@brief Arquivo com a função principal, basicamente chama o jogo
+ **/
+
 #include <iostream>
 #include <game.hpp>
-#include <sound.hpp>
+#include <environment.hpp>
 
 int main()
 {
-	Game * game;
-	Sound sound;
-
+	Game game;
+	int rc;
+	
 	// Inicia o jogo e as configuracoes SDL
-	game = new Game;
+	rc = game.start();
+	if(rc < 0)
+	{
+		Env::printError(rc);
+		exit(-1);
+	}
 
-	// Toca um audio porqueira por enquanto
-	sound.playSound("media/audio/translate_tts.wav");
+	// Mostra a logo e algumas informações iniciais
+	game.showEntry();
 
-	// Abre a tela
-	game->start();
+	// Entra no principal loop do jogo
+	game.mainLoop();
 
-
-
-	game->delay(6000);
-	delete game;
+	// Sai do jogo
+	game.shutdown();
 	
 	return 0;
 }

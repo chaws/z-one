@@ -5,5 +5,5 @@
 libitemincludedir = $(includedir)/
 
 # Include files
-include_HEADERS = game.hpp main.hpp sound.hpp
+include_HEADERS = game.hpp sound.hpp agent.hpp commonTypes.hpp environment.hpp event.hpp screen.hpp
 #include_HEADERS = *.hpp
