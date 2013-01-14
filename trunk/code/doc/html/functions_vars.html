@@ -52,6 +52,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -82,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow3" class="tabs2">
     <ul class="tablist">
       <li><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
@@ -101,14 +103,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="contents">
 &#160;<ul>
-<li>height
-: <a class="el" href="classSprite.html#ab86b2b0b0afa3291698f7e84aaf2aa38">Sprite</a>
+<li>data
+: <a class="el" href="structsample.html#a983a17727e548f4a584270debe1fc739">sample</a>
 </li>
-<li>movements
-: <a class="el" href="classSprite.html#a763bec8792903c07c36505928cc7d09f">Sprite</a>
+<li>dlen
+: <a class="el" href="structsample.html#aa5453c45b21baebc9d57bc1fb02ebd11">sample</a>
 </li>
-<li>width
-: <a class="el" href="classSprite.html#a0474e991c61a611fdd79d4414aee3e95">Sprite</a>
+<li>dpos
+: <a class="el" href="structsample.html#a50cc94f49fbc240702f54c890718bed0">sample</a>
+</li>
+<li>dx
+: <a class="el" href="structEvt.html#afef9f4a1c0dd66f6e57a3e9cd8b55aea">Evt</a>
+</li>
+<li>dy
+: <a class="el" href="structEvt.html#a724915c23db8247354bb7104dc521e4b">Evt</a>
+</li>
+<li>h
+: <a class="el" href="classAgent.html#a38a45fdc5671159e66be0c295d541296">Agent</a>
+</li>
+<li>spriteStep
+: <a class="el" href="classAgent.html#a5bc1668e5b5ce7e99e83b3d472a38885">Agent</a>
+</li>
+<li>status
+: <a class="el" href="classGame.html#afdedacb5e26c66f6ed713f7963569a30">Game</a>
+</li>
+<li>type
+: <a class="el" href="classAgent.html#af4593fb14a1d1296827e275a48f941cf">Agent</a>
+, <a class="el" href="structEvt.html#aa668e411090d607c9b7d4b0b1c05b74f">Evt</a>
+</li>
+<li>w
+: <a class="el" href="classAgent.html#ab962a6284716857daea1fe1f29bdf077">Agent</a>
+</li>
+<li>x
+: <a class="el" href="classAgent.html#a248b4811641ed41a665bc3a2f1033040">Agent</a>
+, <a class="el" href="structEvt.html#a526ac95c3d0b09cab5066de86e1612e1">Evt</a>
+</li>
+<li>y
+: <a class="el" href="classAgent.html#a7e01f3e847943ef3d8f1635dd9326244">Agent</a>
+, <a class="el" href="structEvt.html#a6fff2c69e6d40be1ef1170251d009dc7">Evt</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -117,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -130,7 +162,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="nav-path" class="navpath">
     <ul>
 
-    <li class="footer">Generated on Sat Nov 17 2012 13:46:00 for Z-One Games by
+    <li class="footer">Generated on Mon Jan 14 2013 06:25:28 for Z-One Games by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

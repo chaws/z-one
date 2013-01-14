@@ -1,0 +1,32 @@
+3.1 - Inimigos
+3.1.1 - Samurais 
+- Soldado (Ashigaru): Samurai de classe baixa equipado com um par de facas (Estilo: Normal).
+- Retalhador (Batosai): Samurai com sede de sangue, extremamente veloz e fatal, ficando equipado com duas katanas (Estilo: Rápido).
+- Mestre de dojo: Samurai experiente em batalhas equipado com um uma katana (Estilo:  Resistente e lento).
+- Espada-Santa: Samurai que possui técnicas supremas, secretas e sobre-humanas (Estilo:Boss).
+3.1.2 - Piratas
+- Saqueadores: Pirata comum equipado um mosquete (Estilo: Normal).
+- Corsários: Pirata saqueador de grandes embarcações, equipado com um sabre (Estilo: Rápido).
+- Perna de pau: Pirata experiente com deficiência em uma perna, equipado com um punhal (Estilo: Resistente e lento).
+- Capitão: Pirata comandante, extremamente cruel e cauteloso, equipado com um gancho e um sabre (Estilo:Boss).
+3.1.3 - Waves
+	Cada andar possui um número de ondas contínuas de inimigos, podendo variar dependendo do andar. No início do jogo o jogador pode tomar o tempo que for necessário para gastar os recursos iniciais construindo suas torres. Após construir suas torres e se sentir satisfeito ele inicia o jogo e as ondas de inimigos atacam continuamente com intervalos entre as ondas.
+	O jogador possuirá a opção de mandar a próxima onda mais cedo. E quando o jogo estiver pausado o jogador não poderá construir torres.
+
+3.2 - Torres
+	As torres serão os Ninjas. Desde antigamente os ninjas são mortais inimigos de samurais e piratas. Durante o jogo os Piratas e Samurais tentam chegar até o mestre supremo dos ninjas. Cada ninja pode ser evoluido, aumentando seus atributos, como o dano causado e a velocidade de ataque.
+
+3.2.1 - Curto alcance (melee)
+- Katana Ninja: Ninja equipado com uma Katana, espada de curto alcance, que ataca um alvo de cada vez. Ao evoluir ataca mais rápido e causa maior dano. Pode evoluir até duas vezes.
+- Nunchaku Ninja: Ninja equipado com um nunchaku, arma de curto alcance que ataca todos os inimigos em uma pequena area em frente a ele. Ao evoluir causa maior dano e no último estágio diminui a velocidade dos inimigos que acerta.
+- Manriki Ninja: Ninja equipado com o Manriki, corrente com pesos, que ataca em uma pequena area em volta dele. Ao evoluir aumenta o raio do seu ataque, o dano causado e a velocidade de ataque.
+
+3.2.2 - Longo alcance (ranged)
+- Kunai Ninja: Ninja equipado com kunais, armas de furo e  longo alcance, que ataca um inimigo de cada vez. Ao evoluir aumenta a velocidade de ataque e o dano causado.
+- Shuriken Ninja:  Ninja equipado com shurikens, arma de longo alcance e de grande velociade de ataque, mas de dano reduzido, atacando um inimigo por vez. Ao evoluir aumenta sua velocidade de ataque, seu alcance e o dano causado.
+- Ninja que joga bombas: Ninja que joga explosivos, danificando os inimigos em uma área. Ao evoluir aumenta o dano causado, a area do dano e o alcance.
+- Facas de lançamento: Ninja equipado com facas de lançamento, armas de corte e longo alcance. Ao evoluir aumenta o alcance e o dano causado.
+
+3.2.3 - Armadilhas (traps)
+- Armadilha de urso: Prende um inimigo próximo a uma torre. A torre fica então encumbida de destruir o inimigo preso na armadilha.
+- Parede com espinhos: Uma parede colocada estratégicamente que machuca os inimigos que passam por perto.

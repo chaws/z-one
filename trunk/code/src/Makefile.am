@@ -17,11 +17,11 @@ bin_PROGRAMS = ninjasiege
 # libitem_la_LIBADD = 
 
 # Program description
-ninjasiege_SOURCES = game.cpp main.cpp sound.cpp
+ninjasiege_SOURCES = game.cpp main.cpp sound.cpp environment.cpp event.cpp screen.cpp
 #ninjasiege_SOURCES = *.cpp
 
 # Libraries needed to build program
-ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image
+ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm
 
 # Include flags
 INCLUDES = -I../include -Wall -Wno-long-long -W -pedantic -ansi
