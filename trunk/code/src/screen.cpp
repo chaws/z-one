@@ -259,9 +259,9 @@ void Screen::mainMenu()
     for(y = 0; y < this->HEIGHT; y += fundo->h)
         for(x = 0; x < this->WIDTH; x += fundo->w)
             this->applySurface(x, y, fundo);
-
+    SDL_FreeSurface(fundo);            
+    
     // Agora coloca a torre 
-    SDL_FreeSurface(fundo);
     fundo = Env::loadImage("media/image/tower.jpg");
     this->applySurface(40, 40, fundo);
     SDL_FreeSurface(fundo);
@@ -279,7 +279,7 @@ void Screen::mainMenu()
 	cout << "Fonte aberta com sucesso!" << endl;
     
     // Escreve o texto
-    this->writeText(loadedFont, "Ninja Siege", 80, 110, {120, 150, 200});
+    this->writeText(loadedFont, "Ninja Siege", 80, 110, {84, 184, 234});
     TTF_CloseFont(loadedFont);
 }
 

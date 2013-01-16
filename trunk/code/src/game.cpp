@@ -49,16 +49,17 @@ int Game::start()
  */
 void Game::showEntry()
 {
-    // Carrega a logo da equipe na tela (não funciona no 'make install'!)
+    // Coloca a logo na tela, setando a imagem de transparente até quase opaca em 4 segundos - (não funciona no 'make install'!)
     SDL_Surface * logo = Env::loadImage("media/image/z_one_logo_800_600.png");
-    //SDL_Surface * logo = load_image("media/image/exemplo.bmp");
+    int alpha = SDL_ALPHA_TRANSPARENT;
+    const int ENTRY_FRAMES = 50;
     
-    // Joga na tela e mostra pro usuario
-    this->screen->applySurface(0, 0, logo);
-	this->screen->render();
-
-	// Espera uns 3 segundos
-	SDL_Delay(3000);
+	for (int i=0; i < ENTRY_FRAMES; i++, alpha++) {
+        SDL_SetAlpha(logo, SDL_SRCALPHA, alpha);
+        this->screen->applySurface(0, 0, logo);
+		this->screen->render();
+		SDL_Delay(70);
+	}
 	
 	// Libera a logo, e pela lógica entra no menu principal do jogo
 	SDL_FreeSurface(logo);
