@@ -44,10 +44,11 @@ int Screen::init()
 	
 	// Define o título da tela do jogo
 	SDL_WM_SetCaption("Ninja Siege", "Ninja Siege");
+	SDL_WM_SetIcon(Env::loadImage("media/image/z_one_logo_32_32.png"), NULL);
 	cout << "Ninja Siege, by Z-One Team." << endl;
 
     // Inicia a ferramenta pra trabalhar com fontes
-    //TTF_Init();
+    TTF_Init();
 
 	return OK;
 }
@@ -58,7 +59,7 @@ void Screen::destroy()
     SDL_FreeSurface(this->canvas);
 
     // Libera a fonte
-    //TTF_Quit();
+    TTF_Quit();
     
     // Libera todas as alocações do SDL (desliga)
     SDL_Quit();
@@ -225,6 +226,7 @@ void Screen::putPixel(int x, int y, Uint32 pixel)
     }
 }
 
+
 void Screen::applySurface(int x, int y, SDL_Surface * src) 
 {
     // Estrutura que ira conter as coordenadas indicado aonde será aplicada 
@@ -248,8 +250,8 @@ void Screen::applySurface(int x, int y, SDL_Surface * src)
 void Screen::mainMenu()
 {
     int x, y;
-
-    //TTF_Font * fonte = TTF_OpenFont("media/font/LETTERS.TTF", 32);
+    // Inicializando a fonte
+	TTF_Font *loadedFont = NULL;
 
     // Vamos montar a primeira janela do jogo haha
     // 1o, carregar o fundo "wood.jpg" e replicá-lo por toda janela
@@ -266,10 +268,32 @@ void Screen::mainMenu()
 
     // Agora monta o título do jogo, o botão fechar, o novo jogo, o continue, o config, ajuda e creditos
     this->drawRectangle(60, 60, 300, 150, {255, 50, 20});
-    //SDL_Surface * texto = TTF_RenderText_Solid(fonte, "Ninja Siege", {120, 150, 200});
-    //this->applySurface(80, 80, fundo);
-    //SDL_FreeSurface(fundo);
-
-    //TTF_CloseFont(fonte);
-    // Vejamos como fica
+    
+    
+    // Carregando a fonte	
+	loadedFont = TTF_OpenFont("media/font/UbuntuMono-B.ttf", 47);
+	if(!loadedFont) {
+		cout << "Erro ao abrir fonte: " << SDL_GetError() << endl; 
+		//return NULL; 
+	}
+	cout << "Fonte aberta com sucesso!" << endl;
+    
+    // Escreve o texto
+    this->writeText(loadedFont, "Ninja Siege", 80, 110, {120, 150, 200});
+    TTF_CloseFont(loadedFont);
 }
+
+void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color color)
+{
+    
+    SDL_Surface * textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+    if (!textSurface) {
+        cout << "Erro ao escrever na superfície: " << SDL_GetError() << endl; 
+		//return NULL; 
+    }
+    
+    this->applySurface(x, y, textSurface);
+
+    SDL_FreeSurface(textSurface);
+}
+

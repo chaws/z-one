@@ -9,6 +9,8 @@
 #define SCREEN_HPP
 
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
+#include <string>
 
 /**
  *@class Game
@@ -16,6 +18,9 @@
  *@author Charles Oliveira
  *@brief Classe responsável por controlar as telas do jogo
  */
+
+using namespace std;
+ 
 class Screen
 {
 private:
@@ -130,6 +135,11 @@ public:
      *	Menu principal do jogo
      */
     void mainMenu();
+
+	/**
+	 *
+	 */
+    void writeText(TTF_Font *font, string text, int x, int y, SDL_Color color);
 };
 
 #endif
