@@ -88,7 +88,7 @@ void Game::mainLoop()
 		this->sound->play();
 
 		// Chama a segunda parte do controlador de FPS
-		this->screen->controlBFPS();
+		this->screen->controlAFPS();
 	}
 }
 
@@ -100,25 +100,6 @@ void Game::process()
 	this->processInputs();
 	this->processColisions();
 	this->processLogic();
-}
-
-/**
- *
- */
-void Game::processInputs()
-{
-	// Processa os eventos/inputs
-	Evt * e;
-	while((e = this->event->next()))
-	{
-		cout << "Evento capturado" << endl;
-		if (e->type == QUIT)
-		{
-			cout << "QUIT!!!" << endl;
-			// Pergunta se deseja mesmo sair
-			this->status = ENDING;
-		}
-	}
 }
 
 /**
