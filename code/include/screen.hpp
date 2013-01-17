@@ -149,7 +149,7 @@ public:
     /**
      *
      */
-    void drawMap(Map *map);
+    //void drawMap(Map *map);
 };
 
 #endif
