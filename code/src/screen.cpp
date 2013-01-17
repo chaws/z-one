@@ -268,6 +268,8 @@ void Screen::mainMenu()
 
     // Agora monta o título do jogo, o botão fechar, o novo jogo, o continue, o config, ajuda e creditos
     this->drawRectangle(60, 60, 300, 150, {255, 50, 20});
+
+    
     
     
     // Carregando a fonte	
