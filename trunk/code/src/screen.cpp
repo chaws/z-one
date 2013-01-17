@@ -13,6 +13,8 @@
 #include <screen.hpp>
 #include <commonTypes.hpp>
 #include <environment.hpp>
+#include <uielement.hpp>
+#include <button.hpp>
 
 using namespace std;
 
@@ -40,31 +42,36 @@ int Screen::init()
 	SDL_Init(SDL_INIT_EVERYTHING);
 	
     // Define a tela do jogo 
-	this->canvas = SDL_SetVideoMode(this->WIDTH, this->HEIGHT, this->BPP, this->VIDEO_OPTIONS);
+	this->canvas = SDL_SetVideoMode(this->W, this->H, this->BPP, this->VIDEO_OPTIONS);
 	
 	// Define o título da tela do jogo
 	SDL_WM_SetCaption("Ninja Siege", "Ninja Siege");
-	SDL_WM_SetIcon(Env::loadImage("media/image/z_one_logo_32_32.png"), NULL);
 	cout << "Ninja Siege, by Z-One Team." << endl;
 
     // Inicia a ferramenta pra trabalhar com fontes
-    TTF_Init();
+    //TTF_Init();
 
 	return OK;
 }
 
+/**
+ *
+ */
 void Screen::destroy()
 {
 	// Libera a estrutura da tela do jogo
     SDL_FreeSurface(this->canvas);
 
     // Libera a fonte
-    TTF_Quit();
+    //TTF_Quit();
     
     // Libera todas as alocações do SDL (desliga)
     SDL_Quit();
 }
 
+/**
+ *
+ */
 void Screen::render()
 {
 	// Tenho uma ideia de colocar todos os offsets de applySurface dentro de uma fila pra depois
@@ -143,6 +150,9 @@ void Screen::drawLine(int x1, int y1, int x2, int y2, SDL_Color color)
     }
 }
 
+/**
+ *
+ */
 void Screen::drawRectangle(int x, int y, int w, int h, SDL_Color color)
 {
 	// Apenas usei as variaveis para não gerar warnings
@@ -150,7 +160,9 @@ void Screen::drawRectangle(int x, int y, int w, int h, SDL_Color color)
 	SDL_FillRect(this->canvas, &rect, SDL_MapRGB(this->canvas->format, color.r, color.g, color.b));
 }
 
-
+/**
+ *
+ */
 void Screen::drawCircle(int radius, int x, int y, SDL_Color color)
 {
     Uint32 pixelColor = SDL_MapRGB(this->canvas->format, color.r, color.g, color.b);
@@ -177,6 +189,17 @@ void Screen::drawCircle(int radius, int x, int y, SDL_Color color)
     } while (i <= j);
 }
 
+/**
+ *
+ */
+void Screen::drawElement(UIElement * element)
+{
+    element->draw(this->canvas);
+}
+
+/**
+ *
+ */
 void Screen::fillPoints(int cx, int cy, int x, int y, Uint32 color)
 {
     for (int j = x; j <= y; j++)
@@ -192,6 +215,9 @@ void Screen::fillPoints(int cx, int cy, int x, int y, Uint32 color)
     }
 }
 
+/**
+ *
+ */
 void Screen::putPixel(int x, int y, Uint32 pixel)
 {
     int Bpp = this->canvas->format->BytesPerPixel;
@@ -226,7 +252,9 @@ void Screen::putPixel(int x, int y, Uint32 pixel)
     }
 }
 
-
+/**
+ *
+ */
 void Screen::applySurface(int x, int y, SDL_Surface * src) 
 {
     // Estrutura que ira conter as coordenadas indicado aonde será aplicada 
@@ -250,62 +278,100 @@ void Screen::applySurface(int x, int y, SDL_Surface * src)
 void Screen::mainMenu()
 {
     int x, y;
-    // Inicializando a fonte
-	TTF_Font *loadedFont = NULL;
+    SDL_Color btnColor = {255, 50, 20, 0};
+    Uint32 colorkey;
+    Button 
+        title(60, 60, 300, 150, &btnColor), 
+        close(this->W - 100, 50, 50, 50, &btnColor), 
+        newGame(this->W - 270, title.y + title.h + 30, 250, 100, &btnColor), 
+        continueGame(newGame.x, newGame.y + newGame.h + 25, 250, 100, &btnColor), 
+        config(newGame.x, continueGame.y + continueGame.h + 25, 100, 100, &btnColor), 
+        help(config.x + config.w + 50, config.y, 100, 100, &btnColor), 
+        credit(config.x, config.y + config.h + 25, 250, 70, &btnColor);
 
     // Vamos montar a primeira janela do jogo haha
-    // 1o, carregar o fundo "wood.jpg" e replicá-lo por toda janela
-    SDL_Surface * fundo = Env::loadImage("media/image/wood.jpg");
-    for(y = 0; y < this->HEIGHT; y += fundo->h)
-        for(x = 0; x < this->WIDTH; x += fundo->w)
-            this->applySurface(x, y, fundo);
-    SDL_FreeSurface(fundo);            
-    
+    // 1o, carregar o img "wood.jpg" e replicá-lo por toda janela
+    SDL_Surface * img = Env::loadImage("media/image/wood.jpg");
+    for(y = 0; y < this->H; y += img->h)
+        for(x = 0; x < this->W; x += img->w)
+            this->applySurface(x, y, img);
+    SDL_FreeSurface(img);
+
     // Agora coloca a torre 
-    fundo = Env::loadImage("media/image/tower.jpg");
-    this->applySurface(40, 40, fundo);
-    SDL_FreeSurface(fundo);
-
-    // Agora monta o título do jogo, o botão fechar, o novo jogo, o continue, o config, ajuda e creditos
-    this->drawRectangle(60, 60, 300, 150, {255, 50, 20});
+    img = Env::loadImage("media/image/tower.jpg");
+    this->applySurface(40, 40, img);
+    SDL_FreeSurface(img);
 
     
+    this->drawElement(&title);          // Título do jogo
+    this->drawElement(&close);          // Botão de fechar
+    this->drawElement(&newGame);        // Novo jogo
+    this->drawElement(&continueGame);   // Continue
+    this->drawElement(&config);         // Config
+    this->drawElement(&help);           // Ajuda
+    this->drawElement(&credit);         // Creditos
+
+    // Desenha com a cor chave, seleciona o azul
+    colorkey = SDL_MapRGB(this->canvas->format, 0, 0, 0);
     
+    // Setamos a cor-chave como o azul dentro da imagem, isto é
+    // tudo que for azul, fica transparente
+    // Para remover a cor-chave, basta chamar a mesma função
+    // colocando 0 ao inves de SDL_SRCCOLORKEY
     
-    // Carregando a fonte	
-	loadedFont = TTF_OpenFont("media/font/UbuntuMono-B.ttf", 47);
-	if(!loadedFont) {
-		cout << "Erro ao abrir fonte: " << SDL_GetError() << endl; 
-		//return NULL; 
-	}
-	cout << "Fonte aberta com sucesso!" << endl;
-    
+
+    // Agora coloca a borda bonitinha
+    // Em cima
+    img = Env::loadImage("media/image/rock_edge_top.png");
+    SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    for(x = y = 0; x < this->W; x += img->w)
+        this->applySurface(x, y, img);
+    SDL_FreeSurface(img);
+
+    // direita
+    img = Env::loadImage("media/image/rock_edge_right.png");
+    SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    for(x = this->W - img->w, y = 0; y < this->H; y += img->h)
+        this->applySurface(x, y, img);
+    SDL_FreeSurface(img);
+
+    // Embaixo
+    img = Env::loadImage("media/image/rock_edge_bottom.png");
+    SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    for(x = 0, y = this->H - img->h; x < this->W; x += img->w)
+        this->applySurface(x, y, img);
+    SDL_FreeSurface(img);
+
+    // esquerda
+    img = Env::loadImage("media/image/rock_edge_left.png");
+    SDL_SetColorKey(img, SDL_SRCCOLORKEY, colorkey);
+    for(x = y = 0; y < this->H; y += img->h)
+        this->applySurface(x, y, img);
+    SDL_FreeSurface(img);
+
+    // Carregando a fonte
+    SDL_Surface * loadedFont = NULL;      
+    //loadedFont = TTF_OpenFont("media/font/UbuntuMono-B.ttf", 47);
+    if(!loadedFont) 
+        cout << "Erro ao abrir fonte: " << SDL_GetError() << endl;
+    cout << "Fonte aberta com sucesso!" << endl;
+   
     // Escreve o texto
-    this->writeText(loadedFont, "Ninja Siege", 80, 110, {84, 184, 234});
-    TTF_CloseFont(loadedFont);
+    //this->writeText(loadedFont, "Ninja Siege", 80, 110, {84, 184, 234});
+    //TTF_CloseFont(loadedFont);
+    // Vejamos como fica
 }
 
 void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color color)
-{
-    
-    SDL_Surface * textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+{    
+    SDL_Surface * textSurface = NULL;
+    // textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
     if (!textSurface) {
-        cout << "Erro ao escrever na superfície: " << SDL_GetError() << endl; 
-		//return NULL; 
+        cout << "Erro ao escrever na superfície: " << SDL_GetError() << endl;
+        return;
     }
-    
+   
     this->applySurface(x, y, textSurface);
-
     SDL_FreeSurface(textSurface);
-}
-
-
-void drawMap(Map *map){
-    //pega os tiles e desenha na tela
-    SDL_Surface * tela = NULL;
-    for(y = 0; y < this->HEIGHT; y += fundo->h)
-        for(x = 0; x < this->WIDTH; x += fundo->w)
-            this->applySurface(x, y, fundo);
-    SDL_FreeSurface(fundo); 
 }
 
