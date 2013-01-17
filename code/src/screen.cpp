@@ -297,3 +297,13 @@ void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color colo
     SDL_FreeSurface(textSurface);
 }
 
+
+void drawMap(Map *map){
+    //pega os tiles e desenha na tela
+    SDL_Surface * tela = NULL;
+    for(y = 0; y < this->HEIGHT; y += fundo->h)
+        for(x = 0; x < this->WIDTH; x += fundo->w)
+            this->applySurface(x, y, fundo);
+    SDL_FreeSurface(fundo); 
+}
+
