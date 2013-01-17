@@ -11,6 +11,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <string>
+#include <uielement.hpp>
 
 /**
  *@class Game
@@ -40,12 +41,12 @@ private:
 	/**
 	 *	Largura da janela do jogo
 	 */
-    static const int WIDTH = 800;    
+    static const int W = 800;    
     
     /**
 	 *	Altura da janela do jogo
 	 */
-	static const int HEIGHT = 600;
+	static const int H = 600;
 	
 	/**
 	 *	Bits por pixel. A escolha de 32 se deve ao fato de ter melhor performance do que 
@@ -115,6 +116,11 @@ public:
 	 *
 	 */
 	void drawCircle(int radius, int x, int y, SDL_Color color);
+
+	/**
+	 *
+	 */
+	void drawElement(UIElement * element);
 
 	/**
 	 *
