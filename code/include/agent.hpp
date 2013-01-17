@@ -53,7 +53,7 @@ public:
 	/**
 	 *	
 	 */
-	virtual Agent detectColision();
+	virtual Agent detectColision() = 0;
 };
 
 #endif

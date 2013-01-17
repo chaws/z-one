@@ -64,8 +64,6 @@ typedef enum
 	MOUSE_MOVED,		/**< Movimento do mouse, para pegar as coordenadas, veja a classe Event */
 	KEY_PRESSED,		/**< Algum botão do teclado foi pressionado, para saber qual foi , veja a classe Event */
 	KEY_RELEASED,		/**< Algum botão do teclado foi liberado, para saber qual foi , veja a classe Event */
-	WINDOW_ICONIFIED,	/**< A janela foi minimizada */
-	WINDOW_RESTORED,	/**< A janela foi restaurada */
 	WINDOW_LOSTFOCUS,	/**< A perdeu o foco, digamos, alerta do skype */
 	WINDOW_GAINEDFOCUS,	/**< A janela ganhou o foco, digamos alt+tab */
 	QUIT				/**< O usuário clicou no X, ou o SO requereu o fechamento, digamos um killall */
@@ -82,6 +80,7 @@ typedef struct
 	int y;			/**< Posição Y, caso for evento de mouse */
 	int dx;			/**< Variação dx em relação a ultima posição x, caso for evento movimentação de mouse */
 	int dy;			/**< Variação dy em relação a ultima posição y, caso for evento movimentação de mouse */
+	SDLKey key;		/**< Tecla pressionada, para saber a correspondencia completa veja o man */
 } Evt;
 
 /**

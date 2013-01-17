@@ -58,7 +58,12 @@ private:
 	/**
 	 *	Adiciona um novo evt na fila
 	 */
-	void addEvt(EvtType e, int x = -1, int y = -1, int dx = 0, int dy = 0);
+	void addEvt(EvtType e, int x = -1, int y = -1, int dx = 0, int dy = 0, SDLKey k = SDLK_FIRST);
+
+	/**
+	 *	Adiciona um novo evt na fila
+	 */
+	void addEvt(Evt * e);
 
 public:
 	/**
@@ -70,6 +75,8 @@ public:
 	 *	Captura todos os inputs
 	 */
 	void getInput();
+
+
 
 	/**
 	 *	Retorna cada um dos elementos da fila, que são eventos capturados
