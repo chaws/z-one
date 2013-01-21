@@ -10,6 +10,9 @@ game::~game(){
 }
 
 void game::render(){
+
+	loadMap();
+
 	SDL_Flip(screen);
 }
 
