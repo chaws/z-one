@@ -3,6 +3,9 @@
 
 //#include <fstream>
 #include "SDL/SDL.h"
+#include "draw.hpp"
+#include "map.hpp"
+#include "tile.hpp"
 
 class game{	
 	static const int SCREEN_HEIGHT = 800;
