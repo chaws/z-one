@@ -5,6 +5,7 @@
 using namespace std;
 
 int main(){
+
 	char mapa[15*20];
 	fstream leitor;
 	leitor.open("map.map");
@@ -23,7 +24,7 @@ int main(){
 		}
 
 	}
-
+	
 	cout << "\n" << i <<"\n";
 	
 	return 0;

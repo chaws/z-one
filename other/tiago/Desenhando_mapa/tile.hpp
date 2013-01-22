@@ -2,6 +2,7 @@
 #define TILE_HPP
 
 class Tile{
+	public:
 	char code;
 };
 

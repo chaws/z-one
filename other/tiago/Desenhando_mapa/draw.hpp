@@ -1,8 +1,10 @@
 #ifndef DRAW_HPP
 #define DRAW_HPP
 
-void drawMap(Map *map, SDL_Surface* screen){
+#include "SDL/SDL.h"
+#include "map.hpp"
 
-}
+
+void drawMap(Map map, SDL_Surface* screen);
 
 #endif
