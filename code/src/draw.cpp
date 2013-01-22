@@ -62,13 +62,3 @@ void drawMap(Map map, SDL_Surface* screen){
 	SDL_Flip(screen);
 	
 }
-
-void drawImg(SDL_Surface* img, SDL_Surface* screen, int x, int y){
-
-	SDL_Rect r;
-	r.x = x*40;
-	r.y = y*40;
-
-	SDL_BlitSurface(img,NULL,screen,&r);
-	SDL_Flip(screen);
-}
