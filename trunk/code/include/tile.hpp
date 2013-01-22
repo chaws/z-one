@@ -13,13 +13,9 @@
 
 class Tile{
 private:
-	SDL_Rect *rect;
-	int cod;
-	Uint32 color;
-	static const int HEIGTH = 40;
-	static const int WIDTH = 40;
-public:
 
-}
+public:
+	char code;
+};
 
 #endif

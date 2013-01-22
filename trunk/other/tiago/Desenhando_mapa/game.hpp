@@ -3,6 +3,7 @@
 
 //#include <fstream>
 #include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 #include "draw.hpp"
 #include "map.hpp"
 #include "tile.hpp"
@@ -27,6 +28,7 @@ public:
 	void render();
 
 	Map loadMap(const char * map_name);
+	SDL_Surface * loadImage(string img);
 };
 
 #endif

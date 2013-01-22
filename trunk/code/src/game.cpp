@@ -161,3 +161,37 @@ void Game::showMenu()
 {
 	this->screen->mainMenu();
 }
+
+Map Game::loadMap(const char * map_name){
+	
+	Map m;
+
+	fstream reader;
+	if (!reader.is_open())
+    {
+        reader.open(map_name);
+
+        if (!reader)
+        {
+            cerr << "Failed to open " << reader << endl;
+            //exit(EXIT_FAILURE);  //abort program
+        }
+    }
+	
+	char aux;
+
+	for(int i = 0;i<300;i++){
+		aux = reader.get();
+		if(aux==32 || aux==10){
+			i--;
+		}
+			
+		else{
+			m.tiles[i].code = aux;
+		}
+	}
+	cout << "Mapa carregado com sucesso!\n";
+	reader.close();
+
+	return m;
+}
