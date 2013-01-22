@@ -6,6 +6,9 @@
 #include "draw.hpp"
 #include "map.hpp"
 #include "tile.hpp"
+#include <string>
+
+using namespace std;
 
 class game{	
 	static const int SCREEN_HEIGHT = 800;
@@ -22,6 +25,8 @@ public:
 	void start();
 	void handleEvent();
 	void render();
+
+	Map loadMap(const char * map_name);
 };
 
 #endif
