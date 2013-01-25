@@ -361,11 +361,11 @@ void Screen::mainMenu()
     //TTF_CloseFont(loadedFont);
     // Vejamos como fica
 }
-
+/*
 void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color color)
 {    
     SDL_Surface * textSurface = NULL;
-    // textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
+    textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
     if (!textSurface) {
         cout << "Erro ao escrever na superfície: " << SDL_GetError() << endl;
         return;
@@ -373,5 +373,5 @@ void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color colo
    
     this->applySurface(x, y, textSurface);
     SDL_FreeSurface(textSurface);
-}
+}*/
 
