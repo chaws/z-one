@@ -145,11 +145,11 @@ public:
 	/**
 	 *
 	 */
-    //void writeText(TTF_Font * font, string text, int x, int y, SDL_Color color);
+    void writeText(TTF_Font * font, string text, int x, int y, SDL_Color color);
     /**
      *
      */
-    //void drawMap(Map *map);
+    //void drawMap(Map * map);
 };
 
 #endif
