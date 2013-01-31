@@ -38,7 +38,7 @@ void Game::processInputs()
 			case MOUSE_LCLICKED:		/**< Clique com botão do meio do mouse, para pegar as coordenadas, veja a classe Event */
 				cout << "Clique botão esquerdo" << endl;
 
-				// Implementação bahiana de detectar clique em botão
+				// Implementação baiana de detectar clique no botão sair
 				if(530 < e->x && e->x < 780 && 240 < e->y && e->y < 340)
 					cout << "Clicou no botao de novo jogo!!!" << endl;					
 
