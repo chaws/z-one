@@ -1,0 +1,45 @@
+#include <iostream>
+
+using namespace std;
+
+class Interface
+{
+	public:
+		Interface ()
+		{
+			cout << "Instanciando interface" << endl;
+		}
+};
+
+class Pai
+{
+	public:
+		Pai()
+		{
+			cout << "Instanciando pai" << endl;
+		}
+};
+
+class Normal: Pai, Interface
+{
+	public:
+		Normal()
+		{
+			cout << "Instanciando normal" << endl;
+		}
+	
+		void teste()
+		{
+			cout << "Chamando teste" << endl;
+		}
+};
+
+int main(int argc, char ** argv)
+{
+
+	Normal * n = new Normal();
+	n->teste();
+	
+	return 0;
+}
+
