@@ -49,7 +49,7 @@ int Screen::init()
 	cout << "Ninja Siege, by Z-One Team." << endl;
 
     // Inicia a ferramenta pra trabalhar com fontes
-    //TTF_Init();
+    TTF_Init();
 
 	return OK;
 }
@@ -63,7 +63,7 @@ void Screen::destroy()
     SDL_FreeSurface(this->canvas);
 
     // Libera a fonte
-    //TTF_Quit();
+    TTF_Quit();
     
     // Libera todas as alocações do SDL (desliga)
     SDL_Quit();
@@ -279,19 +279,22 @@ void Screen::mainMenu()
 {
     int x, y;
     SDL_Color btnColor = {255, 50, 20, 0};
+    SDL_Color fontColor = {84, 184, 234, 0};
     Uint32 colorkey;
+    TTF_Font * loadedFont = loadedFont = TTF_OpenFont("media/font/UbuntuMono-B.ttf", 47);
     Button 
-        title(60, 60, 300, 150, &btnColor), 
-        close(this->W - 100, 50, 50, 50, &btnColor), 
-        newGame(this->W - 270, title.y + title.h + 30, 250, 100, &btnColor), 
-        continueGame(newGame.x, newGame.y + newGame.h + 25, 250, 100, &btnColor), 
-        config(newGame.x, continueGame.y + continueGame.h + 25, 100, 100, &btnColor), 
-        help(config.x + config.w + 50, config.y, 100, 100, &btnColor), 
-        credit(config.x, config.y + config.h + 25, 250, 70, &btnColor);
+        title(60, 60, 300, 150, &btnColor, TTF_RenderText_Solid(loadedFont, "Ninja Siege", fontColor)), 
+        close(this->W - 100, 50, 50, 50, &btnColor, TTF_RenderText_Solid(loadedFont, "X", fontColor)), 
+        newGame(this->W - 290, title.y + 60, 250, 100, &btnColor, TTF_RenderText_Solid(loadedFont, "Novo jogo", fontColor)), 
+        continueGame(newGame.x, newGame.y + newGame.h + 25, 250, 100, &btnColor, TTF_RenderText_Solid(loadedFont, "Coninuar", fontColor)), 
+        config(newGame.x, continueGame.y + continueGame.h + 25, 100, 100, &btnColor, Env::loadImage("media/image/config.jpg")), 
+        help(config.x + config.w + 50, config.y, 100, 100, &btnColor, TTF_RenderText_Solid(loadedFont, "?", fontColor)), 
+        credit(config.x, config.y + config.h + 25, 250, 70, &btnColor, TTF_RenderText_Solid(loadedFont, "Creditos", fontColor));
+
+    SDL_Surface * img = Env::loadImage("media/image/wood.jpg");
 
     // Vamos montar a primeira janela do jogo haha
     // 1o, carregar o img "wood.jpg" e replicá-lo por toda janela
-    SDL_Surface * img = Env::loadImage("media/image/wood.jpg");
     for(y = 0; y < this->H; y += img->h)
         for(x = 0; x < this->W; x += img->w)
             this->applySurface(x, y, img);
@@ -301,7 +304,6 @@ void Screen::mainMenu()
     img = Env::loadImage("media/image/tower.jpg");
     this->applySurface(40, 40, img);
     SDL_FreeSurface(img);
-
     
     this->drawElement(&title);          // Título do jogo
     this->drawElement(&close);          // Botão de fechar
@@ -319,7 +321,6 @@ void Screen::mainMenu()
     // Para remover a cor-chave, basta chamar a mesma função
     // colocando 0 ao inves de SDL_SRCCOLORKEY
     
-
     // Agora coloca a borda bonitinha
     // Em cima
     img = Env::loadImage("media/image/rock_edge_top.png");
@@ -349,20 +350,11 @@ void Screen::mainMenu()
         this->applySurface(x, y, img);
     SDL_FreeSurface(img);
 
-    // Carregando a fonte
-    SDL_Surface * loadedFont = NULL;      
-    //loadedFont = TTF_OpenFont("media/font/UbuntuMono-B.ttf", 47);
-    if(!loadedFont) 
-        cout << "Erro ao abrir fonte: " << SDL_GetError() << endl;
-    cout << "Fonte aberta com sucesso!" << endl;
-   
-    // Escreve o texto
-    //this->writeText(loadedFont, "Ninja Siege", 80, 110, {84, 184, 234});
-    //TTF_CloseFont(loadedFont);
+    TTF_CloseFont(loadedFont);
     // Vejamos como fica
 }
-/*
-void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color color)
+
+void Screen::writeText(TTF_Font * font, string text, int x, int y, SDL_Color color)
 {    
     SDL_Surface * textSurface = NULL;
     textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
@@ -373,5 +365,4 @@ void Screen::writeText(TTF_Font *font, string text, int x, int y, SDL_Color colo
    
     this->applySurface(x, y, textSurface);
     SDL_FreeSurface(textSurface);
-}*/
-
+}
