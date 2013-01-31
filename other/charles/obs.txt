@@ -1,0 +1,9 @@
+instalar:
+- GParted
+- Boost
+- Eclipse indigo
+
+Colocar DisplayFormatAplha na hora de carregar imagens
+
+lembrar de colocar anti-aliasing
+
