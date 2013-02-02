@@ -1,0 +1,6 @@
+compilação:
+	g++ *.cpp -lSDL -lSDL_ttf -lSDL_mixer
+	
+execução:
+	./a.out
+

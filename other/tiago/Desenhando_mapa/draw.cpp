@@ -8,13 +8,10 @@ void drawMap(Map map, SDL_Surface* screen){
 	Uint32 color;
 	int contx = 0;
 	int conty = 0;
-	//SDL_Rect recarr[300];
-	//cout << "Desenhando mapa...\nLinha 0";
 	
 	for(int i=0;i<300;i++){
 		//le o codigo do tile no mapa
 		//seleciona cor baseada no codigo
-		cout << map.tiles[i].code << "\n";
 		switch(map.tiles[i].code){
 			case '0': //branco
 				color = SDL_MapRGB(screen->format,0xff,0xff,0xff);
@@ -41,23 +38,16 @@ void drawMap(Map map, SDL_Surface* screen){
 		rect.y = conty*40;
 		rect.w = 40;
 		rect.h = 40;
-		//cout << "Retangulo " << i << " x: " << rect.x << " y: " << rect.y << "\n";
-		//carrega os retangulos em um vetor de retangulos
-		//recarr[i] = rect;
+		//desenha o retangulo
 		SDL_FillRect(screen,&rect,color);
 		contx++;
 		//atualiza os conts
 		if(contx==20){
 			contx = 0;
-			//cout << "Linha " << conty << "\n"; 
 			conty++;
 		}
 		
 	}
-	//Desenha os retangulos
-	// for(int i=0;i<300;i++){
-	// 	SDL_FillRect(screen,&recarr[i],color);
-	// }
 	
 	SDL_Flip(screen);
 	
