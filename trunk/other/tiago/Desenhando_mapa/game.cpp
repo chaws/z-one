@@ -40,7 +40,6 @@ Map game::loadMap(const char * map_name){
 			m.tiles[i].code = aux;
 		}
 	}
-	cout << "Mapa carregado com sucesso!\n";
 	reader.close();
 
 	return m;
@@ -56,7 +55,7 @@ SDL_Surface * game::loadImage(string img)
 	SDL_Surface * optimizedImage =  NULL;
 	
 	// Carrega a imagem
-	cout << "Abrindo: " << img.c_str() << endl;
+	//cout << "Abrindo: " << img.c_str() << endl;
 	loadedImage = IMG_Load(img.c_str());
 	//loadedImage = SDL_LoadBMP(img.c_str());
 	
@@ -66,7 +65,7 @@ SDL_Surface * game::loadImage(string img)
 		cout << "Erro ao abrir: " << SDL_GetError() << endl;
 		return NULL;
 	}
-	cout << "Aberta com sucesso!" << endl;
+	//cout << "Aberta com sucesso!" << endl;
 	// Cria a imagem otimizada
     optimizedImage = SDL_DisplayFormat(loadedImage);
     
@@ -112,7 +111,7 @@ void game::start(){
 	//Inicializa SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_WM_SetCaption("Primeiro mapa",NULL);
-	Uint32 start = SDL_GetTicks();
+	Uint32 start;
 
 	Map mapa1 = loadMap("map.map");
 	drawMap(mapa1, screen);
@@ -124,6 +123,7 @@ void game::start(){
 	drawImg(pirata, screen,3,1);
 
 	while(running){
+		start = SDL_GetTicks();
 		handleEvent();
 		//Se a velocidade que o programa faz um ciclo for menor que o FPS temos que atrasa-lo
 		if(1000/FPS > SDL_GetTicks()-start)
