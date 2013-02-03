@@ -17,9 +17,7 @@ bin_PROGRAMS = ninjasiege
 # libitem_la_LIBADD = 
 
 # Program description
-ninjasiege_SOURCES = game.cpp main.cpp sound.cpp environment.cpp event.cpp screen.cpp button.cpp \
-game_processInputs.cpp
-#ninjasiege_SOURCES = *.cpp
+ninjasiege_SOURCES = 
 
 # Libraries needed to build program
 ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm
