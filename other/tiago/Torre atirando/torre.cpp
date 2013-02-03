@@ -15,3 +15,7 @@ torre::~torre(){
 void torre::show(){
 	SDL_BlitSurface(image,NULL,SDL_GetVideoSurface(),&box);
 }
+
+// void torre::shot(){
+// 	bala tiro(int x, int y, int w, int h, int xvel, int yvel);
+// }
