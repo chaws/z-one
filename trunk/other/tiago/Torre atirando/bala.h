@@ -8,10 +8,11 @@ class bala{
 	SDL_Rect box;
 	int xVel;
 	int yVel;
-	Uint32 color
+	Uint32 color;
 
 public:
 	bala(int x, int y, int w, int h, int xvel, int yvel);
+	~bala();
 	void show();
 };
 

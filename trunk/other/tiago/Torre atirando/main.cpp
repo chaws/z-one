@@ -41,7 +41,7 @@ int main(){
 				case SDL_KEYDOWN:
 					switch(event.key.keysym.sym){
 						case SDLK_w: //tecla "w"
-							ninja.shot();
+							//ninja.shot();
 						break;
 					}
 					break;
