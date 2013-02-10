@@ -1,5 +1,7 @@
-#ifndef _MAPA_H_
-#define _MAPA_H_
+#ifndef MAPA_H
+#define MAPA_H
+
+#include <desenhavel.h>
 
 typedef enum
 {
@@ -7,5 +9,14 @@ typedef enum
 	UTILIZAVEL,
 	NAO_UTILIZAVEL
 } tile;
+
+class Mapa : Desenhavel
+{	
+public:
+	tile tiles[300];
+	
+	Mapa();
+	~Mapa();	
+};
 
 #endif
