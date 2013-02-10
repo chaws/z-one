@@ -20,8 +20,8 @@ class Jogo
 private:
 	estadoJogo estadoJogo;
 	vector<Desenhavel> *vetorDesenhaveis;
-	vector<Movimentavel> *vetorDesenhaveis;
-	vector<Escutavel> *vetorDesenhaveis;
+	vector<Movimentavel> *vetorMovimentaveis;
+	vector<Escutavel> *vetorEscutaveis;
 	Tempo tempo;
 	Mapa mapa;
 	
