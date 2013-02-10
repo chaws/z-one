@@ -3,17 +3,17 @@
 
 #include <desenhavel.h>
 
-typedef enum
+typedef enum Tile
 {
 	CAMINHO,
 	UTILIZAVEL,
 	NAO_UTILIZAVEL
-} tile;
+};
 
 class Mapa : Desenhavel
 {	
 public:
-	tile tiles[300];
+	Tile tiles[300];
 	
 	Mapa();
 	~Mapa();	
