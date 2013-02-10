@@ -8,13 +8,13 @@
 #include <mapa.h>
 #include <vector>
 
-enum
+typedef enum EstadoJogo
 {
 	ENTRADA_JOGO,
 	MENU_PRINCIPAL,
 	JOGANDO,
 	FIM_JOGO
-} EstadoJogo;
+};
 
 class Jogo
 {
