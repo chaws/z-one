@@ -1,25 +1,25 @@
 #ifndef JOGO_H
 #define JOGO_H
 
-#include <vector>
 #include <desenhavel.h>
 #include <movimentavel.h>
 #include <escutavel.h>
 #include <tempo.h>
 #include <mapa.h>
+#include <vector>
 
-typedef enum 
+enum
 {
 	ENTRADA_JOGO,
 	MENU_PRINCIPAL,
 	JOGANDO,
 	FIM_JOGO
-} estadoJogo;
+} EstadoJogo;
 
 class Jogo
 {
 private:
-	estadoJogo estadoJogo;
+	EstadoJogo estadoJogo;
 	vector<Desenhavel> *vetorDesenhaveis;
 	vector<Movimentavel> *vetorMovimentaveis;
 	vector<Escutavel> *vetorEscutaveis;

@@ -3,7 +3,7 @@
 
 #include <desenhavel.h>
 
-class Escutavel : Desenavel
+class Escutavel : Desenhavel
 {
 public:
 	virtual int detectarEvento() = 0;
