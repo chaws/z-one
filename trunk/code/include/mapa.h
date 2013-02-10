@@ -3,7 +3,7 @@
 
 #include <desenhavel.h>
 
-typedef enum Tile
+enum Tile
 {
 	CAMINHO,
 	UTILIZAVEL,
@@ -17,6 +17,7 @@ public:
 	
 	Mapa();
 	~Mapa();	
+	int desenhar();
 };
 
 #endif

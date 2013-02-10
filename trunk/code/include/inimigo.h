@@ -3,7 +3,7 @@
 
 #include <movimentavel.h>
 
-typedef enum TipoInimigo
+enum TipoInimigo
 {
 	PIRATA,
 	SAMURAI
