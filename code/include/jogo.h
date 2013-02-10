@@ -1,6 +1,7 @@
 #ifndef JOGO_H
 #define JOGO_H
 
+#include <vector>
 #include <desenhavel.h>
 #include <movimentavel.h>
 #include <escutavel.h>
@@ -31,6 +32,8 @@ private:
 	int estadoFimJogo();
 		
 public:
+	Jogo();
+	~Jogo();
 	int rodar();
 };
 
