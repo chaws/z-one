@@ -5,6 +5,7 @@
 #include <movimentavel.h>
 #include <escutavel.h>
 #include <tempo.h>
+#include <tela.h>
 #include <mapa.h>
 #include <vector>
 
@@ -15,7 +16,8 @@ enum EstadoJogo
 	ENTRADA_JOGO,
 	MENU_PRINCIPAL,
 	JOGANDO,
-	FIM_JOGO
+	FIM_JOGO,
+	SAIDA_APLICATIVO
 };
 
 class Jogo
@@ -26,12 +28,16 @@ private:
 	vector<Movimentavel *> * vetorMovimentaveis;
 	vector<Escutavel *> * vetorEscutaveis;
 	Tempo * tempo;
-	Mapa mapa;
+	Mapa * mapa;
+	Tela * tela;
 	
 	int estadoEntradaJogo();
 	int estadoMenuJogo();
 	int estadoJogando();
 	int estadoFimJogo();
+	int estadoSairAplicativo();
+	int detectarSaidaAplicativo();
+	int detectarTodosEventos();
 		
 public:
 	Jogo();
