@@ -8,7 +8,9 @@
 #include <mapa.h>
 #include <vector>
 
-typedef enum EstadoJogo
+using namespace std;
+
+enum EstadoJogo
 {
 	ENTRADA_JOGO,
 	MENU_PRINCIPAL,
@@ -20,10 +22,10 @@ class Jogo
 {
 private:
 	EstadoJogo estadoJogo;
-	vector<Desenhavel> *vetorDesenhaveis;
-	vector<Movimentavel> *vetorMovimentaveis;
-	vector<Escutavel> *vetorEscutaveis;
-	Tempo tempo;
+	vector<Desenhavel *> * vetorDesenhaveis;
+	vector<Movimentavel *> * vetorMovimentaveis;
+	vector<Escutavel *> * vetorEscutaveis;
+	Tempo * tempo;
 	Mapa mapa;
 	
 	int estadoEntradaJogo();

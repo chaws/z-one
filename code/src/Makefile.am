@@ -17,7 +17,7 @@ bin_PROGRAMS = ninjasiege
 # libitem_la_LIBADD = 
 
 # Program description
-ninjasiege_SOURCES = main.cpp
+ninjasiege_SOURCES = main.cpp mapa.cpp
 
 # Libraries needed to build program
 ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm
