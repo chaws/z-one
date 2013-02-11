@@ -10,12 +10,23 @@ enum Tile
 	NAO_UTILIZAVEL
 };
 
+enum TipoMapa
+{
+	JARDIM_EXTERNO,
+	SALA_BANHO,
+	SALA_TREINAMENTO
+};
+
 class Mapa : Desenhavel
 {	
+private:
+	TipoMapa tipo;
+	void configurarMapa();
+
 public:
 	Tile tiles[300];
 	
-	Mapa();
+	Mapa(TipoMapa tipo);
 	~Mapa();	
 	int desenhar();
 };

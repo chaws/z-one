@@ -29,4 +29,3 @@ void Tempo::atrasarTempo()
     if((1000 / Tela::FPS) > atraso)
         SDL_Delay((1000 / Tela::FPS) - atraso);
 }
-

@@ -49,3 +49,7 @@ void Tela::aplicarSuperficie(SDL_Surface * superficie)
     SDL_BlitSurface(superficie, &offset, this->canvas, NULL);
 }
 
+void Tela::renderizar()
+{
+    SDL_Flip(this->canvas);
+}
