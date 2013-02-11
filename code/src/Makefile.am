@@ -17,7 +17,10 @@ bin_PROGRAMS = ninjasiege
 # libitem_la_LIBADD = 
 
 # Program description
-ninjasiege_SOURCES = main.cpp mapa.cpp jogo.cpp tela.cpp escutavel.cpp tempo.cpp ambiente.cpp
+ninjasiege_SOURCES = main.cpp mapa.cpp jogo.cpp tela.cpp escutavel.cpp tempo.cpp ambiente.cpp \
+jogo_detectarSaidaAplicativo.cpp jogo_detectarTodosEventos.cpp jogo_estadoEntradaJogo.cpp \
+jogo_estadoFimJogo.cpp jogo_estadoJogando.cpp jogo_estadoMenuJogo.cpp jogo_estadoSairAplicativo.cpp \
+jogo_desenharTudo.cpp torre.cpp
 
 # Libraries needed to build program
 ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm

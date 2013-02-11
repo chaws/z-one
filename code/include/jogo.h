@@ -25,7 +25,6 @@ class Jogo
 private:
 	EstadoJogo estadoJogo;
 	vector<Desenhavel *> * vetorDesenhaveis;
-	vector<Movimentavel *> * vetorMovimentaveis;
 	vector<Escutavel *> * vetorEscutaveis;
 	Tempo * tempo;
 	Mapa * mapa;
@@ -38,7 +37,8 @@ private:
 	int estadoSairAplicativo();
 	int detectarSaidaAplicativo();
 	int detectarTodosEventos();
-		
+	int desenharTudo();
+
 public:
 	Jogo();
 	~Jogo();
