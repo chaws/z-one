@@ -35,34 +35,24 @@ void Mapa::configurarMapa()
 
 void Mapa::gerarSuperficieEmBranco()
 {
-    Uint32 rmask, gmask, bmask, amask;
-
-    /* SDL interprets each pixel as a 32-bit number, so our masks must depend
-       on the endianness (byte order) of the machine */
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
-#else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
-#endif
-
     this->imagem = SDL_CreateRGBSurface(0, Tela::WIDTH, Tela::HEIGHT, Tela::BPP,
-                                   rmask, gmask, bmask, amask);
+                                   NULL, NULL, NULL, NULL);
 }
 
-int Mapa::desenhar()
+void Mapa::gerarSuperficieMapa()
 {
 	this->gerarSuperficieEmBranco();
-	
+
 	int contX = 0;
 	int contY = 0;
 	
-	SDL_Surface * tileImagem = NULL;
+	SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("tile2.jpg");
+	SDL_Surface * tileCaminho = Ambiente::carregarImagem("wooden_floor.bmp");
+	SDL_Surface * tileUtilizavel = Ambiente::carregarImagem("tile1.jpg");
+	SDL_Surface * tileEntrada = Ambiente::carregarImagem("red_carpet.bmp");
+	SDL_Surface * tileSaida = Ambiente::carregarImagem("red_carpet.bmp");
+	SDL_Surface * tileParaBlit =  NULL;
+
 	SDL_Rect tileRect = {0, 0, 40, 40};
 	
 	for (int i=0; i<300; i++)
@@ -70,43 +60,50 @@ int Mapa::desenhar()
 		switch(this->tiles[i])
 		{
 			case NAO_UTILIZAVEL:
-				tileImagem = Ambiente::carregarImagem("tile2.jpg");
+				tileParaBlit = tileNaoUtilizavel;
 				break;
 
 			case CAMINHO:
-				tileImagem = Ambiente::carregarImagem("wooden_floor.bmp");
+				tileParaBlit = tileCaminho;
 				break;
 
 			case UTILIZAVEL:
-				tileImagem = Ambiente::carregarImagem("tile1.jpg");
+				tileParaBlit = tileUtilizavel;
 				break;
 			
 			case ENTRADA:
-				tileImagem = Ambiente::carregarImagem("red_carpet.bmp");
+				tileParaBlit = tileEntrada;
 				break;
 				
 			case SAIDA:
-				tileImagem = Ambiente::carregarImagem("red_carpet.bmp");
+				tileParaBlit = tileSaida;
 				break;
-
 		}
-		
+
 		tileRect.x = contX*40;
 		tileRect.y = contY*40;
 		
-		SDL_BlitSurface(tileImagem, NULL, this->imagem, &tileRect);
-		
+		SDL_BlitSurface(tileParaBlit, NULL, this->imagem, &tileRect);
+
 		contX++;
 		if(contX==20)
 		{
 			contX = 0;
 			contY++;
 		}
+		
 	}
-
-	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
 	
-	return 0;
+	SDL_FreeSurface(tileNaoUtilizavel);
+	SDL_FreeSurface(tileCaminho);
+	SDL_FreeSurface(tileUtilizavel);
+	SDL_FreeSurface(tileEntrada);
+	SDL_FreeSurface(tileSaida);
+}
+
+int Mapa::desenhar()
+{
+	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
 }
 
 Mapa::Mapa(TipoMapa tipo)
@@ -121,9 +118,10 @@ Mapa::Mapa(TipoMapa tipo)
 	this->imagem = NULL;
 
 	this->configurarMapa();
+	this->gerarSuperficieMapa();
 }
 
 Mapa::~Mapa()
 {
-
+	
 }

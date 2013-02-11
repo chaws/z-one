@@ -29,6 +29,14 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
 	}
 
     optimizedImage = SDL_DisplayFormat(loadedImage);
+    if( optimizedImage != NULL ) 
+    { 
+    	//Map the color key 
+    	Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0xFF, 0, 0xFF );
+    	//Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent 
+    	SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey ); 
+ 	}
+    
     SDL_FreeSurface(loadedImage);
     
     return optimizedImage;

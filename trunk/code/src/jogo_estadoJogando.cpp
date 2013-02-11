@@ -3,6 +3,7 @@
 
 #include <jogo.h>
 #include <mapa.h>
+#include <inimigo.h>
 
 using namespace std;
 
@@ -23,14 +24,12 @@ int Jogo::estadoJogando()
 		tempDesenhavel = this->vetorDesenhaveis;
 		this->vetorDesenhaveis = desenhaveis;
 	}*/
-
-	this->mapa = new Mapa(JARDIM_EXTERNO);
 	this->vetorDesenhaveis = new vector <Desenhavel *>;
-	
+	Inimigo * inimigoTeste = new Inimigo(SAQUEADOR, 0, 160);
+	this->mapa = new Mapa(JARDIM_EXTERNO);
 	this->vetorDesenhaveis->push_back(this->mapa);
-
+	this->vetorDesenhaveis->push_back(inimigoTeste);
 	// Registrar os elementos que terao eventos detectados
-
 	while(this->estadoJogo == JOGANDO)
 	{
 		this->tempo->iniciarTempo();
@@ -42,6 +41,8 @@ int Jogo::estadoJogando()
 		this->tela->renderizar();
 
 		this->tempo->atrasarTempo();
+		
+		
 	}
 
 	//vector<Torre *> * vetorTorres;

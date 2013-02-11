@@ -24,8 +24,7 @@ int Jogo::estadoEntradaJogo()
 				SDL_SetAlpha(logo, SDL_SRCALPHA, alpha);
 				alpha++;
 				SDL_BlitSurface(logo, NULL, SDL_GetVideoSurface(), &offset);
-			} 
-					
+			} 		
 		// FIM - Parte de desenhar tudo
 		
 		this->tela->renderizar();
@@ -39,5 +38,6 @@ int Jogo::estadoEntradaJogo()
 	}
 
 	SDL_FreeSurface(logo);
+	
 	return 0;
 }

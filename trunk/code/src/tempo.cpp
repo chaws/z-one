@@ -26,6 +26,7 @@ long int Tempo::pegarTempoCorrido()
 void Tempo::atrasarTempo()
 {
     long int atraso = this->pegarTempoCorrido();
+    
     if((1000 / Tela::FPS) > atraso)
         SDL_Delay((1000 / Tela::FPS) - atraso);
 }
