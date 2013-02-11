@@ -4,7 +4,7 @@
 #include <desenhavel.h>
 #include <SDL/SDL.h>
 
-class Escutavel : Desenhavel
+class Escutavel : public Desenhavel
 {
 public:
 	virtual int detectarEvento() = 0;

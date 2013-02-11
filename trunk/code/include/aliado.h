@@ -3,7 +3,7 @@
 
 #include <escutavel.h>
 
-class Aliado : Escutavel
+class Aliado : public Escutavel
 {
 protected:
 	int alcance;

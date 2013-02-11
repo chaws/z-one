@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int Torre::WIDTH = 40;
+/*int Torre::WIDTH = 40;
 int Torre::HEIGHT = 40;
 
 int Torre::desenharAtaque()
@@ -69,4 +69,4 @@ int Torre::desenhar();
 	this->desenharAtaque();
 
 	return 0;
-}
+}*/

@@ -4,9 +4,12 @@
 
 int Jogo::estadoEntradaJogo()
 {
-	SDL_Surface * logo = Ambiente::carregarImagem("media/image/z_one_logo_800_600.png");
+	SDL_Surface * logo = Ambiente::carregarImagem("z_one_logo_800_600.png");
+	SDL_Rect offset = {0, 0, Tela::WIDTH, Tela::HEIGHT};
+	
 	int alpha = SDL_ALPHA_TRANSPARENT;
-	const int ENTRY_FRAMES = 250;
+	const int DELAY_FRAMES_INCREMENTO_ALFA = 3;
+	const int DELAY_FRAMES_INICIAR_INCREMENTO_ALFA = 15;
 	int incremento = 0;
 
 	while(this->estadoJogo == ENTRADA_JOGO)
@@ -15,22 +18,23 @@ int Jogo::estadoEntradaJogo()
 		
 		this->detectarTodosEventos();
 
-	    SDL_SetAlpha(logo, SDL_SRCALPHA, alpha);
-	    this->tela->aplicarSuperficie(logo);
-
-	    if(incremento == 0)
-	    	incremento = 1;
-	    else
-	    {
-	    	incremento = 0;
-	    	alpha++;
-	    }
-
+		// INIÍCIO - Parte de desenhar tudo
+			if ( (incremento > DELAY_FRAMES_INICIAR_INCREMENTO_ALFA) && (incremento % DELAY_FRAMES_INCREMENTO_ALFA == 0))
+			{
+				SDL_SetAlpha(logo, SDL_SRCALPHA, alpha);
+				alpha++;
+				SDL_BlitSurface(logo, NULL, SDL_GetVideoSurface(), &offset);
+			} 
+					
+		// FIM - Parte de desenhar tudo
+		
 		this->tela->renderizar();
 
 		this->tempo->atrasarTempo();
 		
-		if(alpha > ENTRY_FRAMES)
+		incremento++;
+		
+		if(incremento == 180)
 			this->estadoJogo = JOGANDO;
 	}
 

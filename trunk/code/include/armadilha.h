@@ -3,7 +3,7 @@
 
 #include <aliado.h>
 
-class Armadilha : Aliado
+class Armadilha : public Aliado
 {
 
 };

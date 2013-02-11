@@ -39,14 +39,13 @@ int Tela::detectarEvento()
     return 0;
 }
 
-// AQUI DEU MERDA
-void Tela::aplicarSuperficie(SDL_Surface * superficie)
+void Tela::aplicarSuperficie(SDL_Surface * superficie, int x, int y)
 {
     SDL_Rect offset;
-    offset.x = 0;
-    offset.y = 0;
+    offset.x = x;
+    offset.y = y;
     
-    SDL_BlitSurface(superficie, &offset, this->canvas, NULL);
+    SDL_BlitSurface(superficie, NULL, this->canvas, &offset);
 }
 
 void Tela::renderizar()

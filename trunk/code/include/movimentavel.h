@@ -3,7 +3,7 @@
 
 #include <desenhavel.h>
 
-class Movimentavel : Desenhavel
+class Movimentavel : public Desenhavel
 {
 protected:
 	int deltaX;
