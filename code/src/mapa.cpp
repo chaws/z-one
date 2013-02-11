@@ -36,7 +36,7 @@ void Mapa::configurarMapa()
 void Mapa::gerarSuperficieEmBranco()
 {
     this->imagem = SDL_CreateRGBSurface(0, Tela::WIDTH, Tela::HEIGHT, Tela::BPP,
-                                   NULL, NULL, NULL, NULL);
+                                   0, 0, 0, 0);
 }
 
 void Mapa::gerarSuperficieMapa()
