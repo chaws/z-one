@@ -2,7 +2,7 @@
 
 int Jogo::desenharTudo()
 {	
-	for(unsigned int i = 0; i < vetorDesenhaveis->size(); i++)
-		vetorDesenhaveis->at(i)->desenhar();
+	for(unsigned int i = 0; i < this->vetorDesenhaveis->size(); i++)
+		this->vetorDesenhaveis->at(i)->desenhar();
 	return 0;
 }

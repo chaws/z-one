@@ -3,7 +3,7 @@
 
 #include <movimentavel.h>
 
-class Ataque : Movimentavel
+class Ataque : public Movimentavel
 {
 
 };

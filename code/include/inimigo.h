@@ -9,7 +9,7 @@ enum TipoInimigo
 	SAMURAI
 };
 
-class Inimigo : Movimentavel
+class Inimigo : public Movimentavel
 {
 private:
 	int pontosVida;

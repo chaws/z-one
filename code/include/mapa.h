@@ -2,12 +2,17 @@
 #define MAPA_H
 
 #include <desenhavel.h>
+#include <vector>
+
+using namespace std;
 
 enum Tile
 {
+	NAO_UTILIZAVEL,
 	CAMINHO,
 	UTILIZAVEL,
-	NAO_UTILIZAVEL
+	ENTRADA,
+	SAIDA
 };
 
 enum TipoMapa
@@ -17,18 +22,21 @@ enum TipoMapa
 	SALA_TREINAMENTO
 };
 
-class Mapa : Desenhavel
+class Mapa : public Desenhavel
 {	
 private:
 	TipoMapa tipo;
 	void configurarMapa();
+	void carregarCodigosTiles(vector <Tile> * vetorCodigosTiles);
+	void gerarSuperficieEmBranco();
 
 public:
 	Tile tiles[300];
 	
 	Mapa(TipoMapa tipo);
-	~Mapa();	
-	int desenhar();
+	~Mapa();
+	int desenhar();	
+
 };
 
 #endif

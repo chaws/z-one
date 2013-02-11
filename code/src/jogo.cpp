@@ -29,6 +29,7 @@ int Jogo::rodar()
 		switch(estadoJogo)
 		{
 			case ENTRADA_JOGO:
+				std::cout << "ESTADO = ENTRADA_JOGO" << std::endl;
 				this->estadoEntradaJogo();
 				break;
 			
@@ -37,6 +38,7 @@ int Jogo::rodar()
 				break;
 			
 			case JOGANDO:
+				std::cout << "ESTADO = JOGANDO" << std::endl;
 				this->estadoJogando();
 				break;
 			

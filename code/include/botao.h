@@ -3,7 +3,7 @@
 
 #include <escutavel.h>
 
-class Botao : Escutavel
+class Botao : public Escutavel
 {
 
 };

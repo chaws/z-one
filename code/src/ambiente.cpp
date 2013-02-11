@@ -1,16 +1,18 @@
 #include <ambiente.h>
+#include <mapa.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <stdlib.h>
 
 using namespace std;
 
-string Ambiente::CAMINHO_IMG = "media/image/";
-string Ambiente::CAMINHO_MAPAS = "media/maps/";
-string Ambiente::CAMINHO_AUDIO = "media/audio/";
-string Ambiente::CAMINHO_FONT = "media/font/";
+const string Ambiente::CAMINHO_IMG = "media/image/";
+const string Ambiente::CAMINHO_MAPAS = "media/maps/";
+const string Ambiente::CAMINHO_AUDIO = "media/audio/";
+const string Ambiente::CAMINHO_FONT = "media/font/";
 
 SDL_Surface * Ambiente::carregarImagem(string caminho)
 {
@@ -32,21 +34,22 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
     return optimizedImage;
 }
 
-vector<int> * Ambiente::carregarMapa(string caminho)
+vector<Tile> * Ambiente::carregarConfiguracaoMapa(string caminho)
 {
 	caminho = Ambiente::CAMINHO_MAPAS + caminho;
-	vector<int> * retorno = new vector<int>;
-	string linha;
-  	ifstream arquivo(caminho); // ifstream = padrão ios:in
+	vector<Tile> * vetorCodigosTiles = new vector<Tile>;
+  	ifstream arquivo(caminho.c_str()); // ifstream = padrão ios:in
 	if (arquivo.is_open())
 	{
-		while (!arquivo.eof() ) //enquanto end of file for false continua
+		string codigoString;
+		Tile codigo;
+		while (arquivo >> codigoString)
 		{
-			getline (arquivo, linha);
-			for(unsigned int i = 0; i < linha.length(); i++)
-				if(linha.at(i) != ' ')
-					retorno.push_back(linha.at(i) - 30) // o 30 veio da tabela ASCII;
+			codigo = (Tile) atoi(codigoString.c_str());
+			vetorCodigosTiles->push_back(codigo);
 		}
 		arquivo.close();
 	}
+	
+	return vetorCodigosTiles;
 }

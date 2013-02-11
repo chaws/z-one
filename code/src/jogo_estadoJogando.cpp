@@ -25,7 +25,8 @@ int Jogo::estadoJogando()
 	}*/
 
 	this->mapa = new Mapa(JARDIM_EXTERNO);
-
+	this->vetorDesenhaveis = new vector <Desenhavel *>;
+	
 	this->vetorDesenhaveis->push_back(this->mapa);
 
 	// Registrar os elementos que terao eventos detectados
@@ -36,9 +37,9 @@ int Jogo::estadoJogando()
 		
 		this->detectarTodosEventos();
 
-	    cout << "Jogando!!!" << endl;
-
 		this->desenharTudo();
+		
+		this->tela->renderizar();
 
 		this->tempo->atrasarTempo();
 	}

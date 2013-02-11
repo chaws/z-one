@@ -3,13 +3,16 @@
 
 #include <aliado.h>
 #include <ataque.h>
+#include <vector>
+
+using namespace std;
 
 enum TipoTorre
 {
 	NINJA
 };
 
-class Torre : Aliado
+class Torre : public Aliado
 {
 private:
 

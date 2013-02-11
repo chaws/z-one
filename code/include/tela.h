@@ -19,7 +19,7 @@ public:
 	Tela();
 	~Tela();
 	int detectarEvento();
-	void aplicarSuperficie(SDL_Surface * superficie);
+	void aplicarSuperficie(SDL_Surface * superficie, int x, int y);
 	void renderizar();
 };
 	
