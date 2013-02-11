@@ -29,6 +29,7 @@ private:
 	void configurarMapa();
 	void carregarCodigosTiles(vector <Tile> * vetorCodigosTiles);
 	void gerarSuperficieEmBranco();
+	void gerarSuperficieMapa();
 
 public:
 	Tile tiles[300];
