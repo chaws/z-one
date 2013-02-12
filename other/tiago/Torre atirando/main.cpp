@@ -1,8 +1,10 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <iostream>
+#include <vector>
 #include "torre.h"
 #include "inimigo.h"
+#include "bala.h"
 using namespace std;
 
 #define SCREEN_W 400
@@ -10,13 +12,17 @@ using namespace std;
 #define FPS 60
 #define TILE_W 40
 #define TILE_H 40
-#define VEL_X 3
+#define VEL_X 1
 #define VEL_Y 0
+#define MAX_BALAS 10;
 
 SDL_Surface * loadImage(const char* img);
+bool collision(SDL_Rect* rect1, SDL_Rect* rect2);
 
 int main(){
 
+	vector<bala*> balas;
+	int numBalas = 0;
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	SDL_Surface* screen;
@@ -57,22 +63,49 @@ int main(){
 		}
 		
 		/**LOGICA**/
+		//movimenta o inimigo
 		pirata.move();
+		
+		//se o inimigo se aproximar da torre a torre atira
 		if(ninja.isInimigoProximo(&pirata.box)){
-			ninja.setCor(0xff,0x00,0x00);
+			//ninja.setCor(0xff,0x00,0x00);
 			//atire no inimigo!
+			if(numBalas<10){
+				balas.push_back(new bala(loadImage("shuriken.png"), ninja.box.x+20, ninja.box.y+20, 10, 10, 12, 1,pirata.box.x+20,pirata.box.y+20));
+				numBalas++;
+			}
 		}
 		else
-			ninja.setCor(0x00,0xff,0x00);
-
+			//ninja.setCor(0x00,0xff,0x00);
 		
+		//quando as balas chegam no inimigo elas sao destruidas
+		for(int i=0;i<balas.size();i++)
+			if(collision(balas[i]->getRect(),&pirata.box)){
+				delete balas[i];
+				balas.erase(balas.begin()+i);
+				numBalas--;	
+			}
+			
+		//movimenta as balas
+		for(int i=0;i<balas.size();i++){
+			balas[i]->move();
+		}
 
 		/**RENDERIZACAO**/
-		SDL_FillRect(screen,&screen->clip_rect,0);
+		//redesenha a tela com branco
+		SDL_FillRect(screen,&screen->clip_rect,SDL_MapRGB(screen->format,0xff,0xff,0xff));
+		//se o mouse estiver sobre o ninja mostra o alcance do ninja
 		if(ninja.mouseOver)
 			ninja.showAlcance();
+		//desenha as balas na tela
+		for(int i=0;i<balas.size();i++){
+			balas[i]->show();
+		}
+		//desenha o ninja
 		ninja.show();
+		//desenha o pirata
 		pirata.show();
+		//renderiza tudo na tela de jogo
 		SDL_Flip(screen);
 		
 		//Regula FPS
@@ -115,4 +148,17 @@ SDL_Surface * loadImage(const char* img){
     SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
 
     return optimizedImage;
+}
+
+bool collision(SDL_Rect* rect1, SDL_Rect* rect2){
+	if(rect1->y >= rect2->y + rect2->h)
+		return 0;
+	if(rect1->x >= rect2->x + rect2->w)
+		return 0;
+	if(rect1->y + rect1->h <= rect2->y)
+		return 0;
+	if(rect1->x + rect1->w <= rect2->x)
+		return 0;
+	return 1;
+
 }

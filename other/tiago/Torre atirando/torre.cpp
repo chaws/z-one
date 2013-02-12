@@ -51,7 +51,7 @@ void torre::DetectMouseOver(int x, int y){
 		mouseOver = 1;
 	else mouseOver = 0;
 }
-// void torre::shot(){
+// void torre::shoot(){
 // 	bala tiro(int x, int y, int w, int h, int xvel, int yvel);
 // }
 

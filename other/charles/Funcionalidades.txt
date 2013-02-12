@@ -1,0 +1,14 @@
+Funcionalidades da Torre:
+- Fazer uma torre atirar em um inimigo
+- Fazer uma armadilha atacar um inimigo (reduzir sua velocidade)
+
+Funcionalidades do HUD:
+- Contabilizar XP
+- Contabilizar pontos
+- Pausar jogo
+- Contar numero das waves
+- Next/start
+- Arrastar torres para o mapa
+
+Funcionalidades do inimigo
+- andar atraves do caminho disponível do mapa até a chegada
