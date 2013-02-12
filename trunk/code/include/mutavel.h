@@ -1,15 +1,15 @@
-#ifndef MOVIMENTAVEL_H
-#define MOVIMENTAVEL_H
+#ifndef MUTAVEL_H
+#define MUTAVEL_H
 
 #include <desenhavel.h>
 
-class Movimentavel : public Desenhavel
+class Mutavel : public Desenhavel
 {
 protected:
 	int deltaX;
 	int deltaY;
 public:
-	virtual int movimentar() = 0;
+	virtual int fazerLogica() = 0;
 	virtual int detectarColisao() = 0;
 };
 

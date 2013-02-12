@@ -7,11 +7,12 @@ using namespace std;
 
 Jogo::Jogo()
 {
-	this->estadoJogo = ENTRADA_JOGO;
+	this->estadoJogo = JOGANDO;
 	this->tela = new Tela;
 	this->tempo = new Tempo;
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
+	this->vetorMutaveis =  new vector<Mutavel *>;
 }
 
 Jogo::~Jogo()
@@ -20,6 +21,7 @@ Jogo::~Jogo()
 	if(this->tempo) delete this->tempo;
 	if(this->vetorDesenhaveis) delete this->vetorDesenhaveis;
 	if(this->vetorEscutaveis) delete this->vetorEscutaveis;
+	if(this->vetorMutaveis) delete this->vetorMutaveis;
 }
 
 int Jogo::rodar()

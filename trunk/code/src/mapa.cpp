@@ -7,28 +7,25 @@
 
 using namespace std;
 
-void Mapa::carregarCodigosTiles(vector <Tile> * vetorCodigosTiles)
-{
-	for (unsigned int i=0; i < vetorCodigosTiles->size(); i++)
-	{
-		this->tiles[i] = vetorCodigosTiles->at(i);
-	}
-}
+const int Mapa::TILE_WIDTH = 40;
+const int Mapa::TILE_HEIGHT = 40;
+const int Mapa::NUMERO_TOTAL_TILES = (Tela::WIDTH/Mapa::TILE_WIDTH) * (Tela::HEIGHT/Mapa::TILE_HEIGHT);
+const int Mapa::TILES_POR_LINHA = Tela::WIDTH/Mapa::TILE_WIDTH;
 
 void Mapa::configurarMapa()
 {
 	switch(this->tipo)
 	{
 		case JARDIM_EXTERNO:
-			this->carregarCodigosTiles(Ambiente::carregarConfiguracaoMapa("externGarden.map"));
+			this->tiles = Ambiente::carregarConfiguracaoMapa("externGarden.map");
 			break;
 
 		case SALA_TREINAMENTO:
-			this->carregarCodigosTiles(Ambiente::carregarConfiguracaoMapa("trainingRoom.map"));
+			this->tiles = Ambiente::carregarConfiguracaoMapa("trainingRoom.map");
 			break;
 
 		case SALA_BANHO:
-			this->carregarCodigosTiles(Ambiente::carregarConfiguracaoMapa("showerRoom.map"));
+			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
 			break;
 	}
 }
@@ -53,11 +50,12 @@ void Mapa::gerarSuperficieMapa()
 	SDL_Surface * tileSaida = Ambiente::carregarImagem("red_carpet.bmp");
 	SDL_Surface * tileParaBlit =  NULL;
 
-	SDL_Rect tileRect = {0, 0, 40, 40};
+	SDL_Rect tileRect = {0, 0, Mapa::TILE_WIDTH, Mapa::TILE_HEIGHT};
+	bool achouEntrada = false;
 	
-	for (int i=0; i<300; i++)
+	for (int i = 0; i < Mapa::NUMERO_TOTAL_TILES; i++)
 	{
-		switch(this->tiles[i])
+		switch(this->tiles->at(i))
 		{
 			case NAO_UTILIZAVEL:
 				tileParaBlit = tileNaoUtilizavel;
@@ -72,6 +70,12 @@ void Mapa::gerarSuperficieMapa()
 				break;
 			
 			case ENTRADA:
+				if(!achouEntrada)
+				{
+					this->tileEntrada.x = i % Mapa::TILES_POR_LINHA;
+					this->tileEntrada.y = (i / Mapa::TILES_POR_LINHA) + 1;
+					achouEntrada = true;
+				}
 				tileParaBlit = tileEntrada;
 				break;
 				
@@ -80,13 +84,13 @@ void Mapa::gerarSuperficieMapa()
 				break;
 		}
 
-		tileRect.x = contX*40;
-		tileRect.y = contY*40;
+		tileRect.x = contX * Mapa::TILE_WIDTH;
+		tileRect.y = contY * Mapa::TILE_HEIGHT;
 		
 		SDL_BlitSurface(tileParaBlit, NULL, this->imagem, &tileRect);
 
 		contX++;
-		if(contX==20)
+		if(contX == Tela::WIDTH/Mapa::TILE_WIDTH)
 		{
 			contX = 0;
 			contY++;
@@ -104,6 +108,7 @@ void Mapa::gerarSuperficieMapa()
 int Mapa::desenhar()
 {
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	return 0;
 }
 
 Mapa::Mapa(TipoMapa tipo)
@@ -116,12 +121,14 @@ Mapa::Mapa(TipoMapa tipo)
 	this->rect->w = Tela::WIDTH;
 	this->rect->h = Tela::HEIGHT;
 	this->imagem = NULL;
-
+	
 	this->configurarMapa();
 	this->gerarSuperficieMapa();
 }
 
 Mapa::~Mapa()
 {
-	
+	delete this->imagem;
+	delete this->rect;
+	delete this->tiles;
 }

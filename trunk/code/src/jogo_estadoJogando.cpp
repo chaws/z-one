@@ -9,6 +9,46 @@ using namespace std;
 
 int Jogo::estadoJogando()
 {
+	this->vetorMutaveis =  new vector <Mutavel *>;
+	this->vetorDesenhaveis = new vector <Desenhavel *>;
+	
+	this->mapa = new Mapa(SALA_TREINAMENTO);
+	
+	this->vetorDesenhaveis->push_back(this->mapa);
+	
+	Inimigo * inimigoTeste = new Inimigo(SAQUEADOR, this->mapa);
+	Inimigo * inimigoTeste2 = new Inimigo(SAQUEADOR, this->mapa);
+	
+	this->vetorDesenhaveis->push_back(inimigoTeste);
+	
+	this->vetorMutaveis->push_back(inimigoTeste);
+	
+	int espera;
+	while(this->estadoJogo == JOGANDO)
+	{
+		if (espera == 90 )
+		{
+			this->vetorDesenhaveis->push_back(inimigoTeste2);
+			this->vetorMutaveis->push_back(inimigoTeste2);
+		}
+			
+		this->tempo->iniciarTempo();
+		
+		this->detectarTodosEventos();
+		
+		this->fazerTodaLogica();
+
+		this->desenharTudo();
+		
+		this->tela->renderizar();
+
+		this->tempo->atrasarTempo();
+		espera++;
+	}
+
+	return 0;	
+}
+
 	/*
 	// Responsaveis por trocar a referencia dos desenhaveis do jogo
 	static vector<Desenhavel *> * desenhaveis; 
@@ -24,30 +64,9 @@ int Jogo::estadoJogando()
 		tempDesenhavel = this->vetorDesenhaveis;
 		this->vetorDesenhaveis = desenhaveis;
 	}*/
-	this->vetorDesenhaveis = new vector <Desenhavel *>;
-	Inimigo * inimigoTeste = new Inimigo(SAQUEADOR, 0, 160);
-	this->mapa = new Mapa(JARDIM_EXTERNO);
-	this->vetorDesenhaveis->push_back(this->mapa);
-	this->vetorDesenhaveis->push_back(inimigoTeste);
-	// Registrar os elementos que terao eventos detectados
-	while(this->estadoJogo == JOGANDO)
-	{
-		this->tempo->iniciarTempo();
-		
-		this->detectarTodosEventos();
-
-		this->desenharTudo();
-		
-		this->tela->renderizar();
-
-		this->tempo->atrasarTempo();
-		
-		
-	}
+	
 
 	//vector<Torre *> * vetorTorres;
 	//vector<Movimentavel *> * vetorMovimentaveis;
 	//vector<Wave *> * vetorMovimentaveis;
 
-	return 0;	
-}

@@ -1,9 +1,9 @@
 #ifndef ATAQUE_H
 #define ATAQUE_H
 
-#include <movimentavel.h>
+#include <mutavel.h>
 
-class Ataque : public Movimentavel
+class Ataque : public Mutavel
 {
 
 };
