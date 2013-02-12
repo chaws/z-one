@@ -33,7 +33,6 @@ private:
 
 public:
 	Tile tiles[300];
-	
 	Mapa(TipoMapa tipo);
 	~Mapa();
 	int desenhar();	
