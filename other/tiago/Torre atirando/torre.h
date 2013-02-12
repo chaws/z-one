@@ -25,7 +25,7 @@ public:
 	void showAlcance();
 	bool isInimigoProximo(SDL_Rect* inimigo);
 	void DetectMouseOver(int x, int y); //se o mouse esta sobre ela
-	void shoot(); //em quem atirar
+	//void shoot(); //em quem atirar
 
 	void setCor(Uint8 r, Uint8 g, Uint8 b);
 };
