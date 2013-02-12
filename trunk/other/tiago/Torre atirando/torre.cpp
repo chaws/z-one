@@ -16,6 +16,8 @@ torre::torre(SDL_Surface* img, int x, int y, int w, int h){
 	alcance.w = w*3;
 	alcance.h = h*3;
 	cor = SDL_MapRGB(SDL_GetVideoSurface()->format,0x00,0xff,0x00);
+
+	mouseOver = 0;
 }
 
 torre::~torre(){
@@ -44,6 +46,11 @@ bool torre::isInimigoProximo(SDL_Rect* inimigo){
 	return 1;
 }
 
+void torre::DetectMouseOver(int x, int y){
+	if(x>box.x && x<box.x+box.w && y>box.y && y<box.y+box.h)
+		mouseOver = 1;
+	else mouseOver = 0;
+}
 // void torre::shot(){
 // 	bala tiro(int x, int y, int w, int h, int xvel, int yvel);
 // }
