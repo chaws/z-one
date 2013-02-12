@@ -28,9 +28,8 @@ void bala::move()
 
 	// position.add(velocity.x * deltaTime, velocity.y * deltaTime);
 	
-	box.x+= (alvoX-box.x)/2;
-	box.y+= (alvoY-box.y)/2;
-	//box.y = (a * box.x) + b;
+	box.x+= (int)((alvoX-box.x)*0.2);
+	box.y+= (int)((alvoY-box.y)*0.2);
 }
 
 void bala::show(){

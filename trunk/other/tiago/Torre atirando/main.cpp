@@ -68,33 +68,32 @@ int main(){
 		
 		//se o inimigo se aproximar da torre a torre atira
 		if(ninja.isInimigoProximo(&pirata.box)){
-			//ninja.setCor(0xff,0x00,0x00);
 			//atire no inimigo!
-			if(numBalas<10){
+			if(numBalas<1){
 				balas.push_back(new bala(loadImage("shuriken.png"), ninja.box.x+20, ninja.box.y+20, 10, 10, 12, 1,pirata.box.x+20,pirata.box.y+20));
 				numBalas++;
 			}
 		}
-		else
-			//ninja.setCor(0x00,0xff,0x00);
 		
 		//quando as balas chegam no inimigo elas sao destruidas
 		for(int i=0;i<balas.size();i++)
-			if(collision(balas[i]->getRect(),&pirata.box)){
+			if((balas[i]->box.x>balas[i]->alvoX-10 && (balas[i]->box.x)<(balas[i]->alvoX+10)) && (balas[i]->box.y>balas[i]->alvoY-10 && balas[i]->box.y<balas[i]->alvoY+10)){
 				delete balas[i];
 				balas.erase(balas.begin()+i);
-				numBalas--;	
+				numBalas--;
 			}
-			
+
 		//movimenta as balas
 		for(int i=0;i<balas.size();i++){
+			// cout << "x: " << balas[i]->box.x << endl;
+			// cout << "y: " << balas[i]->box.y << endl;
 			balas[i]->move();
 		}
 
 		/**RENDERIZACAO**/
 		//redesenha a tela com branco
 		SDL_FillRect(screen,&screen->clip_rect,SDL_MapRGB(screen->format,0xff,0xff,0xff));
-		//se o mouse estiver sobre o ninja mostra o alcance do ninja
+		//se o mouse estiver sobre o ninja mostra o alcancbe do ninja
 		if(ninja.mouseOver)
 			ninja.showAlcance();
 		//desenha as balas na tela
