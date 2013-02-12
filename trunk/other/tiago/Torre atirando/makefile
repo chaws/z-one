@@ -1,5 +1,9 @@
 CC=g++
 CFLAGS = -lSDL -lSDL_image
 
-torreatirando: main.cpp torre.cpp bala.cpp
-	$(CC) -o ninjasiege main.cpp torre.cpp bala.cpp $(CFLAGS)
+GAME = ninjasiege
+
+CODE = main.cpp torre.cpp inimigo.cpp bala.cpp
+
+ninjasiege: main.cpp torre.cpp inimigo.cpp bala.cpp
+	$(CC) -o $(GAME) $(CODE) $(CFLAGS)

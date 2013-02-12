@@ -2,7 +2,7 @@
 #include <SDL/SDL_image.h>
 #include <iostream>
 #include "torre.h"
-
+#include "inimigo.h"
 using namespace std;
 
 #define SCREEN_W 400
@@ -25,7 +25,7 @@ int main(){
 
 	//criando uma torre
 	torre ninja(loadImage("ninja_katana.png"),30, 30, 40, 40);
-
+	inimigo pirata(loadImage("pirata_capitao.png"),100,100,40,40,1,0);
 	//Loop do jogo
 	while(running){
 		//Coloca os milisegundos na variável start
@@ -49,8 +49,10 @@ int main(){
 		}
 		
 		//logica
-		
+		pirata.move();
 		//renderização
+		SDL_FillRect(screen,&screen->clip_rect,0);
+		pirata.show();
 		ninja.show();
 		SDL_Flip(screen);
 		
