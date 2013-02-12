@@ -8,6 +8,10 @@ using namespace std;
 #define SCREEN_W 400
 #define SCREEN_H 300
 #define FPS 60
+#define TILE_W 40
+#define TILE_H 40
+#define VEL_X 3
+#define VEL_Y 0
 
 SDL_Surface * loadImage(const char* img);
 
@@ -24,9 +28,10 @@ int main(){
 	bool running=true; //booleano para rodar o jogo
 
 	//criando uma torre
-	torre ninja(loadImage("ninja_katana.png"),30, 30, 40, 40);
-	inimigo pirata(loadImage("pirata_capitao.png"),100,100,40,40,1,0);
-	//Loop do jogo
+	torre ninja(loadImage("ninja_katana.png"),50, 50, TILE_W, TILE_H);
+	inimigo pirata(loadImage("pirata_capitao.png"),300,100,TILE_W,TILE_H,VEL_X,VEL_Y);
+
+	//Loop do jogo	
 	while(running){
 		//Coloca os milisegundos na variável start
 		start = SDL_GetTicks();
@@ -40,7 +45,7 @@ int main(){
 					break;
 				case SDL_KEYDOWN:
 					switch(event.key.keysym.sym){
-						case SDLK_w: //tecla "w"
+						case SDLK_x: //tecla "x"
 							//ninja.shot();
 						break;
 					}
@@ -48,12 +53,20 @@ int main(){
 			}
 		}
 		
-		//logica
+		/**LOGICA**/
 		pirata.move();
-		//renderização
+		if(ninja.isInimigoProximo(&pirata.box)){
+			ninja.setCor(0xff,0x00,0x00);
+			//cout << "Achei um inimigo!" << endl;
+		}
+		else
+			ninja.setCor(0x00,0xff,0x00);
+
+		/**RENDERIZACAO**/
 		SDL_FillRect(screen,&screen->clip_rect,0);
-		pirata.show();
+		ninja.showAlcance();
 		ninja.show();
+		pirata.show();
 		SDL_Flip(screen);
 		
 		//Regula FPS

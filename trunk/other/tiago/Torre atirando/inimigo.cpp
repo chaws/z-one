@@ -1,5 +1,6 @@
 #include "inimigo.h"
-
+#include <iostream>
+using namespace std;
 	 //Construtor
 	inimigo::inimigo(SDL_Surface* img, int x, int y, int w, int h, int xvel, int yvel){
 		image = img;
@@ -8,7 +9,7 @@
 		box.w = w;
 		box.h = h;
 		xVel = xvel;
-		yVel = yVel;
+		yVel = yVel;		
 	}
 	//Destrutor
 	inimigo::~inimigo(){
@@ -21,13 +22,13 @@
 
 	void inimigo::move(){
 		box.x+=xVel;
-		box.y+=yVel;
-		if(box.x<=0)
-			xVel=-xVel;
-		if(box.x+box.h>=SDL_GetVideoSurface()->clip_rect.w)
-			xVel=-xVel;
+
+		if(box.x <= 0)
+			xVel = -xVel;
+		if(box.x+box.w >= SDL_GetVideoSurface()->clip_rect.w)
+			xVel = -xVel;
 	}
 
 	bool inimigo::colisao(SDL_Rect* rect1, SDL_Rect* rect2){
-
+		return true;
 	}
