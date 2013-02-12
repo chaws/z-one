@@ -50,6 +50,9 @@ int main(){
 						break;
 					}
 					break;
+				case SDL_MOUSEMOTION:
+					ninja.DetectMouseOver(event.motion.x,event.motion.y);
+					break;
 			}
 		}
 		
@@ -57,14 +60,17 @@ int main(){
 		pirata.move();
 		if(ninja.isInimigoProximo(&pirata.box)){
 			ninja.setCor(0xff,0x00,0x00);
-			//cout << "Achei um inimigo!" << endl;
+			//atire no inimigo!
 		}
 		else
 			ninja.setCor(0x00,0xff,0x00);
 
+		
+
 		/**RENDERIZACAO**/
 		SDL_FillRect(screen,&screen->clip_rect,0);
-		ninja.showAlcance();
+		if(ninja.mouseOver)
+			ninja.showAlcance();
 		ninja.show();
 		pirata.show();
 		SDL_Flip(screen);
