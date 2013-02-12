@@ -28,7 +28,3 @@ using namespace std;
 		if(box.x+box.w >= SDL_GetVideoSurface()->clip_rect.w)
 			xVel = -xVel;
 	}
-
-	bool inimigo::colisao(SDL_Rect* rect1, SDL_Rect* rect2){
-		return true;
-	}
