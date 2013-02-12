@@ -4,7 +4,16 @@
 #include <desenhavel.h>
 #include <vector>
 
+struct PontoTile
+{
+	int x;
+	int y;
+};
+
+#include <inimigo.h>
+
 using namespace std;
+
 
 enum Tile
 {
@@ -26,17 +35,23 @@ class Mapa : public Desenhavel
 {	
 private:
 	TipoMapa tipo;
+	PontoTile tileEntrada;
 	void configurarMapa();
-	void carregarCodigosTiles(vector <Tile> * vetorCodigosTiles);
 	void gerarSuperficieEmBranco();
 	void gerarSuperficieMapa();
+	static const int NUMERO_TOTAL_TILES;
+	vector<Tile> * tiles;
 
 public:
-	Tile tiles[300];
+	static const int TILE_WIDTH;
+	static const int TILE_HEIGHT;
+	static const int TILES_POR_LINHA;
+
 	Mapa(TipoMapa tipo);
 	~Mapa();
 	int desenhar();	
-
+	
+	friend class Inimigo;
 };
 
 #endif

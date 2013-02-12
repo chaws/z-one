@@ -7,7 +7,7 @@
 #include <inimigo.h>
 #include <jogo.h>
 #include <mapa.h>
-#include <movimentavel.h>
+#include <mutavel.h>
 #include <tempo.h>
 #include <torre.h>
 

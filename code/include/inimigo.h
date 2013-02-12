@@ -1,7 +1,8 @@
 #ifndef INIMIGO_H
 #define INIMIGO_H
 
-#include <movimentavel.h>
+#include <mutavel.h>
+#include <mapa.h>
 
 enum TipoInimigo
 {
@@ -11,7 +12,10 @@ enum TipoInimigo
 	PERNA_DE_PAU
 };
 
-class Inimigo : public Desenhavel
+
+class Mapa;
+
+class Inimigo : public Mutavel
 {
 private:
 	int pontosVida;
@@ -19,13 +23,26 @@ private:
 	TipoInimigo tipo;
 	int deltaX;
 	int deltaY;
+	bool estaMorto;
+	PontoTile tileAtual;
+	PontoTile tileAnterior;
+	int velocidade;
+	Mapa * mapaAtual;
+	bool recemCriado;	
+	int pixelsAndados;
+
+	
+	int setarProximaPosicao();
+	void tremer();
+	bool ehCaminho(int posicao);
+	
 public:
 	void subtrairVida(int dano);
-	Inimigo(int tipo, int x, int y);
+	Inimigo(int tipo, Mapa * mapaAtual);
 	~Inimigo();
 	int desenhar();
-//	int movimentar();
-//	int detectarColisao();	
+	int fazerLogica();
+	int detectarColisao();	
 };
 
 #endif

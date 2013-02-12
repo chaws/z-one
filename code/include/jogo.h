@@ -2,7 +2,7 @@
 #define JOGO_H
 
 #include <desenhavel.h>
-#include <movimentavel.h>
+#include <mutavel.h>
 #include <escutavel.h>
 #include <tempo.h>
 #include <tela.h>
@@ -26,6 +26,7 @@ private:
 	EstadoJogo estadoJogo;
 	vector<Desenhavel *> * vetorDesenhaveis;
 	vector<Escutavel *> * vetorEscutaveis;
+	vector<Mutavel *> * vetorMutaveis;
 	Tempo * tempo;
 	Mapa * mapa;
 	Tela * tela;
@@ -38,6 +39,7 @@ private:
 	int detectarSaidaAplicativo();
 	int detectarTodosEventos();
 	int desenharTudo();
+	int fazerTodaLogica();
 
 public:
 	Jogo();
