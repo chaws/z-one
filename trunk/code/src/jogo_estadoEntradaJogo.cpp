@@ -1,8 +1,9 @@
 #include <jogo.h>
 #include <ambiente.h>
+#include <logofading.h>
 #include <SDL/SDL.h>
 
-int Jogo::estadoEntradaJogo()
+/*int Jogo::estadoEntradaJogo()
 {
 	SDL_Surface * logo = Ambiente::carregarImagem("z_one_logo_800_600.png");
 	SDL_Rect offset = {0, 0, Tela::WIDTH, Tela::HEIGHT};
@@ -38,6 +39,30 @@ int Jogo::estadoEntradaJogo()
 	}
 
 	SDL_FreeSurface(logo);
+	
+	return 0;
+}*/
+
+int Jogo::estadoEntradaJogo()
+{
+	LogoFading * logoFading = new LogoFading();
+
+	while(this->estadoJogo == ENTRADA_JOGO)
+	{
+		this->tempo->iniciarTempo();
+		
+		this->detectarTodosEventos();
+		
+		this->tela->renderizar();
+
+		this->tempo->atrasarTempo();
+		
+		if(logoFading->terminouFading())
+		{
+			this->estadoJogo = JOGANDO;
+			delete logoFading;
+		}
+	}
 	
 	return 0;
 }
