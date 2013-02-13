@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
+#include <ambiente.h>
 #include <iostream>
 
 using namespace std;
@@ -13,11 +14,12 @@ Tela::Tela()
         
     // Define a tela do jogo 
     this->canvas = SDL_SetVideoMode(this->WIDTH, this->HEIGHT, this->BPP, this->VIDEO_OPTIONS);
-        
+    
     // Define o título da tela do jogo
 	SDL_WM_SetCaption("Ninja Siege", "Ninja Siege");
+	SDL_WM_SetIcon(Ambiente::carregarIcone("icon.bmp"), NULL);
     cout << "Ninja Siege, by Z-One Team." << endl;
-
+        
     // Inicia a ferramenta pra trabalhar com fontes
     TTF_Init();
 }

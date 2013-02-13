@@ -13,7 +13,7 @@ int Jogo::estadoJogando()
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 	this->vetorMutaveis =  new vector<Mutavel *>;
 	
-	this->mapa = new Mapa(SALA_TREINAMENTO);
+	this->mapa = new Mapa(JARDIM_EXTERNO);
 	this->vetorDesenhaveis->push_back(this->mapa);
 	
 	this->mestre = new Mestre(this->mapa);
@@ -31,6 +31,7 @@ int Jogo::estadoJogando()
 		this->tela->renderizar();
 		this->tempo->atrasarTempo();
 	}
+			
 	return 0;	
 }
 

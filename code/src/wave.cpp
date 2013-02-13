@@ -32,17 +32,17 @@ void Wave::configurarWave()
 	{
 		case NORMAL:
 			this->intervaloCriacaoInimigos = 0.5 * Tela::FPS;
-			this->quantidadeInimigos = 100;
+			this->quantidadeInimigos = 20;
 			break;
 	}
 	this->vetorInimigos = new vector<Inimigo *>;
+	int resto;
 	for(int i = 0; i < this->quantidadeInimigos; i++)
 	{
 		// Deixar criação de inimigos aleatória
-		if (i % 2 == 0)
-			this->vetorInimigos->push_back(new Inimigo(CORSARIO, this->mapaAtual));
-		else
-			this->vetorInimigos->push_back(new Inimigo(CAPITAO, this->mapaAtual));
+		resto = (TipoInimigo) i % 4;
+		this->vetorInimigos->push_back(new Inimigo(resto, this->mapaAtual));
+
 	}
 		
 	

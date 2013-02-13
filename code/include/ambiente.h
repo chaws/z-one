@@ -18,6 +18,7 @@ private:
 
 public:
 	static SDL_Surface * carregarImagem(string caminho);
+	static SDL_Surface * carregarIcone(string caminho);
 	static vector<Tile> * carregarConfiguracaoMapa(string caminho);
 };
 
