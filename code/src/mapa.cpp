@@ -43,9 +43,9 @@ void Mapa::gerarSuperficieMapa()
 	int contX = 0;
 	int contY = 0;
 	
-	SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("tile2.jpg");
+	SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("acid.png");
 	SDL_Surface * tileCaminho = Ambiente::carregarImagem("wooden_floor.bmp");
-	SDL_Surface * tileUtilizavel = Ambiente::carregarImagem("tile1.jpg");
+	SDL_Surface * tileUtilizavel = Ambiente::carregarImagem("bricks.png");
 	SDL_Surface * tileEntrada = Ambiente::carregarImagem("red_carpet.bmp");
 	SDL_Surface * tileSaida = Ambiente::carregarImagem("red_carpet.bmp");
 	SDL_Surface * tileParaBlit =  NULL;

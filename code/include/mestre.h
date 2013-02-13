@@ -10,9 +10,10 @@ class Mestre : public Mutavel
 {
 private:
 	int alcance;
-	int pontosVida;
+	
 public:
 	int fazerLogica();
+	int pontosVida;
 	int detectarColisao();
 	int desenhar();
 	Mestre(Mapa *mapaAtual);

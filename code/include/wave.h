@@ -5,6 +5,7 @@
 #include <desenhavel.h>
 #include <mutavel.h>
 #include <mapa.h>
+#include <mestre.h>
 #include <vector>
 
 using namespace std;
@@ -21,13 +22,16 @@ private:
 	vector<Desenhavel *> * vetorDesenhaveis;
 	vector<Mutavel *> * vetorMutaveis;
 	Mapa * mapaAtual;
+	Mestre * mestreAtual;
 	IDWave idWave;
 	int quantidadeInimigos;
 	int intervaloCriacaoInimigos;
 	void configurarWave();
+	int removerInimigosMortos(int  * indiceVetorInimigo);
+	int lancarInimigos(int * atraso, int * indiceVetorInimigo);
 	
 public:
-	Wave(IDWave idWave, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis, Mapa * mapaAtual);
+	Wave(IDWave idWave, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis, Mapa * mapaAtual, Mestre * mestreAtual);
 	~Wave();
 	
 	int fazerLogica();

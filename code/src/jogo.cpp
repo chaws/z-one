@@ -2,17 +2,14 @@
 #include <iostream>
 #include <escutavel.h>
 #include <ambiente.h>
+#include <util.h>
 
 using namespace std;
 
 Jogo::Jogo()
 {
-	this->estadoJogo = ENTRADA_JOGO;
 	this->tela = new Tela;
 	this->tempo = new Tempo;
-	this->vetorDesenhaveis =  new vector<Desenhavel *>;
-	this->vetorEscutaveis =  new vector<Escutavel *>;
-	this->vetorMutaveis =  new vector<Mutavel *>;
 }
 
 Jogo::~Jogo()
@@ -28,7 +25,7 @@ int Jogo::rodar()
 {
 	do 
 	{
-		switch(estadoJogo)
+		switch(Util::estadoJogo)
 		{
 			case ENTRADA_JOGO:
 				this->estadoEntradaJogo();
@@ -50,7 +47,7 @@ int Jogo::rodar()
 				this->estadoFimJogo();
 				break;
 		}
-	} while(estadoJogo != SAIDA_APLICATIVO);
+	} while(Util::estadoJogo != SAIDA_APLICATIVO);
 	
 	this->estadoSairAplicativo();
 	return 0;	

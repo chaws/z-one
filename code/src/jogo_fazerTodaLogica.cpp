@@ -1,5 +1,6 @@
 #include <jogo.h>
 #include <iostream>
+#include <util.h>
 
 int Jogo::fazerTodaLogica()
 {	

@@ -7,24 +7,15 @@
 #include <tempo.h>
 #include <tela.h>
 #include <mapa.h>
+#include <mestre.h>
 #include <wave.h>
 #include <vector>
 
 using namespace std;
 
-enum EstadoJogo
-{
-	ENTRADA_JOGO,
-	MENU_PRINCIPAL,
-	JOGANDO,
-	FIM_JOGO,
-	SAIDA_APLICATIVO
-};
-
 class Jogo
 {
 private:
-	EstadoJogo estadoJogo;
 	vector<Desenhavel *> * vetorDesenhaveis;
 	vector<Escutavel *> * vetorEscutaveis;
 	vector<Mutavel *> * vetorMutaveis;
@@ -32,6 +23,7 @@ private:
 	Mapa * mapa;
 	Tela * tela;
 	Wave * wave;
+	Mestre * mestre;
 	
 	int estadoEntradaJogo();
 	int estadoMenuJogo();

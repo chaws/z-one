@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-
+#include <util.h>
 #include <jogo.h>
 #include <mapa.h>
 #include <inimigo.h>
@@ -9,16 +9,20 @@ using namespace std;
 
 int Jogo::estadoJogando()
 {
-	this->mapa = new Mapa(JARDIM_EXTERNO);
+	this->vetorDesenhaveis =  new vector<Desenhavel *>;
+	this->vetorEscutaveis =  new vector<Escutavel *>;
+	this->vetorMutaveis =  new vector<Mutavel *>;
+	
+	this->mapa = new Mapa(SALA_TREINAMENTO);
 	this->vetorDesenhaveis->push_back(this->mapa);
 	
-	Mestre * mestreTeste = new Mestre(this->mapa);
-	this->vetorDesenhaveis->push_back(mestreTeste);
-	this->vetorMutaveis->push_back(mestreTeste);
+	this->mestre = new Mestre(this->mapa);
+	this->vetorDesenhaveis->push_back(this->mestre);
+	this->vetorMutaveis->push_back(this->mestre);
 	
-	this->wave = new Wave(NORMAL, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa);
+	this->wave = new Wave(NORMAL, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
 
-	while(this->estadoJogo == JOGANDO)
+	while(Util::estadoJogo == JOGANDO)
 	{
 		this->tempo->iniciarTempo();
 		this->detectarTodosEventos();
