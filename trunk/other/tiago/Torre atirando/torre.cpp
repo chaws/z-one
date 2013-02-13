@@ -18,6 +18,8 @@ torre::torre(SDL_Surface* img, int x, int y, int w, int h){
 	cor = SDL_MapRGB(SDL_GetVideoSurface()->format,0x00,0xff,0x00);
 
 	mouseOver = 0;
+
+	dano = 1;
 }
 
 torre::~torre(){
