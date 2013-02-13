@@ -1,4 +1,5 @@
 #include <jogo.h>
+#include <util.h>
 #include <SDL/SDL.h>
 
 int Jogo::detectarTodosEventos()

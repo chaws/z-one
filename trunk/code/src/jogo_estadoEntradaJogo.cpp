@@ -1,15 +1,20 @@
 #include <jogo.h>
+#include <util.h>
 #include <ambiente.h>
 #include <logofading.h>
 #include <SDL/SDL.h>
 
 int Jogo::estadoEntradaJogo()
-{
-	LogoFading * logoFading = new LogoFading();
-	
+{	
+	this->vetorDesenhaveis =  new vector<Desenhavel *>;
+	this->vetorEscutaveis =  new vector<Escutavel *>;
+	this->vetorMutaveis =  new vector<Mutavel *>;
+
+	LogoFading * logoFading = new LogoFading();	
+		
 	this->vetorDesenhaveis->push_back(logoFading);
 
-	while(this->estadoJogo == ENTRADA_JOGO)
+	while(Util::estadoJogo == ENTRADA_JOGO)
 	{
 		this->tempo->iniciarTempo();
 		
@@ -23,7 +28,7 @@ int Jogo::estadoEntradaJogo()
 		
 		if(logoFading->terminouFading())
 		{
-			this->estadoJogo = JOGANDO;
+			Util::estadoJogo = JOGANDO;
 			delete logoFading;
 		}
 	}

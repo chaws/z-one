@@ -18,7 +18,7 @@ class Mapa;
 class Inimigo : public Mutavel
 {
 private:
-	int pontosVida;
+	
 	int pontosExperiencia;
 	TipoInimigo tipo;
 	int deltaX;
@@ -37,7 +37,7 @@ private:
 	
 public:
 	bool estaMorto;
-	
+	int pontosVida;  			// DEPOIS VER ISSO :D
 	void subtrairVida(int dano);
 	Inimigo(int tipo, Mapa * mapaAtual);
 	~Inimigo();
