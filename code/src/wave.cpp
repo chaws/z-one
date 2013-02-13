@@ -82,8 +82,9 @@ int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
 				} 
 			*/
 			
-			Util::removerElementoVetorDesenhaveis(this->vetorDesenhaveis, inimigoQueSeraDeletado);
-			Util::removerElementoVetorMutaveis(this->vetorMutaveis, inimigoQueSeraDeletado);
+			//Util::removerElementoVetorDesenhaveis(this->vetorDesenhaveis, inimigoQueSeraDeletado);
+			Util::removerElementoVetor(this->vetorDesenhaveis, inimigoQueSeraDeletado);
+			Util::removerElementoVetor(this->vetorMutaveis, inimigoQueSeraDeletado);
 				
 			this->vetorInimigos->erase(vetorInimigos->begin() + i);
 			
@@ -94,8 +95,8 @@ int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
 					this->mestreAtual->pontosVida--;
 					if (this->mestreAtual->pontosVida == 0)
 					{
-						Util::removerElementoVetorDesenhaveis(this->vetorDesenhaveis, this->mestreAtual);
-						Util::removerElementoVetorMutaveis(this->vetorMutaveis, this->mestreAtual);
+						Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
+						Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
 						delete this->mestreAtual;
 						Util::estadoJogo = ENTRADA_JOGO;
 					}
