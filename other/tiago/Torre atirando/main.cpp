@@ -5,6 +5,7 @@
 #include "torre.h"
 #include "inimigo.h"
 #include "bala.h"
+#include "timer.h"
 using namespace std;
 
 #define SCREEN_W 400
@@ -12,7 +13,7 @@ using namespace std;
 #define FPS 60
 #define TILE_W 40
 #define TILE_H 40
-#define VEL_X 1
+#define VEL_X 40
 #define VEL_Y 0
 #define MAX_BALAS 10;
 
@@ -22,6 +23,11 @@ bool collision(SDL_Rect* rect1, SDL_Rect* rect2);
 int main(){
 
 	vector<bala*> balas;
+	vector<torre*> ninjas;
+	vector<inimigo*> piratas;
+
+	Timer delta;
+
 	int numBalas = 0;
 	SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -34,8 +40,13 @@ int main(){
 	bool running=true; //booleano para rodar o jogo
 
 	//criando uma torre
-	torre ninja(loadImage("ninja_katana.png"),50, 50, TILE_W, TILE_H);
-	inimigo pirata(loadImage("pirata_capitao.png"),300,100,TILE_W,TILE_H,VEL_X,VEL_Y);
+	ninjas.push_back(new torre(loadImage("ninja_katana.png"),50, 50, TILE_W, TILE_H));
+	ninjas.push_back(new torre(loadImage("ninja_katana.png"),200,170, TILE_W, TILE_H));
+	piratas.push_back(new inimigo(loadImage("pirata_capitao.png"),300,100,TILE_W,TILE_H,VEL_X,VEL_Y));
+	piratas.push_back(new inimigo(loadImage("pirata_capitao.png"),100,200,TILE_W,TILE_H,VEL_X,VEL_Y));
+
+	//inicia o timer
+	delta.start();
 
 	//Loop do jogo	
 	while(running){
@@ -49,62 +60,81 @@ int main(){
 				case SDL_QUIT:
 					running = false;
 					break;
-				case SDL_KEYDOWN:
-					switch(event.key.keysym.sym){
-						case SDLK_x: //tecla "x"
-							//ninja.shot();
-						break;
-					}
-					break;
 				case SDL_MOUSEMOTION:
-					ninja.DetectMouseOver(event.motion.x,event.motion.y);
+					for(int i=0;i<ninjas.size();i++){
+						ninjas[i]->DetectMouseOver(event.motion.x,event.motion.y);
+					}
 					break;
 			}
 		}
 		
 		/**LOGICA**/
-		//movimenta o inimigo
-		pirata.move();
+		//movimenta os piratas
+		for(int i=0;i<piratas.size();i++){
+			piratas[i]->update(delta.get_ticks());
+		}
 		
-		//se o inimigo se aproximar da torre a torre atira
-		if(ninja.isInimigoProximo(&pirata.box)){
-			//atire no inimigo!
-			if(numBalas<1){
-				balas.push_back(new bala(loadImage("shuriken.png"), ninja.box.x+20, ninja.box.y+20, 10, 10, 12, 1,pirata.box.x+20,pirata.box.y+20));
-				numBalas++;
-			}
+		//se o pirata se aproximar do ninja o ninja ataca
+		for(int i=0;i<ninjas.size();i++){
+			//se um inimigo se aproximar do ninja
+			for(int j=0;j<piratas.size();j++){
+				if(ninjas[i]->isInimigoProximo(&piratas[j]->box)){
+					//ataque o inimigo! uma shuriken por vez
+					if(numBalas<1){
+						balas.push_back(new bala(loadImage("shuriken.png"), ninjas[i]->box.x+20, ninjas[i]->box.y+20, 10, 10, 12, 1,piratas[j]->box.x+20,piratas[j]->box.y+20));
+						//dano no inimigo
+						piratas[j]->pontosDeVida -= ninjas[i]->dano;
+						numBalas++;
+					}
+				}
+			}			
 		}
 		
 		//quando as balas chegam no inimigo elas sao destruidas
-		for(int i=0;i<balas.size();i++)
+		for(int i=0;i<balas.size();i++){
+			//quando a bala colide com o alvo ela eh destruida
 			if((balas[i]->box.x>balas[i]->alvoX-10 && (balas[i]->box.x)<(balas[i]->alvoX+10)) && (balas[i]->box.y>balas[i]->alvoY-10 && balas[i]->box.y<balas[i]->alvoY+10)){
-				delete balas[i];
 				balas.erase(balas.begin()+i);
+				delete balas[i];
 				numBalas--;
 			}
+		}
+		//conferir os pontos de vida dos inimigos e deletar os mortos
+		for(int i=0;i<piratas.size();i++){
+			if(!piratas[i]->isVivo){
+				piratas.erase(piratas.begin()+i);
+				delete piratas[i];
+			}
+		}
 
 		//movimenta as balas
 		for(int i=0;i<balas.size();i++){
-			// cout << "x: " << balas[i]->box.x << endl;
-			// cout << "y: " << balas[i]->box.y << endl;
 			balas[i]->move();
 		}
-
+		//apos a logica 
+		delta.start(); 
 		/**RENDERIZACAO**/
-		//redesenha a tela com branco
-		SDL_FillRect(screen,&screen->clip_rect,SDL_MapRGB(screen->format,0xff,0xff,0xff));
-		//se o mouse estiver sobre o ninja mostra o alcancbe do ninja
-		if(ninja.mouseOver)
-			ninja.showAlcance();
+		//redesenha a tela com uma cor
+		SDL_FillRect(screen,&screen->clip_rect,SDL_MapRGB(screen->format,0x19,0x19,0x70));
+		
+		//desenha os ninjas
+		for(int i=0;i<ninjas.size();i++){
+			//se o mouse estiver sobre o ninja mostra o alcance do ninja
+			if(ninjas[i]->mouseOver)
+				ninjas[i]->showAlcance();
+			ninjas[i]->show();
+		}
+
+		//desenha o pirata
+		for(int i=0;i<piratas.size();i++){
+			piratas[i]->show();
+		}
+
 		//desenha as balas na tela
 		for(int i=0;i<balas.size();i++){
 			balas[i]->show();
 		}
-		//desenha o ninja
-		ninja.show();
-		//desenha o pirata
-		pirata.show();
-		//renderiza tudo na tela de jogo
+		//mostra a tela desenhada
 		SDL_Flip(screen);
 		
 		//Regula FPS

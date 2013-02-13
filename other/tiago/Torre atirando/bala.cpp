@@ -19,14 +19,7 @@ bala::~bala(){
 }
 
 void bala::move()
-{	
-	// float diffX = enemy.position.x - position.x;
-	// float diffY = enemy.position.y - position.y;
-
-	// velocity.x = diffX;
-	// velocity.y = diffY;
-
-	// position.add(velocity.x * deltaTime, velocity.y * deltaTime);
+{
 	
 	box.x+= (int)((alvoX-box.x)*0.2);
 	box.y+= (int)((alvoY-box.y)*0.2);

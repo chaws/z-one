@@ -5,7 +5,6 @@
 
 class torre{
 	SDL_Surface* image; //imagem da torre
-	
 
 	Uint32 cor;
 	
@@ -16,6 +15,7 @@ class torre{
 
 	
 public:
+	int dano;
 	SDL_Rect box; //retangulo que representa a torre
 	bool mouseOver;
 
@@ -25,7 +25,6 @@ public:
 	void showAlcance();
 	bool isInimigoProximo(SDL_Rect* inimigo);
 	void DetectMouseOver(int x, int y); //se o mouse esta sobre ela
-	//void shoot(); //em quem atirar
 
 	void setCor(Uint8 r, Uint8 g, Uint8 b);
 };

@@ -9,9 +9,6 @@ class bala{
 	int xVel;
 	int yVel;
 
-	float a;
-	float b;
-
 public:
 	int alvoX;
 	int alvoY;
