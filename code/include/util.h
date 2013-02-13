@@ -22,6 +22,9 @@ public:
 	static EstadoJogo estadoJogo;
 	static int removerElementoVetorDesenhaveis(vector <Desenhavel *> *  vetor , Desenhavel * elemento);
 	static int removerElementoVetorMutaveis(vector <Mutavel *> *  vetor , Desenhavel * elemento);
+	
+	template <class V>
+	void static removerElementoVetor(V vetor, Desenhavel * desenhavel);
 };
 
 #endif
