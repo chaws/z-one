@@ -23,7 +23,6 @@ private:
 	TipoInimigo tipo;
 	int deltaX;
 	int deltaY;
-	bool estaMorto;
 	PontoTile tileAtual;
 	PontoTile tileAnterior;
 	int velocidade;
@@ -37,6 +36,8 @@ private:
 	bool ehCaminho(int posicao);
 	
 public:
+	bool estaMorto;
+	
 	void subtrairVida(int dano);
 	Inimigo(int tipo, Mapa * mapaAtual);
 	~Inimigo();

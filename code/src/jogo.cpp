@@ -7,7 +7,7 @@ using namespace std;
 
 Jogo::Jogo()
 {
-	this->estadoJogo = JOGANDO;
+	this->estadoJogo = ENTRADA_JOGO;
 	this->tela = new Tela;
 	this->tempo = new Tempo;
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;

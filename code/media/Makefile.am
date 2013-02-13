@@ -4,5 +4,5 @@
 # Resources
 ninjasiegedir = /opt/$(PACKAGE)/media
 
-dist_ninjasiege_DATA = image/z_one_logo_800_600.png
+dist_ninjasiege_DATA = image/z_one_logo_800_600.png 
 

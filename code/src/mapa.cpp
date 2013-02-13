@@ -52,6 +52,7 @@ void Mapa::gerarSuperficieMapa()
 
 	SDL_Rect tileRect = {0, 0, Mapa::TILE_WIDTH, Mapa::TILE_HEIGHT};
 	bool achouEntrada = false;
+	bool achouSaida = false;
 	
 	for (int i = 0; i < Mapa::NUMERO_TOTAL_TILES; i++)
 	{
@@ -80,6 +81,12 @@ void Mapa::gerarSuperficieMapa()
 				break;
 				
 			case SAIDA:
+				if(!achouSaida)
+				{
+					this->tileSaida.x = i % Mapa::TILES_POR_LINHA;
+					this->tileSaida.y = (i / Mapa::TILES_POR_LINHA);
+					achouSaida = true;
+				}
 				tileParaBlit = tileSaida;
 				break;
 		}

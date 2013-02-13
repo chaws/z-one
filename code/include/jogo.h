@@ -7,6 +7,7 @@
 #include <tempo.h>
 #include <tela.h>
 #include <mapa.h>
+#include <wave.h>
 #include <vector>
 
 using namespace std;
@@ -30,6 +31,7 @@ private:
 	Tempo * tempo;
 	Mapa * mapa;
 	Tela * tela;
+	Wave * wave;
 	
 	int estadoEntradaJogo();
 	int estadoMenuJogo();
