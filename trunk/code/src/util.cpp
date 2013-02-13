@@ -30,7 +30,7 @@ int Util::removerElementoVetorMutaveis(vector <Mutavel *> *  vetor , Desenhavel 
 }
 
 template <class V>
-int Util::removerElementoVetor(V vetor, Desenhavel * desenhavel)
+void Util::removerElementoVetor(V vetor, Desenhavel * desenhavel)
 {
 	for(unsigned int i = 0; i < vetor->size(); i++)
 		if(vetor->at(i) == desenhavel)
