@@ -1,8 +1,9 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <desenhavel.h>
 #include <mutavel.h>
+#include <desenhavel.h>
+#include <escutavel.h>
 #include <vector>
 
 using namespace std;
@@ -20,11 +21,16 @@ class Util
 {
 public:
 	static EstadoJogo estadoJogo;
-	static int removerElementoVetorDesenhaveis(vector <Desenhavel *> *  vetor , Desenhavel * elemento);
-	static int removerElementoVetorMutaveis(vector <Mutavel *> *  vetor , Desenhavel * elemento);
+	//static int removerElementoVetorDesenhaveis(vector <Desenhavel *> *  vetor , Desenhavel * elemento);
+	//static int removerElementoVetorMutaveis(vector <Mutavel *> *  vetor , Desenhavel * elemento);
 	
-	template <class V>
-	void static removerElementoVetor(V vetor, Desenhavel * desenhavel);
+	template <class C>
+	static void removerElementoVetor(vector<C *> * vetor, Desenhavel * desenhavel)
+	{
+		for(unsigned int i = 0; i < vetor->size(); i++)
+			if(vetor->at(i) == desenhavel)
+				vetor->erase(vetor->begin() + i);
+	}
 };
 
 #endif
