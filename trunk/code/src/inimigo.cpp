@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Inimigo::Inimigo(int tipo,  Mapa * mapaAtual)
+Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 {
 	this->mapaAtual = mapaAtual;
 	this->rect = new SDL_Rect;
@@ -18,6 +18,7 @@ Inimigo::Inimigo(int tipo,  Mapa * mapaAtual)
 	this->rect->y = this->tileAtual.y * Mapa::TILE_HEIGHT;
 	this->recemCriado = true;	
 	this->pixelsAndados = Mapa::TILE_WIDTH;
+	this->estaMorto = false;
 	
 	switch(tipo)
 	{
@@ -42,7 +43,7 @@ Inimigo::Inimigo(int tipo,  Mapa * mapaAtual)
 			this->imagem = Ambiente::carregarImagem("pirata_corsario_40_40.png");
 			this->pontosVida = 100;
 			this->pontosExperiencia = 200;
-			this->velocidade = 2;
+			this->velocidade = 4;
 			break;
 
 		case PERNA_DE_PAU:
@@ -50,7 +51,7 @@ Inimigo::Inimigo(int tipo,  Mapa * mapaAtual)
 			this->imagem = Ambiente::carregarImagem("pirata_pernadepau_40_40.png");
 			this->pontosVida = 100;
 			this->pontosExperiencia = 200;
-			this->velocidade = 2;
+			this->velocidade = 1;
 			break;
 	}
 	
@@ -98,18 +99,21 @@ int Inimigo::setarProximaPosicao()
 			chavesEscolhidas[caminhosPossiveis++] = i;
 	}
 	
-	chaveEscolhida = rand() % caminhosPossiveis;
+	if (caminhosPossiveis != 0)
+	{
+		chaveEscolhida = rand() % caminhosPossiveis;
 	
-	novaTileX = proximaTile[chavesEscolhidas[chaveEscolhida]] % Mapa::TILES_POR_LINHA;
-	novaTileY = proximaTile[chavesEscolhidas[chaveEscolhida]] / Mapa::TILES_POR_LINHA;
+		novaTileX = proximaTile[chavesEscolhidas[chaveEscolhida]] % Mapa::TILES_POR_LINHA;
+		novaTileY = proximaTile[chavesEscolhidas[chaveEscolhida]] / Mapa::TILES_POR_LINHA;
 	
-	this->deltaX = (novaTileX - this->tileAtual.x) * this->velocidade; 
-	this->deltaY = (novaTileY - this->tileAtual.y) * this->velocidade;
+		this->deltaX = (novaTileX - this->tileAtual.x) * this->velocidade; 
+		this->deltaY = (novaTileY - this->tileAtual.y) * this->velocidade;
 	
-	this->tileAnterior = this->tileAtual;
-	this->tileAtual.x = novaTileX;
-	this->tileAtual.y = novaTileY;
-	
+		this->tileAnterior = this->tileAtual;
+		this->tileAtual.x = novaTileX;
+		this->tileAtual.y = novaTileY;		
+	}
+		
 	this->recemCriado = false;	
 	
 	return 0;
@@ -117,8 +121,10 @@ int Inimigo::setarProximaPosicao()
 
 bool Inimigo::ehCaminho(int posicao)
 {
-	if (this->mapaAtual->tiles->at(posicao) == SAIDA)
+	if(this->mapaAtual->tiles->at(posicao) == SAIDA)
+	{
 		this->estaMorto = true;
+	}
 	
 	return this->mapaAtual->tiles->at(posicao) == CAMINHO;
 }
@@ -130,9 +136,7 @@ int Inimigo::desenhar()
 }
 
 int Inimigo::fazerLogica()
-{	
-	cout << "endereco: " << this << "\t this->pixelsAndados: " << this->pixelsAndados << endl;
-		
+{		
 	if(this->pixelsAndados >= Mapa::TILE_WIDTH)
 	{		
 		this->setarProximaPosicao();

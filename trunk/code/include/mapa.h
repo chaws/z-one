@@ -11,6 +11,7 @@ struct PontoTile
 };
 
 #include <inimigo.h>
+#include <mestre.h>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ class Mapa : public Desenhavel
 private:
 	TipoMapa tipo;
 	PontoTile tileEntrada;
+	PontoTile tileSaida;
 	void configurarMapa();
 	void gerarSuperficieEmBranco();
 	void gerarSuperficieMapa();
@@ -52,6 +54,7 @@ public:
 	int desenhar();	
 	
 	friend class Inimigo;
+	friend class Mestre;
 };
 
 #endif

@@ -7,4 +7,5 @@ libitemincludedir = $(includedir)/
 # Include files
 # informar os .h separados por espaço
 include_HEADERS = jogo.h mapa.h tempo.h aliado.h armadilha.h ataque.h botao.h desenhavel.h \
-				  escutavel.h inimigo.h mutavel.h torre.h tela.h ambiente.h logofading.h
+				  escutavel.h inimigo.h mutavel.h torre.h tela.h ambiente.h logofading.h \
+				  mestre.h wave.h
