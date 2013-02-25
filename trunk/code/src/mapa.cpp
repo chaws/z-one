@@ -105,6 +105,7 @@ void Mapa::gerarSuperficieMapa()
 		
 	}
 	//arrumar os numeros magicos 800 e 600-40
+	//Inicio alteração do Tiago
 	SDL_Surface * guiTopo = Ambiente::carregarImagem("gui.png");
 	SDL_Rect guiTopoRect = {0, 0, 800, Mapa::TILE_HEIGHT};
 	SDL_BlitSurface(guiTopo,NULL, this->imagem, &guiTopoRect);
@@ -115,6 +116,39 @@ void Mapa::gerarSuperficieMapa()
 	
 	SDL_FreeSurface(guiBaixo);
 	SDL_FreeSurface(guiTopo);
+
+	SDL_Surface * botao_ninja_katana =  Ambiente::carregarImagem("botao_ninja_katana.png");
+	SDL_Rect botao_ninja_katanaRect = {160,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_katana,NULL,this->imagem, &botao_ninja_katanaRect);
+	
+	SDL_Surface * botao_ninja_nunchaku = Ambiente::carregarImagem("botao_ninja_nunchaku.png");
+	SDL_Rect botao_ninja_nunchakuRect = {200,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_nunchaku,NULL,this->imagem, &botao_ninja_nunchakuRect);
+	
+	SDL_Surface * botao_ninja_mariki = Ambiente::carregarImagem("botao_ninja_mariki.png");
+	SDL_Rect botao_ninja_marikiRect = {240,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_mariki,NULL,this->imagem, &botao_ninja_marikiRect);
+	
+	SDL_Surface * botao_ninja_shuriken = Ambiente::carregarImagem("botao_ninja_shuriken.png");
+	SDL_Rect botao_ninja_shurikenRect = {320,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_shuriken,NULL,this->imagem, &botao_ninja_shurikenRect);
+	
+	SDL_Surface * botao_ninja_kunai = Ambiente::carregarImagem("botao_ninja_kunai.png");
+	SDL_Rect botao_ninja_kunaiRect = {360,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_kunai,NULL,this->imagem, &botao_ninja_kunaiRect);
+	
+	SDL_Surface * botao_ninja_bomba = Ambiente::carregarImagem("botao_ninja_bomba.png");
+	SDL_Rect botao_ninja_bombaRect = {400,(600-40),40,40};
+	SDL_BlitSurface(botao_ninja_bomba,NULL,this->imagem, &botao_ninja_bombaRect);
+
+
+	SDL_FreeSurface(botao_ninja_katana);
+	SDL_FreeSurface(botao_ninja_nunchaku);
+	SDL_FreeSurface(botao_ninja_mariki);
+	SDL_FreeSurface(botao_ninja_shuriken);
+	SDL_FreeSurface(botao_ninja_kunai);
+	SDL_FreeSurface(botao_ninja_bomba);
+	//Fim das alterações do Tiago
 
 	SDL_FreeSurface(tileNaoUtilizavel);
 	SDL_FreeSurface(tileCaminho);
