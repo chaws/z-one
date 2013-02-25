@@ -104,7 +104,18 @@ void Mapa::gerarSuperficieMapa()
 		}
 		
 	}
+	//arrumar os numeros magicos 800 e 600-40
+	SDL_Surface * guiTopo = Ambiente::carregarImagem("gui.png");
+	SDL_Rect guiTopoRect = {0, 0, 800, Mapa::TILE_HEIGHT};
+	SDL_BlitSurface(guiTopo,NULL, this->imagem, &guiTopoRect);
+
+	SDL_Surface * guiBaixo = Ambiente::carregarImagem("gui.png");
+	SDL_Rect guiBaixoRect = {0, (600-40), 800, Mapa::TILE_HEIGHT};
+	SDL_BlitSurface(guiBaixo,NULL, this->imagem, &guiBaixoRect);
 	
+	SDL_FreeSurface(guiBaixo);
+	SDL_FreeSurface(guiTopo);
+
 	SDL_FreeSurface(tileNaoUtilizavel);
 	SDL_FreeSurface(tileCaminho);
 	SDL_FreeSurface(tileUtilizavel);
