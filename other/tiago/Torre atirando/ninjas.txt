@@ -1,0 +1,50 @@
+##### Ninjas #####
+
+NINJA KATANA
+#dano		:
+#alcance	:
+#dps		:
+
+NINJA NUNCHAKU
+#dano		:
+#alcance	:
+#dps		:
+
+NINJA MANRIKI
+#dano		:
+#alcance	:
+#dps		:
+
+NINJA SHURIKEN
+#dano		:
+#alcance	:
+#dps		:
+
+NINJA KUNAI
+#dano		:
+#alcance	:
+#dps		:
+
+NINJA BOMBA
+#dano		:
+#alcance	:
+#dps		:
+
+##### Piratas #####
+
+CORSARIO
+#pontos de vida	:
+#velocidade		:
+
+CAPITAO
+#pontos de vida :
+#velocidade		:
+
+SAQUEADOR
+#pontos de vida :
+#velocidade		:
+
+PERNADEPAU
+#pontos de vida :
+#velocidade		:
+

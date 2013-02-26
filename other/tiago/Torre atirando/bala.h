@@ -8,8 +8,8 @@ class bala{
 
 	int xVel;
 	int yVel;
-
 public:
+	bool cheguei;
 	int alvoX;
 	int alvoY;
 	SDL_Rect box;
@@ -17,7 +17,7 @@ public:
 	bala(SDL_Surface* img, int x, int y, int w, int h, int xvel, int yvel,int alvox, int alvoy);
 	~bala();
 	void show();
-	void move();
+	void update(Uint32 deltaTime);
 };
 
 #endif
