@@ -3,6 +3,11 @@
 
 #include <SDL/SDL.h>
 
+#define CAPITAO 1
+#define CORSARIO 2
+#define SAQUEADOR 3
+#define PERNADEPAU 4
+
 class inimigo{
 	SDL_Surface* image; //imagem do inimigo
 	
@@ -11,18 +16,17 @@ class inimigo{
 
 	float xf;
 	float yf;
-
-	// bool colisao(SDL_Rect* rect1, SDL_Rect* rect2);
+	
 public:
-	SDL_Rect box; //retangulo que representa o inimigo
 	bool isVivo;
+	SDL_Rect box; //retangulo que representa o inimigo
 	int pontosDeVida;
-	inimigo(SDL_Surface* img, int x, int y, int w, int h, int xvel, int yvel); //Construtor
+	inimigo(int tipo, int x, int y);
 	~inimigo(); //Destrutor
 	void show();
 	void move(Uint32 deltaTime);
-
 	void update(Uint32 deltaTime);
+
 };
 
 #endif

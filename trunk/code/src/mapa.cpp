@@ -104,6 +104,7 @@ void Mapa::gerarSuperficieMapa()
 		}
 		
 	}
+	
 	//arrumar os numeros magicos 800 e 600-40
 	//Inicio alteração do Tiago
 	SDL_Surface * guiTopo = Ambiente::carregarImagem("gui.png");
@@ -116,7 +117,7 @@ void Mapa::gerarSuperficieMapa()
 	
 	SDL_FreeSurface(guiBaixo);
 	SDL_FreeSurface(guiTopo);
-
+	//Desenha os botões na GUI de baixo
 	SDL_Surface * botao_ninja_katana =  Ambiente::carregarImagem("botao_ninja_katana.png");
 	SDL_Rect botao_ninja_katanaRect = {160,(600-40),40,40};
 	SDL_BlitSurface(botao_ninja_katana,NULL,this->imagem, &botao_ninja_katanaRect);
@@ -148,6 +149,11 @@ void Mapa::gerarSuperficieMapa()
 	SDL_FreeSurface(botao_ninja_shuriken);
 	SDL_FreeSurface(botao_ninja_kunai);
 	SDL_FreeSurface(botao_ninja_bomba);
+
+	/**
+		TODO:Desenha os botões na GUI de cima
+	**/
+
 	//Fim das alterações do Tiago
 
 	SDL_FreeSurface(tileNaoUtilizavel);
