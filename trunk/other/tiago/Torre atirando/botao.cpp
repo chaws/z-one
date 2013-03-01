@@ -12,10 +12,10 @@ botao::botao(int tipo, int x, int y){
 
 	switch(tipo){
 		case SHURIKEN:
-			image = carregaImagem("botao_ninja_shuriken.png");
+			image = carregaImagem("img/botao_ninja_shuriken.png");
 			break;
 		case BOMBA:
-			image = carregaImagem("botao_ninja_bomba.png");
+			image = carregaImagem("img/botao_ninja_bomba.png");
 			break;
 	}
 
@@ -29,6 +29,12 @@ botao::~botao(){
 
 void botao::onClick(){
 	cout << "clicou em um botao!" << endl;
+}
+
+bool botao::clicked(int x, int y){
+	if((x>box.x) && (x<box.x+box.w) && (y>box.y) && (y<box.y+box.h))
+		return true;
+	return false;
 }
 
 void botao::handleEvents(SDL_Event* event){
