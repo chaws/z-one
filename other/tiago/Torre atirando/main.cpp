@@ -72,6 +72,8 @@ int main(){
 	botao *botaoShuriken = new botao(SHURIKEN,0,SCREEN_H-40);
 	botao *botaoBomba = new botao(BOMBA,40,SCREEN_H-40);
 
+	//Botão para realizar o teste
+	botao *botao_refresh = new botao(0,SCREEN_W-40,SCREEN_H-40);
 	//inicia o timer
 	delta.start();
 
@@ -114,6 +116,11 @@ int main(){
 									compra = carregaImagem("img/ninja_bomba.png");
 									SDL_SetAlpha(compra,SDL_SRCALPHA,127);
 									gameEstate = COMPRANDO;
+								}
+
+								if(botao_refresh->clicked(x,y)){
+									piratas.push_back(new inimigo(CAPITAO,300,100));
+									piratas.push_back(new inimigo(SAQUEADOR,100,220));
 								}
 							}
 						break;
@@ -210,6 +217,7 @@ int main(){
 		//desenhando os botões
 		botaoShuriken->show();
 		botaoBomba->show();
+		botao_refresh->show();
 		//mostra a tela desenhada
 		SDL_Flip(screen);
 		

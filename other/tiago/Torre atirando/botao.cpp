@@ -17,6 +17,9 @@ botao::botao(int tipo, int x, int y){
 		case BOMBA:
 			image = carregaImagem("img/botao_ninja_bomba.png");
 			break;
+		case REFRESH:
+			image = carregaImagem("img/botao_config.png");
+			break;
 	}
 
 	type = tipo;

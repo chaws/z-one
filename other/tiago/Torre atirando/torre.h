@@ -34,6 +34,7 @@ class torre{
 	
 	void showAlcance();
 	bool isInimigoProximo(SDL_Rect* inimigo);
+	void setCor(Uint8 r, Uint8 g, Uint8 b);
 public:
 
 	// torre(SDL_Surface* img, SDL_Surface* imgAtaque,int x, int y, int w, int h); //Construtor
@@ -43,7 +44,6 @@ public:
 	void DetectMouseOver(int x, int y); //se o mouse esta sobre ela
 	void update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *balas);
 
-	void setCor(Uint8 r, Uint8 g, Uint8 b);
 };
 
 #endif
