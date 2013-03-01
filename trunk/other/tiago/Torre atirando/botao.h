@@ -4,7 +4,7 @@
 #include <SDL/SDL.h>
 #include "util.h"
 
-
+#define REFRESH 0
 #define KATANA 1
 #define NUNCHAKU 2
 #define MARIKI 3
