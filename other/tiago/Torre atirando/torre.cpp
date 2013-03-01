@@ -86,6 +86,10 @@ void torre::update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *b
 			}
 		}
 	}
+	//TODO:tem que melhorar essa condicional
+	else if(!alvo->isVivo){
+		atacando = false;
+	}
 	else{ //arrumar essa criação de balas, tah alocando uma imagem pra cada bala
 		comecaAtirar+=deltaTime;
 		if(comecaAtirar > (1000/DPS)){
@@ -93,10 +97,7 @@ void torre::update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *b
 			balas->push_back(new bala(ataque, box.x+20, box.y+20, 10, 10, 12, 1,alvo->box.x+20,alvo->box.y+20));
 			//causa dano no alvo
 			alvo->pontosDeVida -= dano;
-			//TODO:tem que melhorar essa condicional
-			if(!alvo->isVivo){
-				atacando = false;
-			}
+			
 		}
 		//confere se o inimigo ainda esta proximo
 		if(!isInimigoProximo(&alvo->box)){
