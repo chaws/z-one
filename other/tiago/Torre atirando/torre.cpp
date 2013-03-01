@@ -25,8 +25,8 @@ torre::torre(int tipo,int x, int y){
 	switch(tipo){
 		
 		case KATANA:
-			image=carregaImagem("ninja_katana.png");
-			ataque=carregaImagem("katana.png");
+			image=carregaImagem("img/ninja_katana.png");
+			ataque=carregaImagem("img/katana.png");
 			alcance.x = x-(W/2);
 			alcance.y = y-(H/2);
 			alcance.w = W*2;
@@ -36,8 +36,8 @@ torre::torre(int tipo,int x, int y){
 			break;
 
 		case SHURIKEN:
-			image=carregaImagem("ninja_shuriken.png");
-			ataque=carregaImagem("shuriken.png");
+			image=carregaImagem("img/ninja_shuriken.png");
+			ataque=carregaImagem("img/shuriken.png");
 			alcance.x = x-W;
 			alcance.y = y-H;
 			alcance.w = W*3;
@@ -47,8 +47,8 @@ torre::torre(int tipo,int x, int y){
 			break;
 
 		case BOMBA:
-			image=carregaImagem("ninja_bomba.png");
-			ataque=carregaImagem("bomba.png");
+			image=carregaImagem("img/ninja_bomba.png");
+			ataque=carregaImagem("img/bomba.png");
 			alcance.x = x-W;
 			alcance.y = y-H;
 			alcance.w = W*3;
@@ -93,6 +93,10 @@ void torre::update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *b
 			balas->push_back(new bala(ataque, box.x+20, box.y+20, 10, 10, 12, 1,alvo->box.x+20,alvo->box.y+20));
 			//causa dano no alvo
 			alvo->pontosDeVida -= dano;
+			//TODO:tem que melhorar essa condicional
+			if(!alvo->isVivo){
+				atacando = false;
+			}
 		}
 		//confere se o inimigo ainda esta proximo
 		if(!isInimigoProximo(&alvo->box)){
@@ -114,11 +118,6 @@ bool torre::isInimigoProximo(SDL_Rect* inimigo){
 		return 0;
 	return 1;
 }
-
-// void torre::handleEvents(){
-// 	if(event.type == SDL_MOUSEMOTION)
-// 		DetectMouseOver(event.motion.x,event.motion.y);
-// }
 
 void torre::DetectMouseOver(int x, int y){
 	if(x>box.x && x<box.x+box.w && y>box.y && y<box.y+box.h)

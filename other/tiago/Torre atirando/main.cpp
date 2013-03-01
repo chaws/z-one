@@ -23,6 +23,9 @@ using namespace std;
 #define SAQUEADOR 3
 #define PERNADEPAU 4
 
+#define NORMAL 1
+#define COMPRANDO 2
+
 #define SCREEN_W 400
 #define SCREEN_H 300
 #define FPS 60
@@ -32,16 +35,18 @@ using namespace std;
 #define VEL_Y 0
 #define MAX_BALAS 10;
 
-
 int main(){
 
+	//elementos do jogo
 	vector<bala*> balas;
 	vector<torre*> ninjas;
 	vector<inimigo*> piratas;
 
-	Timer delta;
+	Timer delta; //temporizador utilizado para contar o tempo dentro do jogo
 
-	int numBalas = 0;
+	int gameEstate = 1; //gameEstate inicial
+	int tipo_torre = 0; //tipo de torre sendo comprada
+
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	SDL_Surface* screen;
@@ -54,13 +59,16 @@ int main(){
 	Uint32 start; //regular fps
 	bool running=true; //booleano para rodar o jogo
 
-	//criando uma torre
-	ninjas.push_back(new torre(SHURIKEN,50, 50));
-	ninjas.push_back(new torre(KATANA,200,170));
+	SDL_Surface* compra = NULL;
+	SDL_Rect compra_box = {0,0,40,40};
+	//criando torres
+	// ninjas.push_back(new torre(SHURIKEN,50, 50));
+	// ninjas.push_back(new torre(KATANA,200,170));
+	//criando inimigos
 	piratas.push_back(new inimigo(CAPITAO,300,100));
 	piratas.push_back(new inimigo(SAQUEADOR,100,220));
 
-	//criando um botao
+	//criando os botões
 	botao *botaoShuriken = new botao(SHURIKEN,0,SCREEN_H-40);
 	botao *botaoBomba = new botao(BOMBA,40,SCREEN_H-40);
 
@@ -72,25 +80,76 @@ int main(){
 		//Coloca os milisegundos na variável start
 		start = SDL_GetTicks();
 		//Tratando os eventos
-		
-		//Estrutura dos eventos onde ficam os eventos
-		SDL_Event event;
-		while(SDL_PollEvent(&event)){
-			
-			botaoBomba->handleEvents(&event);
-			botaoShuriken->handleEvents(&event);
+		//MAQUINA DE ESTADOS
+		switch(gameEstate){
+			case NORMAL:
+				while(SDL_PollEvent(&event)){
 
-			switch(event.type){
-				case SDL_QUIT:
-					running = false;
-					break;
-				case SDL_MOUSEMOTION:
-					for(int i=0;i<ninjas.size();i++){
-						ninjas[i]->DetectMouseOver(event.motion.x,event.motion.y);
+					switch(event.type){
+						case SDL_QUIT:
+							running = false;
+						break;
+						
+						case SDL_MOUSEMOTION:
+							for(int i=0;i<ninjas.size();i++){
+								ninjas[i]->DetectMouseOver(event.motion.x,event.motion.y);
+							}
+						break;
+						
+						//eventos de clique do mouse
+						case SDL_MOUSEBUTTONDOWN:
+							if(event.button.button == SDL_BUTTON_LEFT){
+								int x = event.button.x;
+								int y = event.button.y;
+
+								if(botaoShuriken->clicked(x,y)){
+									tipo_torre = SHURIKEN;
+									compra = carregaImagem("img/ninja_shuriken.png");
+									SDL_SetAlpha(compra,SDL_SRCALPHA,127);
+									gameEstate = COMPRANDO;
+								}
+
+								if(botaoBomba->clicked(x,y)){
+									tipo_torre = BOMBA;
+									compra = carregaImagem("img/ninja_bomba.png");
+									SDL_SetAlpha(compra,SDL_SRCALPHA,127);
+									gameEstate = COMPRANDO;
+								}
+							}
+						break;
 					}
-					break;
-			}
+				}
+			break;
+
+			case COMPRANDO:
+				while(SDL_PollEvent(&event)){
+					switch(event.type){
+						case SDL_MOUSEMOTION:
+							compra_box.x = event.motion.x - 20; // -20 pra centralizar a imagem
+							compra_box.y = event.motion.y - 20;
+						break;
+
+						case SDL_MOUSEBUTTONDOWN:
+							//realiza a compra
+							if(event.button.button == SDL_BUTTON_LEFT){
+								ninjas.push_back(new torre(tipo_torre,event.button.x - 20,event.button.y - 20));
+								SDL_FreeSurface(compra);
+								gameEstate = NORMAL;
+							}
+							//cancela a compra
+							if(event.button.button == SDL_BUTTON_RIGHT){
+								SDL_FreeSurface(compra);
+								gameEstate = NORMAL;
+							}
+						break;
+					}
+				}
+				break;
 		}
+		//Estrutura dos eventos onde ficam os eventos
+
+		
+		
 		
 		/**LOGICA**/
 		//movimenta os piratas
@@ -114,7 +173,6 @@ int main(){
 			}
 		}
 
-		//TEM BUG AQUI
 		//conferir os pontos de vida dos inimigos e deletar os mortos
 		for(int i=0;i<piratas.size();i++){
 			if(!piratas[i]->isVivo){
@@ -123,9 +181,9 @@ int main(){
 				
 			}
 		}
-
 		//apos a logica 
-		delta.start(); 
+		delta.start(); //reinicia o timer
+
 		/**RENDERIZACAO**/
 		//redesenha a tela com uma cor
 		SDL_FillRect(screen,&screen->clip_rect,corFundo);
@@ -145,6 +203,11 @@ int main(){
 			balas[i]->show();
 		}
 
+		if(gameEstate == COMPRANDO){
+			SDL_BlitSurface(compra,NULL,SDL_GetVideoSurface(),&compra_box);
+		}
+
+		//desenhando os botões
 		botaoShuriken->show();
 		botaoBomba->show();
 		//mostra a tela desenhada

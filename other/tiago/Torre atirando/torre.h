@@ -41,7 +41,6 @@ public:
 	~torre(); //Destrutor
 	void show();
 	void DetectMouseOver(int x, int y); //se o mouse esta sobre ela
-	// void handleEvents();
 	void update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *balas);
 
 	void setCor(Uint8 r, Uint8 g, Uint8 b);

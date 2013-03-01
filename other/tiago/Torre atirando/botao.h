@@ -22,6 +22,7 @@ public:
 	void onClick();
 	void show();
 	void handleEvents(SDL_Event* event);
+	bool clicked(int x, int y);
 };
 
 #endif

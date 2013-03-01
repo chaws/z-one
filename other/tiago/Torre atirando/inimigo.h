@@ -17,6 +17,11 @@ class inimigo{
 	float xf;
 	float yf;
 	
+	SDL_Rect hp_verde;
+	SDL_Rect hp_vermelho;
+
+	int vida_total;
+
 public:
 	bool isVivo;
 	SDL_Rect box; //retangulo que representa o inimigo
