@@ -26,8 +26,8 @@ using namespace std;
 #define NORMAL 1
 #define COMPRANDO 2
 
-#define SCREEN_W 400
-#define SCREEN_H 300
+#define SCREEN_W 800
+#define SCREEN_H 600
 #define FPS 60
 #define TILE_W 40
 #define TILE_H 40
@@ -153,10 +153,7 @@ int main(){
 				}
 				break;
 		}
-		//Estrutura dos eventos onde ficam os eventos
 
-		
-		
 		
 		/**LOGICA**/
 		//movimenta os piratas
