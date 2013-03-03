@@ -7,6 +7,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/tiago/Projetos/Ninjasiege/trunk/other/tiago/Desenhando_mapa/map.map",
+			"settings":
+			{
+				"buffer_size": 614,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -32,6 +40,7 @@
 	},
 	"file_history":
 	[
+		"/home/tiago/Projetos/Ninjasiege/trunk/other/tiago/Jogo/primeiroteste.cpp",
 		"/usr/share/applications/sublime.desktop",
 		"/usr/share/applications/defaults.list"
 	],
@@ -72,8 +81,35 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/tiago/Projetos/Ninjasiege/trunk/other/tiago/Desenhando_mapa/map.map",
+					"settings":
+					{
+						"buffer_size": 614,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								286,
+								286
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
