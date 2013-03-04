@@ -6,6 +6,7 @@
 #include <escutavel.h>
 #include <tempo.h>
 #include <tela.h>
+#include <hud.h>
 #include <mapa.h>
 #include <mestre.h>
 #include <wave.h>
@@ -17,13 +18,15 @@ class Jogo
 {
 private:
 	vector<Desenhavel *> * vetorDesenhaveis;
-	vector<Escutavel *> * vetorEscutaveis;
-	vector<Mutavel *> * vetorMutaveis;
-	Tempo * tempo;
-	Mapa * mapa;
-	Tela * tela;
-	Wave * wave;
-	Mestre * mestre;
+	vector<Escutavel *>  * vetorEscutaveis;
+	vector<Mutavel *>    * vetorMutaveis;
+
+	Tempo 	* tempo;
+	Mapa 	* mapa;
+	Tela 	* tela;
+	Hud 	* hud;
+	Wave 	* wave;
+	Mestre 	* mestre;
 	
 	int estadoEntradaJogo();
 	int estadoMenuJogo();

@@ -12,38 +12,40 @@ enum TipoInimigo
 	PERNA_DE_PAU
 };
 
-
 class Mapa;
 
 class Inimigo : public Mutavel
 {
 private:
 	
-	int pontosExperiencia;
 	TipoInimigo tipo;
-	int deltaX;
-	int deltaY;
 	PontoTile tileAtual;
 	PontoTile tileAnterior;
-	int velocidade;
 	Mapa * mapaAtual;
-	bool recemCriado;	
+
+	int deltaX;
+	int deltaY;
+	int velocidade;
 	int pixelsAndados;
+	bool recemCriado;	
 
 	
 	int setarProximaPosicao();
-	void tremer();
 	bool ehCaminho(int posicao);
+	void tremer();
 	
 public:
-	bool estaMorto;
-	int pontosVida;  			// DEPOIS VER ISSO :D
-	void subtrairVida(int dano);
 	Inimigo(int tipo, Mapa * mapaAtual);
 	~Inimigo();
+
+	bool estaMorto;
+	int pontosVida;  			// DEPOIS VER ISSO :D
+	int pontosExperiencia;
+
 	int desenhar();
 	int fazerLogica();
 	int detectarColisao();	
+	void subtrairVida(int dano);
 };
 
 #endif
