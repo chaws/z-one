@@ -1,7 +1,7 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include <desenhavel.h>
+#include <escutavel.h>
 #include <vector>
 
 struct PontoTile
@@ -14,7 +14,6 @@ struct PontoTile
 #include <mestre.h>
 
 using namespace std;
-
 
 enum Tile
 {
@@ -32,7 +31,7 @@ enum TipoMapa
 	SALA_TREINAMENTO
 };
 
-class Mapa : public Desenhavel
+class Mapa : public Escutavel
 {	
 private:
 	TipoMapa tipo;
@@ -52,6 +51,7 @@ public:
 	Mapa(TipoMapa tipo);
 	~Mapa();
 	int desenhar();	
+	int detectarEvento();
 	
 	friend class Inimigo;
 	friend class Mestre;
