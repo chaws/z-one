@@ -44,11 +44,11 @@ void Mapa::gerarSuperficieMapa()
 	int contY = 0;
 	
 	SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("acid.png");
-	SDL_Surface * tileCaminho = Ambiente::carregarImagem("wooden_floor.bmp");
-	SDL_Surface * tileUtilizavel = Ambiente::carregarImagem("bricks.png");
-	SDL_Surface * tileEntrada = Ambiente::carregarImagem("red_carpet.bmp");
-	SDL_Surface * tileSaida = Ambiente::carregarImagem("red_carpet.bmp");
-	SDL_Surface * tileParaBlit =  NULL;
+	SDL_Surface * tileCaminho 		= Ambiente::carregarImagem("wooden_floor.bmp");
+	SDL_Surface * tileUtilizavel 	= Ambiente::carregarImagem("bricks.png");
+	SDL_Surface * tileEntrada 		= Ambiente::carregarImagem("red_carpet.bmp");
+	SDL_Surface * tileSaida 		= Ambiente::carregarImagem("red_carpet.bmp");
+	SDL_Surface * tileParaBlit 		=  NULL;
 
 	SDL_Rect tileRect = {0, 0, Mapa::TILE_WIDTH, Mapa::TILE_HEIGHT};
 	bool achouEntrada = false;
@@ -104,57 +104,6 @@ void Mapa::gerarSuperficieMapa()
 		}
 		
 	}
-	
-	//arrumar os numeros magicos 800 e 600-40
-	//Inicio alteração do Tiago
-	SDL_Surface * guiTopo = Ambiente::carregarImagem("gui.png");
-	SDL_Rect guiTopoRect = {0, 0, 800, Mapa::TILE_HEIGHT};
-	SDL_BlitSurface(guiTopo,NULL, this->imagem, &guiTopoRect);
-
-	SDL_Surface * guiBaixo = Ambiente::carregarImagem("gui.png");
-	SDL_Rect guiBaixoRect = {0, (600-40), 800, Mapa::TILE_HEIGHT};
-	SDL_BlitSurface(guiBaixo,NULL, this->imagem, &guiBaixoRect);
-	
-	SDL_FreeSurface(guiBaixo);
-	SDL_FreeSurface(guiTopo);
-	//Desenha os botões na GUI de baixo
-	SDL_Surface * botao_ninja_katana =  Ambiente::carregarImagem("botao_ninja_katana.png");
-	SDL_Rect botao_ninja_katanaRect = {160,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_katana,NULL,this->imagem, &botao_ninja_katanaRect);
-	
-	SDL_Surface * botao_ninja_nunchaku = Ambiente::carregarImagem("botao_ninja_nunchaku.png");
-	SDL_Rect botao_ninja_nunchakuRect = {200,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_nunchaku,NULL,this->imagem, &botao_ninja_nunchakuRect);
-	
-	SDL_Surface * botao_ninja_mariki = Ambiente::carregarImagem("botao_ninja_mariki.png");
-	SDL_Rect botao_ninja_marikiRect = {240,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_mariki,NULL,this->imagem, &botao_ninja_marikiRect);
-	
-	SDL_Surface * botao_ninja_shuriken = Ambiente::carregarImagem("botao_ninja_shuriken.png");
-	SDL_Rect botao_ninja_shurikenRect = {320,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_shuriken,NULL,this->imagem, &botao_ninja_shurikenRect);
-	
-	SDL_Surface * botao_ninja_kunai = Ambiente::carregarImagem("botao_ninja_kunai.png");
-	SDL_Rect botao_ninja_kunaiRect = {360,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_kunai,NULL,this->imagem, &botao_ninja_kunaiRect);
-	
-	SDL_Surface * botao_ninja_bomba = Ambiente::carregarImagem("botao_ninja_bomba.png");
-	SDL_Rect botao_ninja_bombaRect = {400,(600-40),40,40};
-	SDL_BlitSurface(botao_ninja_bomba,NULL,this->imagem, &botao_ninja_bombaRect);
-
-
-	SDL_FreeSurface(botao_ninja_katana);
-	SDL_FreeSurface(botao_ninja_nunchaku);
-	SDL_FreeSurface(botao_ninja_mariki);
-	SDL_FreeSurface(botao_ninja_shuriken);
-	SDL_FreeSurface(botao_ninja_kunai);
-	SDL_FreeSurface(botao_ninja_bomba);
-
-	/**
-		TODO:Desenha os botões na GUI de cima
-	**/
-
-	//Fim das alterações do Tiago
 
 	SDL_FreeSurface(tileNaoUtilizavel);
 	SDL_FreeSurface(tileCaminho);
@@ -166,6 +115,30 @@ void Mapa::gerarSuperficieMapa()
 int Mapa::desenhar()
 {
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	return 0;
+}
+
+int Mapa::detectarEvento()
+{
+	switch(Escutavel::evento.type)
+	{
+		case SDL_MOUSEMOTION:
+			// fazer um esquema de mostrar onde pode colocar torre e onde nao pode
+			//for(int i=0;i<ninjas.size();i++){
+			//	ninjas[i]->DetectMouseOver(Escutavel::evento.motion.x, Escutavel::evento.motion.y);
+			//}
+			break;
+		
+		//eventos de clique do mouse
+		case SDL_MOUSEBUTTONDOWN:
+			if(Escutavel::evento.button.button == SDL_BUTTON_LEFT)
+			{
+				int x = Escutavel::evento.button.x;
+				int y = Escutavel::evento.button.y;
+				cout << "Clique no mapa na posicao: X = " << x << " e Y = " << y << endl;
+			}
+			break;
+	}
 	return 0;
 }
 

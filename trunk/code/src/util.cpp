@@ -3,9 +3,11 @@
 #include <desenhavel.h>
 #include <escutavel.h>
 #include <vector>
+
 using namespace std;
 
-EstadoJogo Util::estadoJogo = ENTRADA_JOGO;
+EstadoJogo Util::estadoJogo = JOGANDO; // ENTRADA_JOGO
+
 /*
 int Util::removerElementoVetorDesenhaveis(vector <Desenhavel *> *  vetor , Desenhavel * elemento)
 {

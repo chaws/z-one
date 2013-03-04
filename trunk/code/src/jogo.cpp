@@ -1,4 +1,7 @@
 #include <jogo.h>
+#include <tela.h>
+#include <tempo.h>
+#include <hud.h>
 #include <iostream>
 #include <escutavel.h>
 #include <ambiente.h>
@@ -8,14 +11,16 @@ using namespace std;
 
 Jogo::Jogo()
 {
-	this->tela = new Tela;
+	this->tela =  new Tela;
 	this->tempo = new Tempo;
+	this->hud =   new Hud;
 }
 
 Jogo::~Jogo()
 {
 	if(this->tela) delete this->tela;
 	if(this->tempo) delete this->tempo;
+	if(this->hud) delete this->hud;
 	if(this->vetorDesenhaveis) delete this->vetorDesenhaveis;
 	if(this->vetorEscutaveis) delete this->vetorEscutaveis;
 	if(this->vetorMutaveis) delete this->vetorMutaveis;

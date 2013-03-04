@@ -1,11 +1,13 @@
-#include <ambiente.h>
 #include <mapa.h>
+#include <stdlib.h>
+#include <ambiente.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
+
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <stdlib.h>
 
 using namespace std;
 
@@ -40,6 +42,20 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
     SDL_FreeSurface(loadedImage);
     
     return optimizedImage;
+}
+
+SDL_Surface * Ambiente::carregarFonte(string texto, int tamanhoFonte, string caminhoFonte)
+{
+	caminhoFonte = Ambiente::CAMINHO_FONT + caminhoFonte;
+	TTF_Font * fonte = TTF_OpenFont(caminhoFonte.c_str(), tamanhoFonte);
+	SDL_Color colorFont = {50, 50, 50}; // um cinza qualquer, soh pra funfar
+	SDL_Surface * retorno = TTF_RenderText_Solid(fonte, texto.c_str(), colorFont);
+	if(!retorno)
+	{
+		cout << "Pala pra carregar fonte: " << SDL_GetError() << endl;
+		return NULL;
+	}
+	return retorno;
 }
 
 SDL_Surface * Ambiente::carregarIcone(string caminho)

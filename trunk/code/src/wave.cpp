@@ -5,6 +5,7 @@
 #include <tela.h>
 #include <util.h>
 #include <mapa.h>
+#include <hud.h>
 #include <vector>
 #include <iostream>
 
@@ -67,41 +68,26 @@ int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
 		if(this->vetorInimigos->at(i)->estaMorto)
 		{
 			Inimigo * inimigoQueSeraDeletado = this->vetorInimigos->at(i);
-			/*for (unsigned int j = 0; j < this->vetorDesenhaveis->size(); j++)
-				if (this->vetorDesenhaveis->at(j) == inimigoQueSeraDeletado)
-				{
-					this->vetorDesenhaveis->erase(vetorDesenhaveis->begin()+j);
-					break;
-				}
-				
-			for (unsigned int j = 0; j < this->vetorMutaveis->size(); j++)
-				if (this->vetorMutaveis->at(j) == inimigoQueSeraDeletado)
-				{
-					this->vetorMutaveis->erase(vetorMutaveis->begin()+j);
-					break;
-				} 
-			*/
-			
-			//Util::removerElementoVetorDesenhaveis(this->vetorDesenhaveis, inimigoQueSeraDeletado);
 			Util::removerElementoVetor(this->vetorDesenhaveis, inimigoQueSeraDeletado);
 			Util::removerElementoVetor(this->vetorMutaveis, inimigoQueSeraDeletado);
 				
 			this->vetorInimigos->erase(vetorInimigos->begin() + i);
+
+			// Soma no XP e HP
+			Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
+			Hud::somarHP(inimigoQueSeraDeletado->pontosExperiencia);
 			
-			if (inimigoQueSeraDeletado->pontosVida > 0)
+			if(inimigoQueSeraDeletado->pontosVida > 0 && this->mestreAtual)
 			{
-				if (this->mestreAtual)
+				this->mestreAtual->pontosVida--;
+				if (this->mestreAtual->pontosVida == 0)
 				{
-					this->mestreAtual->pontosVida--;
-					if (this->mestreAtual->pontosVida == 0)
-					{
-						Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
-						Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
-						delete this->mestreAtual;
-						Util::estadoJogo = ENTRADA_JOGO;
-					}
-				}	
-			}
+					Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
+					Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
+					delete this->mestreAtual;
+					Util::estadoJogo = ENTRADA_JOGO;
+				}
+			}	
 			
 			delete inimigoQueSeraDeletado;
 			
