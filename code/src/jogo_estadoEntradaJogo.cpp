@@ -28,7 +28,7 @@ int Jogo::estadoEntradaJogo()
 		
 		if(logoFading->terminouFading())
 		{
-			Util::estadoJogo = JOGANDO;
+			Util::estadoJogo = MENU_PRINCIPAL;
 			delete logoFading;
 		}
 	}

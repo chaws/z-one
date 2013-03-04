@@ -3,5 +3,6 @@
 
 int Jogo::estadoMenuJogo()
 {
+	Util::estadoJogo = JOGANDO;
 	return 0;	
 }

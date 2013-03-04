@@ -17,7 +17,7 @@ Tela::Tela()
     
     // Define o título da tela do jogo
 	SDL_WM_SetCaption("Ninja Siege", "Ninja Siege");
-	SDL_WM_SetIcon(Ambiente::carregarIcone("icon.bmp"), NULL);
+	SDL_WM_SetIcon(Ambiente::carregarImagem("z_one_logo_32_32.png"), NULL);
     cout << "Ninja Siege, by Z-One Team." << endl;
         
     // Inicia a ferramenta pra trabalhar com fontes
