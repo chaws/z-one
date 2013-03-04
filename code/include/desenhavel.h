@@ -5,10 +5,9 @@
 
 class Desenhavel
 {
-protected:
+public:
 	SDL_Rect * rect;
 	SDL_Surface * imagem;
-public:
 	virtual int desenhar() = 0;
 };
 

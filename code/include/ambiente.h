@@ -18,6 +18,7 @@ private:
 
 public:
 	static SDL_Surface * carregarImagem(string caminho);
+	static SDL_Surface * carregarFonte(string texto, int tamanhoFonte = 20, string caminhoFonte = "default.ttf");
 	static SDL_Surface * carregarIcone(string caminho);
 	static vector<Tile> * carregarConfiguracaoMapa(string caminho);
 };
