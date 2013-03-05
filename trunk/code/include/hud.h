@@ -5,6 +5,7 @@
 #include <tela.h>
 #include <botao.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 
 class Hud : public Escutavel
 {
@@ -16,7 +17,8 @@ private:
 	// Dimensoes do retangulo inferior
 	static const int HEIGHT_PARTE_BAIXO;
 	static const int WIDTH_PARTE_BAIXO;
-
+	
+	
 	// Pontos
 	static int pontosXP;
 	static int pontosHP;
@@ -56,7 +58,7 @@ public:
 	int detectarEvento();
 
 	static void somarXP(int xp);
-	static void somarHP(int hp);
+	static void atualizarHP(int pontosVidaMestre);
 	static void setarQuantidadeWaves(int denominador);
 	static void somarWave();
 	static void resetarPontos();

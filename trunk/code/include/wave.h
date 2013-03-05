@@ -26,9 +26,11 @@ private:
 	IDWave idWave;
 	int quantidadeInimigos;
 	int intervaloCriacaoInimigos;
+	int indiceVetorInimigo;
+	int atraso;
 	void configurarWave();
-	int removerInimigosMortos(int  * indiceVetorInimigo);
-	int lancarInimigos(int * atraso, int * indiceVetorInimigo);
+	int removerInimigosMortos();
+	int lancarInimigos();
 	
 public:
 	Wave(IDWave idWave, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis, Mapa * mapaAtual, Mestre * mestreAtual);
