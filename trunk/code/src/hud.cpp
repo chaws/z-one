@@ -38,6 +38,8 @@ Hud::Hud()
 
 	// Arruma a bagaca toda
 	this->rect = new SDL_Rect;
+	this->rect->x = 0;
+	this->rect->y = 0;
 	this->configurarHud();
 }
 
@@ -57,12 +59,6 @@ int Hud::configurarHud()
 
 	// Insere as duas barras
 	this->barra = Ambiente::carregarImagem("gui.png");
-	SDL_Rect parteCima = {0, 0, Hud::WIDTH_PARTE_CIMA, Hud::HEIGHT_PARTE_CIMA};
-	SDL_Rect parteBaixo = {0, Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO, 
-								Hud::WIDTH_PARTE_BAIXO, Hud::HEIGHT_PARTE_BAIXO};
-
-	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteCima);
-	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteBaixo);
 	
 	// Coloca os botoes em baixo
 	int bordaDireita = 10;
@@ -107,7 +103,14 @@ void Hud::atualizarInformacoes()
 
 int Hud::desenhar()
 {
+	SDL_Rect parteCima = {0, 0, Hud::WIDTH_PARTE_CIMA, Hud::HEIGHT_PARTE_CIMA};
+	SDL_Rect parteBaixo = {0, Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO, 
+								Hud::WIDTH_PARTE_BAIXO, Hud::HEIGHT_PARTE_BAIXO};
+
+	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteCima);
+	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteBaixo);
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	
 	this->atualizarInformacoes();
 	this->botaoNinjaKatana->desenhar();
 	this->botaoNinjaKunai->desenhar();

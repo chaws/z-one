@@ -19,6 +19,7 @@ int Jogo::estadoJogando()
 	this->vetorDesenhaveis->push_back(this->mapa);
 	this->vetorEscutaveis->push_back(this->mapa);
 	
+	
 	// Coloca o mestre na jogada
 	this->mestre = new Mestre(this->mapa);
 	this->vetorDesenhaveis->push_back(this->mestre);
