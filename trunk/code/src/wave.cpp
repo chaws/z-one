@@ -82,6 +82,9 @@ int Wave::removerInimigosMortos()
 			{
 				this->mestreAtual->pontosVida--;
 				Hud::atualizarHP(this->mestreAtual->pontosVida);
+
+				// ESSA LINHA VAI FICAR AQUI SÓ POR ENQUANTO, PQ ELA SO EXECUTA QUANDO A TORRE MATA
+				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
 				if (this->mestreAtual->pontosVida == 0)
 				{
 					Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
