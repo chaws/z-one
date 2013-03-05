@@ -105,14 +105,14 @@ int main(){
 								int y = event.button.y;
 
 								if(botaoShuriken->clicked(x,y)){
-									tipo_torre = KATANA; //MUDAR
+									tipo_torre = SHURIKEN; //MUDAR
 									compra = carregaImagem("img/ninja_shuriken.png");
 									SDL_SetAlpha(compra,SDL_SRCALPHA,127);
 									gameEstate = COMPRANDO;
 								}
 
 								if(botaoBomba->clicked(x,y)){
-									tipo_torre = KATANA; //MUDAR
+									tipo_torre = BOMBA; //MUDAR
 									compra = carregaImagem("img/ninja_bomba.png");
 									SDL_SetAlpha(compra,SDL_SRCALPHA,127);
 									gameEstate = COMPRANDO;
@@ -174,6 +174,7 @@ int main(){
 		for(int i=0;i<balas.size();i++){
 			if(balas.at(i)->cheguei == true){				
 				balas.erase(balas.begin()+i);
+				// i--;
 			}
 		}
 
