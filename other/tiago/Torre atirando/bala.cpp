@@ -22,11 +22,10 @@ bala::~bala(){
 void bala::update(Uint32 deltaTime)
 {
 	
-	box.x+= (int)((alvoX-box.x)* 0.2 );//* (deltaTime/1000.f));
-	box.y+= (int)((alvoY-box.y)* 0.2 );//* (deltaTime/1000.f));
+	box.x+= (int)((alvoX-box.x)* 0.2 );
+	box.y+= (int)((alvoY-box.y)* 0.2 );
 
 	if((box.x>alvoX-10 && (box.x)<(alvoX+10)) && (box.y>alvoY-10 && box.y<alvoY+10)){
-		// cout << "acertei o inimigo!" << endl;
 		cheguei = true;
 	}
 }
