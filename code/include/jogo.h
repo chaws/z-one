@@ -22,6 +22,7 @@ private:
 	vector<Mutavel *>    * vetorMutaveis;
 
 	Tempo 	* tempo;
+	Tempo 	* tempoParaLogica;
 	Mapa 	* mapa;
 	Tela 	* tela;
 	Hud 	* hud;

@@ -3,6 +3,7 @@
 #include <util.h>
 #include <jogo.h>
 #include <mapa.h>
+#include <torre.h>
 #include <inimigo.h>
 
 using namespace std;
@@ -31,11 +32,18 @@ int Jogo::estadoJogando()
 	
 	this->wave = new Wave(NORMAL, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
 
+	this->tempoParaLogica->iniciarTempo();
+	
+	Torre * torreteste = new Torre(KATANA, 440, 400, this->tempoParaLogica, this->wave, this->vetorDesenhaveis, this->vetorMutaveis);
+	this->vetorDesenhaveis->push_back(torreteste);
+	this->vetorMutaveis->push_back(torreteste);	
+	
 	while(Util::estadoJogo == JOGANDO)
 	{
 		this->tempo->iniciarTempo();
 		this->detectarTodosEventos();
 		this->fazerTodaLogica();
+		this->tempoParaLogica->iniciarTempo();
 		this->desenharTudo();
 		this->tela->renderizar();
 		this->tempo->atrasarTempo();

@@ -4,8 +4,7 @@
 class Tempo
 {	
 private:
-	long int tempoInicio;
-	long int pegarTempoCorrido();
+	int tempoInicio;
 
 public:
 	
@@ -13,6 +12,7 @@ public:
 	~Tempo();
 	void iniciarTempo();
 	void atrasarTempo();
+	int pegarTempoCorrido();
 };
 
 #endif
