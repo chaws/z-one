@@ -73,20 +73,15 @@ SDL_Surface * Ambiente::carregarIcone(string caminho)
 	caminho = Ambiente::CAMINHO_IMG + caminho;
 
 	SDL_Surface * loadedImage = NULL;
-	SDL_Surface * optimizedImage =  NULL;
 	loadedImage = SDL_LoadBMP(caminho.c_str());
-
+	
 	if(!loadedImage)
 	{
 		cout << "Erro ao abrir: " << SDL_GetError() << endl;
 		return NULL;
-	}
-
-    optimizedImage = SDL_DisplayFormat(loadedImage);
+	}      
     
-    SDL_FreeSurface(loadedImage);
-    
-    return optimizedImage;
+    return loadedImage;
 }
 
 
