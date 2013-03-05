@@ -9,6 +9,7 @@ using namespace std;
 
 int Jogo::estadoJogando()
 {
+	
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 	this->vetorMutaveis =  new vector<Mutavel *>;

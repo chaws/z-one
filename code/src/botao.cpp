@@ -12,7 +12,9 @@ Botao::Botao(string rotulo)
 	this->rect->y = -1;
 
 	// Futuramente o width e o height podem ser independentes hehe
-	this->imagem = Ambiente::carregarFonte(rotulo);
+
+	this->imagem = Ambiente::carregarTexto(rotulo);
+
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
 
@@ -44,7 +46,7 @@ Botao::Botao(int x, int y, int w, int h, string rotulo)
 	this->rect->h = h;
 
 	// Futuramente o width e o height podem ser independentes hehe
-	this->imagem = Ambiente::carregarFonte(rotulo);
+	this->imagem = Ambiente::carregarTexto(rotulo);
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
 

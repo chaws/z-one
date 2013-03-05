@@ -15,6 +15,15 @@ const string Ambiente::CAMINHO_IMG = "media/image/";
 const string Ambiente::CAMINHO_MAPAS = "media/maps/";
 const string Ambiente::CAMINHO_AUDIO = "media/audio/";
 const string Ambiente::CAMINHO_FONT = "media/font/";
+TTF_Font * Ambiente::fonte = NULL;
+
+void Ambiente::carregarFonte()
+{
+	string caminho = Ambiente::CAMINHO_FONT + "default.ttf";
+	Ambiente::fonte = TTF_OpenFont(caminho.c_str(), 26);
+	if (!Ambiente::fonte)
+		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
+}
 
 SDL_Surface * Ambiente::carregarImagem(string caminho)
 {
@@ -44,17 +53,18 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
     return optimizedImage;
 }
 
-SDL_Surface * Ambiente::carregarFonte(string texto, int tamanhoFonte, string caminhoFonte)
+SDL_Surface * Ambiente::carregarTexto(string texto)
 {
-	caminhoFonte = Ambiente::CAMINHO_FONT + caminhoFonte;
-	TTF_Font * fonte = TTF_OpenFont(caminhoFonte.c_str(), tamanhoFonte);
-	SDL_Color colorFont = {50, 50, 50}; // um cinza qualquer, soh pra funfar
-	SDL_Surface * retorno = TTF_RenderText_Solid(fonte, texto.c_str(), colorFont);
+	SDL_Color colorFonte = {50, 50, 50}; // um cinza qualquer, soh pra funfar
+	
+	SDL_Surface * retorno = TTF_RenderText_Solid(Ambiente::fonte, texto.c_str(), colorFonte);
+	
 	if(!retorno)
 	{
 		cout << "Pala pra carregar fonte: " << SDL_GetError() << endl;
 		return NULL;
 	}
+	
 	return retorno;
 }
 
@@ -73,13 +83,6 @@ SDL_Surface * Ambiente::carregarIcone(string caminho)
 	}
 
     optimizedImage = SDL_DisplayFormat(loadedImage);
-    if( optimizedImage != NULL ) 
-    { 
-    	//Map the color key 
-    	Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0xFF, 0, 0xFF );
-    	//Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent 
-    	SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey ); 
- 	}
     
     SDL_FreeSurface(loadedImage);
     

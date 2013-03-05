@@ -24,7 +24,6 @@ Hud::Hud()
 {
 	// Evitando lixo
 	Hud::resetarPontos();
-
 	// Iniciando botoes de cima
 	this->botaoPausa = new Botao("Pausa");
 	this->botaoProximaWave = new Botao("Prox");
@@ -95,13 +94,15 @@ int Hud::configurarHud()
 void Hud::atualizarInformacoes()
 {
 	// Formata os numeros dentro de uma soh string
-	sprintf(informacoesTopo, "XP %06i   HP %09i   WV %02i/%02i", 
+	sprintf(informacoesTopo, "XP %09i   HP %02i   WV %02i/%02i", 
 		Hud::pontosXP, Hud::pontosHP, Hud::numeradorWave, Hud::denominadorWave);
 	//cout << informacoesTopo << endl;
-	SDL_Surface * fonte = Ambiente::carregarFonte(string(informacoesTopo), 26);
+	SDL_Surface * textoHUD = Ambiente::carregarTexto(string(informacoesTopo));
 	SDL_Rect retangulo = {10, 5, 0, 0};
 
-	SDL_BlitSurface(fonte, NULL, SDL_GetVideoSurface(), &retangulo);
+	SDL_BlitSurface(textoHUD, NULL, SDL_GetVideoSurface(), &retangulo);
+	
+	SDL_FreeSurface(textoHUD);
 }
 
 int Hud::desenhar()
@@ -133,9 +134,9 @@ void Hud::somarXP(int xp)
 	Hud::pontosXP += xp;
 }
 
-void Hud::somarHP(int hp)
+void Hud::atualizarHP(int pontosVidaMestre)
 {
-	Hud::pontosHP += hp;
+	Hud::pontosHP = pontosVidaMestre;
 }
 
 void Hud::setarQuantidadeWaves(int denominador)
@@ -151,7 +152,7 @@ void Hud::somarWave()
 void Hud::resetarPontos()
 {
 	Hud::pontosXP = 0;
-	Hud::pontosHP = 0;
+	Hud::pontosHP = 10;
 	Hud::numeradorWave = 0;
 	Hud::denominadorWave = 0;
 }

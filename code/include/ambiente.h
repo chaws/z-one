@@ -3,6 +3,7 @@
 
 #include <mapa.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 #include <string>
 #include <vector>
 
@@ -18,9 +19,11 @@ private:
 
 public:
 	static SDL_Surface * carregarImagem(string caminho);
-	static SDL_Surface * carregarFonte(string texto, int tamanhoFonte = 20, string caminhoFonte = "default.ttf");
+	static SDL_Surface * carregarTexto(string texto);
 	static SDL_Surface * carregarIcone(string caminho);
 	static vector<Tile> * carregarConfiguracaoMapa(string caminho);
+	static TTF_Font * fonte;
+	static void carregarFonte();
 };
 
 #endif

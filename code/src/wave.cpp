@@ -18,6 +18,8 @@ Wave::Wave(IDWave idWave, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutave
 	this->mestreAtual = mestreAtual;
 	this->vetorDesenhaveis = vetorDesenhaveis;
 	this->vetorMutaveis = vetorMutaveis;
+	this->atraso = 0;
+	this->indiceVetorInimigo = 0;
 	
 	this->configurarWave();
 }
@@ -49,19 +51,19 @@ void Wave::configurarWave()
 	
 }
 
-int Wave::lancarInimigos(int * atraso, int * indiceVetorInimigo)
+int Wave::lancarInimigos()
 {		
-	if (*atraso % this->intervaloCriacaoInimigos == 0 && *indiceVetorInimigo < this->quantidadeInimigos)
+	if (this->atraso % this->intervaloCriacaoInimigos == 0 && this->indiceVetorInimigo < this->quantidadeInimigos)
 	{
-		this->vetorDesenhaveis->push_back(this->vetorInimigos->at(*indiceVetorInimigo));
-		this->vetorMutaveis->push_back(this->vetorInimigos->at(*indiceVetorInimigo));
-		(*indiceVetorInimigo)++;
-		*atraso = 1;
+		this->vetorDesenhaveis->push_back(this->vetorInimigos->at(this->indiceVetorInimigo));
+		this->vetorMutaveis->push_back(this->vetorInimigos->at(this->indiceVetorInimigo));
+		(this->indiceVetorInimigo)++;
+		this->atraso = 1;
 	}
 	return 0;
 }
 
-int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
+int Wave::removerInimigosMortos()
 {
 	for (unsigned int i = 0; i < this->vetorInimigos->size(); i++)
 	{
@@ -73,25 +75,28 @@ int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
 				
 			this->vetorInimigos->erase(vetorInimigos->begin() + i);
 
-			// Soma no XP e HP
-			Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
-			Hud::somarHP(inimigoQueSeraDeletado->pontosExperiencia);
+			
+			
 			
 			if(inimigoQueSeraDeletado->pontosVida > 0 && this->mestreAtual)
 			{
 				this->mestreAtual->pontosVida--;
+				Hud::atualizarHP(this->mestreAtual->pontosVida);
 				if (this->mestreAtual->pontosVida == 0)
 				{
 					Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
 					Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
 					delete this->mestreAtual;
+					Hud::resetarPontos();
 					Util::estadoJogo = ENTRADA_JOGO;
 				}
-			}	
+			} else { // Aqui quer dizer que ele morreu pq alguma torre matou
+				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
+			}
 			
 			delete inimigoQueSeraDeletado;
 			
-			(*indiceVetorInimigo)--;
+			this->indiceVetorInimigo--;
 			this->quantidadeInimigos--;
 			
 			break;
@@ -103,14 +108,11 @@ int Wave::removerInimigosMortos(int  * indiceVetorInimigo)
 }
 
 int Wave::fazerLogica()
-{
-	static int atraso = 0;
-	static int indiceVetorInimigo = 0;
-	
-	this->lancarInimigos(&atraso, &indiceVetorInimigo);
-	this->removerInimigosMortos(&indiceVetorInimigo);
+{	
+	this->lancarInimigos();
+	this->removerInimigosMortos();
 			
-	atraso++;
+	this->atraso++;
 	
 	return 0;
 }
