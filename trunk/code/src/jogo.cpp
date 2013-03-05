@@ -13,6 +13,7 @@ Jogo::Jogo()
 {
 	this->tela =  new Tela;
 	this->tempo = new Tempo;
+	this->tempoParaLogica = new Tempo;
 	this->hud =   new Hud;
 }
 

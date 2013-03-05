@@ -35,7 +35,7 @@ void Wave::configurarWave()
 	{
 		case NORMAL:
 			this->intervaloCriacaoInimigos = 0.5 * Tela::FPS;
-			this->quantidadeInimigos = 20;
+			this->quantidadeInimigos = 2;
 			break;
 	}
 	this->vetorInimigos = new vector<Inimigo *>;
@@ -63,6 +63,11 @@ int Wave::lancarInimigos()
 	return 0;
 }
 
+vector<Inimigo *> * Wave::pegarVetorInimigos()
+{
+	return this->vetorInimigos;
+}
+
 int Wave::removerInimigosMortos()
 {
 	for (unsigned int i = 0; i < this->vetorInimigos->size(); i++)
@@ -75,8 +80,6 @@ int Wave::removerInimigosMortos()
 				
 			this->vetorInimigos->erase(vetorInimigos->begin() + i);
 
-			
-			
 			
 			if(inimigoQueSeraDeletado->pontosVida > 0 && this->mestreAtual)
 			{

@@ -2,8 +2,9 @@
 #define ALIADO_H
 
 #include <escutavel.h>
+#include <mutavel.h>
 
-class Aliado : public Escutavel
+class Aliado : public Mutavel
 {
 protected:
 	int alcance;

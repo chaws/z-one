@@ -35,6 +35,7 @@ private:
 public:
 	Wave(IDWave idWave, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis, Mapa * mapaAtual, Mestre * mestreAtual);
 	~Wave();
+	vector<Inimigo *> * pegarVetorInimigos();
 	
 	int fazerLogica();
 };
