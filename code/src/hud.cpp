@@ -56,9 +56,11 @@ Hud::~Hud()
 int Hud::configurarHud()
 {
     this->imagem = SDL_CreateRGBSurface(0, Tela::WIDTH, Tela::HEIGHT, Tela::BPP, 0, 0, 0, 0);
-
+	SDL_Rect retanguloParaTransparencia = {0, 0, Tela::WIDTH, Tela::HEIGHT};
+	SDL_FillRect(this->imagem, &retanguloParaTransparencia, SDL_MapRGB(this->imagem->format, 0xFF, 0, 0xFF));
+	
 	// Insere as duas barras
-	this->barra = Ambiente::carregarImagem("gui.png");
+	this->barra = Ambiente::carregarImagem("menu.png");
 	
 	// Coloca os botoes em baixo
 	int bordaDireita = 10;
@@ -81,7 +83,7 @@ int Hud::configurarHud()
 	this->botaoNinjaBomba->rect->y = this->botaoNinjaKatana->rect->y;
 
 	// Coloca a colorkey para mostrar o mapa, que fica atras do hud
-	Uint32 colorkey = SDL_MapRGB(this->imagem->format, 0, 0, 0);
+	Uint32 colorkey = SDL_MapRGB(this->imagem->format, 0xFF, 0, 0xFF);
 	SDL_SetColorKey(this->imagem, SDL_SRCCOLORKEY, colorkey); 
 
 	return 0;

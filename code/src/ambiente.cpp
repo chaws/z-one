@@ -55,9 +55,9 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
 
 SDL_Surface * Ambiente::carregarTexto(string texto)
 {
-	SDL_Color colorFonte = {50, 50, 50}; // um cinza qualquer, soh pra funfar
+	SDL_Color colorFonte = {0, 0, 0}; // um cinza qualquer, soh pra funfar
 	
-	SDL_Surface * retorno = TTF_RenderText_Solid(Ambiente::fonte, texto.c_str(), colorFonte);
+	SDL_Surface * retorno = TTF_RenderText_Blended(Ambiente::fonte, texto.c_str(), colorFonte);
 	
 	if(!retorno)
 	{
