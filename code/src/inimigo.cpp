@@ -16,6 +16,16 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 	this->tileAtual = this->tileAnterior = mapaAtual->tileEntrada;
 	this->rect->x = this->tileAtual.x * (Mapa::TILE_WIDTH);
 	this->rect->y = this->tileAtual.y * Mapa::TILE_HEIGHT;
+
+	this->hp_verde.x = this->rect->x;
+	this->hp_verde.y = this->rect->y-5;
+	this->hp_verde.w = 40;
+	this->hp_verde.h = 5;
+	this->hp_vermelho.x = this->rect->x;
+	this->hp_vermelho.y = this->rect->y-5;
+	this->hp_vermelho.w = 40;
+	this->hp_vermelho.h = 5;
+	
 	this->recemCriado = true;	
 	this->pixelsAndados = Mapa::TILE_WIDTH;
 	this->estaMorto = false;
@@ -25,7 +35,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 		case CAPITAO:
 			this->tipo = CAPITAO;
 			this->imagem = Ambiente::carregarImagem("pirata_capitao_40_40.png");
-			this->pontosVida = 100;
+			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 50;
 			this->velocidade = 2;
 			break;
@@ -33,7 +43,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 		case SAQUEADOR:
 			this->tipo = SAQUEADOR;
 			this->imagem = Ambiente::carregarImagem("pirata_saqueador_40_40.png");			
-			this->pontosVida = 100;
+			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 100;
 			this->velocidade = 2;
 			break;
@@ -41,7 +51,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 		case CORSARIO:
 			this->tipo = CORSARIO;
 			this->imagem = Ambiente::carregarImagem("pirata_corsario_40_40.png");
-			this->pontosVida = 100;
+			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 175;
 			this->velocidade = 4;
 			break;
@@ -49,7 +59,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 		case PERNA_DE_PAU:
 			this->tipo = PERNA_DE_PAU;
 			this->imagem = Ambiente::carregarImagem("pirata_pernadepau_40_40.png");
-			this->pontosVida = 100;
+			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 240;
 			this->velocidade = 1;
 			break;
@@ -131,6 +141,8 @@ bool Inimigo::ehCaminho(int posicao)
 
 int Inimigo::desenhar()
 {
+	SDL_FillRect(SDL_GetVideoSurface(),&this->hp_vermelho,SDL_MapRGB(SDL_GetVideoSurface()->format,0xff,0x00,0x00));
+	SDL_FillRect(SDL_GetVideoSurface(),&this->hp_verde,SDL_MapRGB(SDL_GetVideoSurface()->format,0x00,0xff,0x00));
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
 	return 0;
 }
@@ -146,7 +158,13 @@ int Inimigo::fazerLogica()
 	this->rect->y += this->deltaY;
 	this->rect->x += this->deltaX;
 	
+	this->hp_vermelho.x = hp_verde.x = this->rect->x;
+	
+	this->hp_vermelho.y = hp_verde.y = this->rect->y-5;
+	
 	this->pixelsAndados += this->velocidade;
+	
+	this->hp_verde.w = (int) (40 * ((float)this->pontosVida/(float)this->pontosVidaTotal));
 	
 	if(this->pontosVida <= 0)
 	{
