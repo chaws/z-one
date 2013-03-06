@@ -18,7 +18,6 @@ torre::torre(int tipo,int x, int y){
 	mouseOver = 0;
 	alvo = NULL;
 	estado = ESPERANDO;
-	comecaAtirar = 0;
 	// atirei=false;
 	cor = SDL_MapRGB(SDL_GetVideoSurface()->format,0x00,0xff,0x00);
 
@@ -55,8 +54,8 @@ torre::torre(int tipo,int x, int y){
 			ataque=carregaImagem("img/shuriken.png");
 			alcance.x = x-W;
 			alcance.y = y-H;
-			alcance.w = W*3;
-			alcance.h =H*3;
+			alcance.w = W*8;
+			alcance.h =H*8;
 			DPS = 3;
 			dano = 1;
 			break;
@@ -72,6 +71,9 @@ torre::torre(int tipo,int x, int y){
 			dano = 2;
 			break;
 	}
+
+	comecaAtirar = 1000/DPS;
+
 }
 
 torre::~torre(){
@@ -107,9 +109,8 @@ void torre::update(Uint32 deltaTime, vector<inimigo*> *piratas, vector<bala*> *b
 	else if(!alvo->isVivo){
 		estado = ESPERANDO;
 	}
-	else{ //arrumar essa criação de balas, tah alocando uma imagem pra cada bala
+	else{
 		comecaAtirar+=deltaTime;
-		cout << deltaTime << endl;
 		if(comecaAtirar > (1000/DPS)){
 			comecaAtirar-= 1000/DPS; //regula o numero de ataques por segundo
 			balas->push_back(new bala(ataque, box.x+20, box.y+20, 10, 10, 12, 1,alvo->box.x+20,alvo->box.y+20));
