@@ -34,7 +34,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 	{
 		case CAPITAO:
 			this->tipo = CAPITAO;
-			this->imagem = Ambiente::carregarImagem("pirata_capitao_40_40.png");
+			this->imagem = Ambiente::carregarImagem("pirata_capitao.png");
 			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 50;
 			this->velocidade = 2;
@@ -42,7 +42,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 
 		case SAQUEADOR:
 			this->tipo = SAQUEADOR;
-			this->imagem = Ambiente::carregarImagem("pirata_saqueador_40_40.png");			
+			this->imagem = Ambiente::carregarImagem("pirata_saqueador.png");			
 			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 100;
 			this->velocidade = 2;
@@ -50,7 +50,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 
 		case CORSARIO:
 			this->tipo = CORSARIO;
-			this->imagem = Ambiente::carregarImagem("pirata_corsario_40_40.png");
+			this->imagem = Ambiente::carregarImagem("pirata_corsario.png");
 			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 175;
 			this->velocidade = 4;
@@ -58,7 +58,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 
 		case PERNA_DE_PAU:
 			this->tipo = PERNA_DE_PAU;
-			this->imagem = Ambiente::carregarImagem("pirata_pernadepau_40_40.png");
+			this->imagem = Ambiente::carregarImagem("pirata_pernadepau.png");
 			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 240;
 			this->velocidade = 1;

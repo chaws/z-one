@@ -53,6 +53,18 @@ int ImagemCompra::configurarImagem(TipoTorre tipo)
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_bomba.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
 			break;
+		case KUNAI:
+			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_kunai.png");
+			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
+			break;
+		case NUNCHAKU:
+			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_nunchaku.png");
+			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
+			break;
+		case MARIKI:
+			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_mariki.png");
+			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
+			break;
 	}
 	
 	return 0;
