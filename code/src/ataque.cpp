@@ -14,8 +14,8 @@ Ataque::Ataque(SDL_Surface * imagem, int x, int y, Inimigo * inimigo)
 	this->rect->y = y;
 	this->rect->w = Ataque::WIDTH;
 	this->rect->h = Ataque::HEIGHT;
-	this->deltaX = 0.3;
-	this->deltaY = 0.3;
+	this->deltaX = 0.25;
+	this->deltaY = 0.25;
 	this->inimigo = inimigo;
 	this->cheguei = false;
 }

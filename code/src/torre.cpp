@@ -1,10 +1,12 @@
 #include <torre.h>
 #include <ataque.h>
 #include <tela.h>
+#include <mapa.h>
 #include <util.h>
 #include <ambiente.h>
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -22,7 +24,6 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 	this->vetorInimigos = waveAtual->pegarVetorInimigos();
 	this->alvo = NULL;
 	this->estado = VIGIANDO;
-	this->comecaAtacar = 0;
 	this->atirei=false;
 	this->tipo = tipo;
 	this->vetorDesenhaveis = vetorDesenhaveis;
@@ -37,7 +38,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
 			this->DPS = 2;
-			this->dano = 10;
+			this->dano = 20;
 			break;
 
 		case BOMBA:
@@ -56,10 +57,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->ataque=Ambiente::carregarImagem("shuriken.png");
 			this->alcance.x = x-Torre::WIDTH;
 			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*3;
-			this->alcance.h = Torre::HEIGHT*3;
-			this->DPS = 10;
-			this->dano = 30;
+			this->alcance.w = Torre::WIDTH*5;
+			this->alcance.h = Torre::HEIGHT*5;
+			this->DPS = 5;
+			this->dano = 12;
 			break;
 		
 		case KUNAI:
@@ -67,10 +68,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->ataque=Ambiente::carregarImagem("kunai.png");
 			this->alcance.x = x-Torre::WIDTH;
 			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*3;
-			this->alcance.h = Torre::HEIGHT*3;
-			this->DPS = 10;
-			this->dano = 10;
+			this->alcance.w = Torre::WIDTH*5;
+			this->alcance.h = Torre::HEIGHT*5;
+			this->DPS = 3;
+			this->dano = 15;
 			break;
 		
 		case NUNCHAKU:
@@ -81,7 +82,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
 			this->DPS = 2;
-			this->dano = 10;
+			this->dano = 20;
 			break;
 
 		case MARIKI:
@@ -91,8 +92,8 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.y = y-(Torre::HEIGHT/2);
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
-			this->DPS = 2;
-			this->dano = 10;
+			this->DPS = 3;
+			this->dano = 15;
 			break;
 	}
 	
@@ -128,22 +129,39 @@ int Torre::realizarUpgrade()
 	return 0;
 }
 
+bool Torre::estaMaisProximo(Inimigo * candidatoAlvo, Inimigo * alvoAtual)
+{
+	if (!alvoAtual)	
+		return true;
+	
+	int distanciaCadidatoAlvo = pow(pow(Mapa::tileSaida.x - candidatoAlvo->rect->x-20, 2) +  pow(Mapa::tileSaida.y - candidatoAlvo->rect->y-20, 2), 0.5);
+	int distanciaAlvoAtual = pow(pow(Mapa::tileSaida.x - alvoAtual->rect->x-20, 2) +  pow(Mapa::tileSaida.y - alvoAtual->rect->y-20, 2), 0.5);
+	
+	if (distanciaCadidatoAlvo < distanciaAlvoAtual)
+		return true;
+	else
+		return false;
+}
 
 int Torre::fazerLogica()
 {
-	if(this->estado == VIGIANDO){
-		for(int j = (int) vetorInimigos->size()-1; j >= 0; j--)
+	Inimigo * candidatoAlvo;
+	
+	if(this->estado == VIGIANDO)
+	{
+		for(unsigned int j = 0; j < vetorInimigos->size(); j++)
 		{
 			if(isInimigoProximo(vetorInimigos->at(j))){
 				this->estado = ATACANDO;
-				this->alvo = vetorInimigos->at(j);
-			}
-			
-		}
+				candidatoAlvo = vetorInimigos->at(j);
+				
+				if (estaMaisProximo(candidatoAlvo, this->alvo))
+					this->alvo = vetorInimigos->at(j);
+			}			
+		}		
 	} 
 	if (this->estado == ATACANDO) 
 	{ //arrumar essa criação de balas, tah alocando uma imagem pra cada bala
- 	
  		if ((comecaAtacar == Tela::FPS / this->DPS) )
  		{ 		
 			Ataque * novoAtaque = new Ataque(this->ataque, this->rect->x+20, this->rect->y+20, this->alvo);
@@ -185,7 +203,6 @@ int Torre::removerAtaquesTerminados()
 	
 	return 0;
 }
-
 
 
 bool Torre::isInimigoProximo(Inimigo * inimigo)

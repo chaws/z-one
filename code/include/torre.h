@@ -47,6 +47,7 @@ private:
 	void configurarTorre(TipoTorre tipo);
 	bool isInimigoProximo(Inimigo * inimigo);
 	int removerAtaquesTerminados();
+	bool estaMaisProximo(Inimigo * candidatoAlvo, Inimigo * alvoAtual);
 
 public:
 
