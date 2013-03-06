@@ -36,7 +36,6 @@ class Mapa : public Escutavel
 private:
 	TipoMapa tipo;
 	PontoTile tileEntrada;
-	PontoTile tileSaida;
 	void configurarMapa();
 	void gerarSuperficieEmBranco();
 	void gerarSuperficieMapa();
@@ -47,6 +46,7 @@ public:
 	static const int TILE_WIDTH;
 	static const int TILE_HEIGHT;
 	static const int TILES_POR_LINHA;
+	static PontoTile tileSaida;
 	
 	vector<Tile> * tiles;
 	Mapa(TipoMapa tipo);

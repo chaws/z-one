@@ -11,6 +11,7 @@ const int Mapa::TILE_WIDTH = 40;
 const int Mapa::TILE_HEIGHT = 40;
 const int Mapa::NUMERO_TOTAL_TILES = (Tela::WIDTH/Mapa::TILE_WIDTH) * (Tela::HEIGHT/Mapa::TILE_HEIGHT);
 const int Mapa::TILES_POR_LINHA = Tela::WIDTH/Mapa::TILE_WIDTH;
+PontoTile Mapa::tileSaida;
 
 void Mapa::configurarMapa()
 {
@@ -83,8 +84,8 @@ void Mapa::gerarSuperficieMapa()
 			case SAIDA:
 				if(!achouSaida)
 				{
-					this->tileSaida.x = i % Mapa::TILES_POR_LINHA;
-					this->tileSaida.y = (i / Mapa::TILES_POR_LINHA);
+					Mapa::tileSaida.x = i % Mapa::TILES_POR_LINHA;
+					Mapa::tileSaida.y = (i / Mapa::TILES_POR_LINHA);
 					achouSaida = true;
 				}
 				tileParaBlit = tileSaida;
