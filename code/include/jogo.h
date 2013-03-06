@@ -11,6 +11,8 @@
 #include <mestre.h>
 #include <wave.h>
 #include <vector>
+#include <util.h>
+#include <torre.h>
 
 using namespace std;
 
@@ -21,12 +23,12 @@ private:
 	vector<Escutavel *>  * vetorEscutaveis;
 	vector<Mutavel *>    * vetorMutaveis;
 
-	Tempo 	* tempo;
-	Mapa 	* mapa;
-	Tela 	* tela;
-	Hud 	* hud;
-	Wave 	* wave;
-	Mestre 	* mestre;
+	Tempo * tempo;
+	Mapa * mapa;
+	Tela * tela;
+	Hud * hud;
+	Wave * wave;
+	Mestre * mestre;
 	
 	int estadoEntradaJogo();
 	int estadoMenuJogo();
@@ -43,5 +45,7 @@ public:
 	~Jogo();
 	int rodar();
 };
+
+
 
 #endif

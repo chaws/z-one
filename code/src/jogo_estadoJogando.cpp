@@ -9,11 +9,12 @@
 using namespace std;
 
 int Jogo::estadoJogando()
-{
-	
+{	
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 	this->vetorMutaveis =  new vector<Mutavel *>;
+	
+	Hud::resetarPontos();
 	
 	// Coloca o mapa na jogada
 	this->mapa = new Mapa(JARDIM_EXTERNO);
@@ -31,10 +32,6 @@ int Jogo::estadoJogando()
 	this->vetorEscutaveis->push_back(this->hud);
 	
 	this->wave = new Wave(NORMAL, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
-	
-	Torre * torreteste = new Torre(KATANA, 600, 400, this->wave, this->vetorDesenhaveis, this->vetorMutaveis);
-	this->vetorDesenhaveis->push_back(torreteste);
-	this->vetorMutaveis->push_back(torreteste);	
 	
 	while(Util::estadoJogo == JOGANDO)
 	{

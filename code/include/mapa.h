@@ -41,13 +41,14 @@ private:
 	void gerarSuperficieEmBranco();
 	void gerarSuperficieMapa();
 	static const int NUMERO_TOTAL_TILES;
-	vector<Tile> * tiles;
+	
 
 public:
 	static const int TILE_WIDTH;
 	static const int TILE_HEIGHT;
 	static const int TILES_POR_LINHA;
-
+	
+	vector<Tile> * tiles;
 	Mapa(TipoMapa tipo);
 	~Mapa();
 	int desenhar();	

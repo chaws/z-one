@@ -2,6 +2,8 @@
 #include <ambiente.h>
 #include <SDL/SDL.h>
 #include <iostream>
+#include <util.h>
+#include <torre.h>
 
 using namespace std;
 
@@ -31,6 +33,22 @@ Botao::Botao(SDL_Surface * imagem)
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
 
+	this->imagem = imagem;
+	this->clicado = false;	
+}
+
+Botao::Botao(SDL_Surface * imagem, TipoTorre tipo)
+{
+	this->rect = new SDL_Rect;
+	this->rect->x = -1;
+	this->rect->y = -1;
+
+	// Futuramente o width e o height podem ser independentes hehe
+	this->rect->w = imagem->w; 
+	this->rect->h = imagem->h;
+	
+	this->tipo = tipo;
+	
 	this->imagem = imagem;
 	this->clicado = false;	
 }
@@ -97,7 +115,9 @@ int Botao::detectarEvento()
 				this->rect->y <= y && y <= this->rect->y + this->rect->h)
 			{
 				this->clicado = true;
-				cout << "Clique no botao na posicao: X = " << x << " e Y = " << y << endl;
+				Util::estadoInterno = COMPRANDO;
+				Util::torreCompra = this->tipo;
+				Util::imagemCompra.configurarImagem(this->tipo);
 			}
 		}
 	}
