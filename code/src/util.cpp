@@ -11,7 +11,7 @@
 
 using namespace std;
 
-EstadoJogo Util::estadoJogo = JOGANDO; // ENTRADA_JOGO
+EstadoJogo Util::estadoJogo = ENTRADA_JOGO; // ENTRADA_JOGO
 EstadoInterno Util::estadoInterno = OBSERVANDO;
 TipoTorre Util::torreCompra;
 ImagemCompra Util::imagemCompra;
