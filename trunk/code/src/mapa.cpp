@@ -120,25 +120,7 @@ int Mapa::desenhar()
 
 int Mapa::detectarEvento()
 {
-	switch(Escutavel::evento.type)
-	{
-		case SDL_MOUSEMOTION:
-			// fazer um esquema de mostrar onde pode colocar torre e onde nao pode
-			//for(int i=0;i<ninjas.size();i++){
-			//	ninjas[i]->DetectMouseOver(Escutavel::evento.motion.x, Escutavel::evento.motion.y);
-			//}
-			break;
-		
-		//eventos de clique do mouse
-		case SDL_MOUSEBUTTONDOWN:
-			if(Escutavel::evento.button.button == SDL_BUTTON_LEFT)
-			{
-				int x = Escutavel::evento.button.x;
-				int y = Escutavel::evento.button.y;
-				cout << "Clique no mapa na posicao: X = " << x << " e Y = " << y << endl;
-			}
-			break;
-	}
+	
 	return 0;
 }
 

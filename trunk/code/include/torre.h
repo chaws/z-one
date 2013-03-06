@@ -12,10 +12,10 @@ using namespace std;
 
 enum TipoTorre
 {
+	SHURIKEN,
 	KATANA,
 	NUNCHAKU,
 	MARIKI,
-	SHURIKEN,
 	KUNAI,
 	BOMBA
 };

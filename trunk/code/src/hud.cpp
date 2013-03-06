@@ -16,25 +16,25 @@ const int Hud::WIDTH_PARTE_CIMA 	= Tela::WIDTH;
 const int Hud::HEIGHT_PARTE_BAIXO 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_BAIXO 	= Tela::WIDTH;
 int Hud::pontosXP = 0;
-int Hud::pontosHP = 0;
+int Hud::pontosHP = 10;
 int Hud::numeradorWave = 0;
 int Hud::denominadorWave = 0;
 
 Hud::Hud()
 {
 	// Evitando lixo
-	Hud::resetarPontos();
+	//Hud::resetarPontos();
 	// Iniciando botoes de cima
 	this->botaoPausa = new Botao("Pausa");
 	this->botaoProximaWave = new Botao("Prox");
 
 	// Iniciando os botoes de baixo
-	this->botaoNinjaKatana 	 = new Botao(Ambiente::carregarImagem("botao_ninja_katana.png"));
-	this->botaoNinjaNunchaku = new Botao(Ambiente::carregarImagem("botao_ninja_nunchaku.png"));
-	this->botaoNinjaMariki 	 = new Botao(Ambiente::carregarImagem("botao_ninja_mariki.png"));
-	this->botaoNinjaShuriken = new Botao(Ambiente::carregarImagem("botao_ninja_shuriken.png"));
-	this->botaoNinjaKunai 	 = new Botao(Ambiente::carregarImagem("botao_ninja_kunai.png"));
-	this->botaoNinjaBomba 	 = new Botao(Ambiente::carregarImagem("botao_ninja_bomba.png"));
+	this->botaoNinjaKatana 	 = new Botao(Ambiente::carregarImagem("botao_ninja_katana.png"),KATANA);
+	this->botaoNinjaNunchaku = new Botao(Ambiente::carregarImagem("botao_ninja_nunchaku.png"),NUNCHAKU);
+	this->botaoNinjaMariki 	 = new Botao(Ambiente::carregarImagem("botao_ninja_mariki.png"),MARIKI);
+	this->botaoNinjaShuriken = new Botao(Ambiente::carregarImagem("botao_ninja_shuriken.png"),SHURIKEN);
+	this->botaoNinjaKunai 	 = new Botao(Ambiente::carregarImagem("botao_ninja_kunai.png"),KUNAI);
+	this->botaoNinjaBomba 	 = new Botao(Ambiente::carregarImagem("botao_ninja_bomba.png"),BOMBA);
 
 	// Arruma a bagaca toda
 	this->rect = new SDL_Rect;

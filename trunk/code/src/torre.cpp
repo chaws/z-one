@@ -37,18 +37,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
 			this->DPS = 2;
-			this->dano = 50;
-			break;
-
-		case SHURIKEN:
-			this->imagem=Ambiente::carregarImagem("ninja_shuriken.png");
-			this->ataque=Ambiente::carregarImagem("shuriken.png");
-			this->alcance.x = x-Torre::WIDTH;
-			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*3;
-			this->alcance.h =Torre::HEIGHT*3;
-			this->DPS = 3;
-			this->dano = 1;
+			this->dano = 10;
 			break;
 
 		case BOMBA:
@@ -59,9 +48,21 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.w = Torre::WIDTH*3;
 			this->alcance.h = Torre::HEIGHT*3;
 			this->DPS = 1;
-			this->dano = 2;
+			this->dano = 30;
+			break;
+
+		case SHURIKEN:
+			this->imagem=Ambiente::carregarImagem("ninja_shuriken.png");
+			this->ataque=Ambiente::carregarImagem("shuriken.png");
+			this->alcance.x = x-Torre::WIDTH;
+			this->alcance.y = y-Torre::HEIGHT;
+			this->alcance.w = Torre::WIDTH*3;
+			this->alcance.h = Torre::HEIGHT*3;
+			this->DPS = 10;
+			this->dano = 30;
 			break;
 	}
+	
 	this->comecaAtacar= Tela::FPS / this->DPS;
 	
 }
@@ -125,7 +126,7 @@ int Torre::fazerLogica()
 			//se não estiver, para de atacar e perde o alvo
 			this->estado = VIGIANDO;
 			this->alvo = NULL;
-			this->comecaAtacar = Tela::FPS / this->DPS;
+			this->comecaAtacar = 0;
 		}
 		
 	} 

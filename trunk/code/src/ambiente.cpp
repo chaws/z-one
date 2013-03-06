@@ -20,7 +20,7 @@ TTF_Font * Ambiente::fonte = NULL;
 void Ambiente::carregarFonte()
 {
 	string caminho = Ambiente::CAMINHO_FONT + "lastninja.ttf";
-	Ambiente::fonte = TTF_OpenFont(caminho.c_str(), 18);
+	Ambiente::fonte = TTF_OpenFont(caminho.c_str(), 19);
 	if (!Ambiente::fonte)
 		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
 }

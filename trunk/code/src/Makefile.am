@@ -23,7 +23,7 @@ ninjasiege_SOURCES = main.cpp mapa.cpp jogo.cpp tela.cpp escutavel.cpp tempo.cpp
 					 jogo_estadoSairAplicativo.cpp jogo_desenharTudo.cpp \
 					 torre.cpp inimigo.cpp logofading.cpp jogo_fazerTodaLogica.cpp \
 					 mestre.cpp wave.cpp ataque.cpp \
-					 util.cpp botao.cpp hud.cpp
+					 util.cpp botao.cpp hud.cpp 
 
 # Libraries needed to build program
 ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm

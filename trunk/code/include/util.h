@@ -5,6 +5,7 @@
 #include <desenhavel.h>
 #include <escutavel.h>
 #include <vector>
+#include <torre.h>
 
 using namespace std;
 
@@ -17,12 +18,28 @@ enum EstadoJogo
 	SAIDA_APLICATIVO
 };
 
+enum EstadoInterno{
+	COMPRANDO,
+	OBSERVANDO
+};
+
+class ImagemCompra : public Desenhavel
+{
+public:
+	ImagemCompra();	
+	static int configurarImagem(TipoTorre tipo);
+	~ImagemCompra();
+	int desenhar();
+	static int desenharImagemCompra();
+};
+
 class Util
 {
 public:
 	static EstadoJogo estadoJogo;
-	//static int removerElementoVetorDesenhaveis(vector <Desenhavel *> *  vetor , Desenhavel * elemento);
-	//static int removerElementoVetorMutaveis(vector <Mutavel *> *  vetor , Desenhavel * elemento);
+	static EstadoInterno estadoInterno;
+	static TipoTorre torreCompra;
+	static ImagemCompra imagemCompra;
 	
 	template <class C>
 	static void removerElementoVetor(vector<C *> * vetor, Desenhavel * desenhavel)
