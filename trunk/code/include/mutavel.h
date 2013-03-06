@@ -6,8 +6,8 @@
 class Mutavel : public Desenhavel
 {
 protected:
-	int deltaX;
-	int deltaY;
+	float deltaX;
+	float deltaY;
 public:
 	virtual int fazerLogica() = 0;
 	virtual int detectarColisao() = 0;
