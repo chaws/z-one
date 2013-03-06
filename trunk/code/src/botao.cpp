@@ -38,7 +38,7 @@ Botao::Botao(SDL_Surface * imagem)
 	this->clicado = false;	
 }
 
-Botao::Botao(SDL_Surface * imagem, TipoTorre tipo)
+Botao::Botao(SDL_Surface * imagem, TipoBotao tipo)
 {
 	this->rect = new SDL_Rect;
 	this->rect->x = -1;
@@ -128,6 +128,7 @@ int Botao::desenhar()
 
 int Botao::detectarEvento()
 {
+	static bool estaPausado =  false;
 	if(Escutavel::evento.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if(Escutavel::evento.button.button == SDL_BUTTON_LEFT)
@@ -140,9 +141,18 @@ int Botao::detectarEvento()
 				this->rect->y <= y && y <= this->rect->y + this->rect->h)
 			{
 				this->clicado = true;
-				Util::estadoInterno = COMPRANDO;
-				Util::torreCompra = this->tipo;
-				Util::imagemCompra.configurarImagem(this->tipo);
+				if (this->tipo == BOTAO_PAUSE)
+				{
+					if(Util::estadoInterno != PAUSADO)
+						Util::estadoInterno = PAUSADO;
+					else
+						Util::estadoInterno = OBSERVANDO;
+				}	
+				else {
+					Util::estadoInterno = COMPRANDO;
+					Util::torreCompra = (TipoTorre) this->tipo;
+					Util::imagemCompra.configurarImagem((TipoTorre) this->tipo);
+				}
 			}
 		}
 	}

@@ -36,9 +36,17 @@ int Jogo::estadoJogando()
 	while(Util::estadoJogo == JOGANDO)
 	{
 		this->tempo->iniciarTempo();
-		this->detectarTodosEventos();
-		this->fazerTodaLogica();
-		this->desenharTudo();
+
+		if (Util::estadoInterno == PAUSADO)
+		{
+			this->estadoJogandoPausado();
+		} else 
+		{
+			this->detectarTodosEventos();
+			this->fazerTodaLogica();
+			this->desenharTudo();
+		}
+		
 		this->tela->renderizar();
 		this->tempo->atrasarTempo();
 	}

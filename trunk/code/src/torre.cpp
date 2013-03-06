@@ -45,8 +45,8 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->ataque=Ambiente::carregarImagem("bomba.png");
 			this->alcance.x = x-Torre::WIDTH;
 			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*3;
-			this->alcance.h = Torre::HEIGHT*3;
+			this->alcance.w = Torre::WIDTH*10;
+			this->alcance.h = Torre::HEIGHT*10;
 			this->DPS = 1;
 			this->dano = 30;
 			break;
@@ -70,7 +70,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.w = Torre::WIDTH*3;
 			this->alcance.h = Torre::HEIGHT*3;
 			this->DPS = 10;
-			this->dano = 30;
+			this->dano = 10;
 			break;
 		
 		case NUNCHAKU:
@@ -132,7 +132,7 @@ int Torre::realizarUpgrade()
 int Torre::fazerLogica()
 {
 	if(this->estado == VIGIANDO){
-		for(unsigned int j=0; j < vetorInimigos->size(); j++)
+		for(int j = (int) vetorInimigos->size()-1; j >= 0; j--)
 		{
 			if(isInimigoProximo(vetorInimigos->at(j))){
 				this->estado = ATACANDO;
