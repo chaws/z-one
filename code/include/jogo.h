@@ -39,6 +39,7 @@ private:
 	int detectarTodosEventos();
 	int desenharTudo();
 	int fazerTodaLogica();
+	int estadoJogandoPausado();
 
 public:
 	Jogo();

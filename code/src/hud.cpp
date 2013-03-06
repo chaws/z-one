@@ -15,26 +15,27 @@ const int Hud::HEIGHT_PARTE_CIMA 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_CIMA 	= Tela::WIDTH;
 const int Hud::HEIGHT_PARTE_BAIXO 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_BAIXO 	= Tela::WIDTH;
+const int Hud::BORDA_DIREITA 		= 10;
 int Hud::pontosXP = 0;
 int Hud::pontosHP = 10;
 int Hud::numeradorWave = 0;
 int Hud::denominadorWave = 0;
+Botao * Hud::botaoPausa;
+
 
 Hud::Hud()
 {
-	// Evitando lixo
-	//Hud::resetarPontos();
 	// Iniciando botoes de cima
-	this->botaoPausa = new Botao("Pausa");
-	this->botaoProximaWave = new Botao("Prox");
+	Hud::botaoPausa = new Botao(Ambiente::carregarImagem("botao_pause2.png"), BOTAO_PAUSE);
+	//this->botaoProximaWave = new Botao(Ambiente::carregarImagem("botao_musica.png"));
 
 	// Iniciando os botoes de baixo
-	this->botaoNinjaKatana 	 = new Botao(Ambiente::carregarImagem("botao_ninja_katana.png"),KATANA);
-	this->botaoNinjaNunchaku = new Botao(Ambiente::carregarImagem("botao_ninja_nunchaku.png"),NUNCHAKU);
-	this->botaoNinjaMariki 	 = new Botao(Ambiente::carregarImagem("botao_ninja_mariki.png"),MARIKI);
-	this->botaoNinjaShuriken = new Botao(Ambiente::carregarImagem("botao_ninja_shuriken.png"),SHURIKEN);
-	this->botaoNinjaKunai 	 = new Botao(Ambiente::carregarImagem("botao_ninja_kunai.png"),KUNAI);
-	this->botaoNinjaBomba 	 = new Botao(Ambiente::carregarImagem("botao_ninja_bomba.png"),BOMBA);
+	this->botaoNinjaKatana 	 = new Botao(Ambiente::carregarImagem("botao_ninja_katana.png"),BOTAO_KATANA);
+	this->botaoNinjaNunchaku = new Botao(Ambiente::carregarImagem("botao_ninja_nunchaku.png"),BOTAO_NUNCHAKU);
+	this->botaoNinjaMariki 	 = new Botao(Ambiente::carregarImagem("botao_ninja_mariki.png"),BOTAO_MARIKI);
+	this->botaoNinjaShuriken = new Botao(Ambiente::carregarImagem("botao_ninja_shuriken.png"),BOTAO_SHURIKEN);
+	this->botaoNinjaKunai 	 = new Botao(Ambiente::carregarImagem("botao_ninja_kunai.png"),BOTAO_KUNAI);
+	this->botaoNinjaBomba 	 = new Botao(Ambiente::carregarImagem("botao_ninja_bomba.png"),BOTAO_BOMBA);
 
 	// Arruma a bagaca toda
 	this->rect = new SDL_Rect;
@@ -62,24 +63,28 @@ int Hud::configurarHud()
 	// Insere as duas barras
 	this->barra = Ambiente::carregarImagem("menu.png");
 	
+	//this->botaoProximaWave->rect->x = 600;
+	//this->botaoProximaWave->rect->y = 0;
+	Hud::botaoPausa->rect->x = 750;
+	Hud::botaoPausa->rect->y = 0;
+	
 	// Coloca os botoes em baixo
-	int bordaDireita = 10;
 	this->botaoNinjaKatana->rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
-	this->botaoNinjaKatana->rect->x = bordaDireita;
+	this->botaoNinjaKatana->rect->x = Hud::BORDA_DIREITA;
 
-	this->botaoNinjaNunchaku->rect->x = this->botaoNinjaKatana->rect->x + this->botaoNinjaKatana->rect->w + bordaDireita;
+	this->botaoNinjaNunchaku->rect->x = this->botaoNinjaKatana->rect->x + this->botaoNinjaKatana->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaNunchaku->rect->y = this->botaoNinjaKatana->rect->y;
 
-	this->botaoNinjaMariki->rect->x = this->botaoNinjaNunchaku->rect->x + this->botaoNinjaNunchaku->rect->w + bordaDireita;
+	this->botaoNinjaMariki->rect->x = this->botaoNinjaNunchaku->rect->x + this->botaoNinjaNunchaku->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaMariki->rect->y = this->botaoNinjaKatana->rect->y;
 
-	this->botaoNinjaShuriken->rect->x = this->botaoNinjaMariki->rect->x + this->botaoNinjaMariki->rect->w + bordaDireita;
+	this->botaoNinjaShuriken->rect->x = this->botaoNinjaMariki->rect->x + this->botaoNinjaMariki->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaShuriken->rect->y = this->botaoNinjaKatana->rect->y;
 
-	this->botaoNinjaKunai->rect->x = this->botaoNinjaShuriken->rect->x + this->botaoNinjaShuriken->rect->w + bordaDireita;
+	this->botaoNinjaKunai->rect->x = this->botaoNinjaShuriken->rect->x + this->botaoNinjaShuriken->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaKunai->rect->y = this->botaoNinjaKatana->rect->y;
 
-	this->botaoNinjaBomba->rect->x = this->botaoNinjaKunai->rect->x + this->botaoNinjaKunai->rect->w + bordaDireita;
+	this->botaoNinjaBomba->rect->x = this->botaoNinjaKunai->rect->x + this->botaoNinjaKunai->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaBomba->rect->y = this->botaoNinjaKatana->rect->y;
 
 	// Coloca a colorkey para mostrar o mapa, que fica atras do hud
@@ -91,16 +96,25 @@ int Hud::configurarHud()
 
 void Hud::atualizarInformacoes()
 {
-	// Formata os numeros dentro de uma soh string
-	sprintf(informacoesTopo, "XP %09i   HP %02i   WV %02i/%02i", 
-		Hud::pontosXP, Hud::pontosHP, Hud::numeradorWave, Hud::denominadorWave);
-	//cout << informacoesTopo << endl;
-	SDL_Surface * textoHUD = Ambiente::carregarTexto(string(informacoesTopo));
-	SDL_Rect retangulo = {10, 5, 0, 0};
+	sprintf(informacoesTopo, "XP %08i", Hud::pontosXP);
+	SDL_Surface * textoXP = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Rect retanguloXP = {10, 10, 0, 0};
 
-	SDL_BlitSurface(textoHUD, NULL, SDL_GetVideoSurface(), &retangulo);
+	sprintf(informacoesTopo, "HP %02i", Hud::pontosHP);
+	SDL_Surface * textoHP = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Rect retanguloHP = {245, 10, 0, 0};
 	
-	SDL_FreeSurface(textoHUD);
+	sprintf(informacoesTopo, "WAVE %02i/%02i", Hud::numeradorWave, Hud::denominadorWave);
+	SDL_Surface * textoWV = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Rect retanguloWV = {350, 10, 0, 0};
+	
+	SDL_BlitSurface(textoXP, NULL, SDL_GetVideoSurface(), &retanguloXP);
+	SDL_BlitSurface(textoHP, NULL, SDL_GetVideoSurface(), &retanguloHP);
+	SDL_BlitSurface(textoWV, NULL, SDL_GetVideoSurface(), &retanguloWV);
+	
+	SDL_FreeSurface(textoXP);
+	SDL_FreeSurface(textoHP);
+	SDL_FreeSurface(textoWV);
 }
 
 int Hud::desenhar()
@@ -112,6 +126,9 @@ int Hud::desenhar()
 	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteCima);
 	SDL_BlitSurface(this->barra, NULL, this->imagem, &parteBaixo);
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	
+	//this->botaoProximaWave->desenhar();
+	Hud::botaoPausa->desenhar();
 	
 	this->atualizarInformacoes();
 	this->botaoNinjaKatana->desenhar();
@@ -125,6 +142,7 @@ int Hud::desenhar()
 
 int Hud::detectarEvento()
 {
+	Hud::botaoPausa->detectarEvento();
 	this->botaoNinjaKatana->detectarEvento();
 	this->botaoNinjaKunai->detectarEvento();
 	this->botaoNinjaShuriken->detectarEvento();
@@ -160,4 +178,14 @@ void Hud::resetarPontos()
 	Hud::pontosHP = 10;
 	Hud::numeradorWave = 0;
 	Hud::denominadorWave = 0;
+}
+
+void Hud::desenharBotaoPause()
+{
+	Hud::botaoPausa->desenhar();
+}
+
+void Hud::detectarEventoBotaoPause()
+{
+	Hud::botaoPausa->detectarEvento();
 }

@@ -13,11 +13,6 @@ private:
 	// Dimensoes do retangulo superior
 	static const int HEIGHT_PARTE_CIMA;
 	static const int WIDTH_PARTE_CIMA;
-
-	// Dimensoes do retangulo inferior
-	static const int HEIGHT_PARTE_BAIXO;
-	static const int WIDTH_PARTE_BAIXO;
-	
 	
 	// Pontos
 	static int pontosXP;
@@ -32,7 +27,7 @@ private:
 	static int denominadorWave;
 
 	// Botoes de controle
-	Botao * botaoPausa;
+	static Botao * botaoPausa;
 	Botao * botaoProximaWave;
 
 	// Botoes para adicionar torres
@@ -62,6 +57,13 @@ public:
 	static void setarQuantidadeWaves(int denominador);
 	static void somarWave();
 	static void resetarPontos();
+	static void detectarEventoBotaoPause();
+	static void desenharBotaoPause();
+	
+	// Dimensoes do retangulo inferior
+	static const int HEIGHT_PARTE_BAIXO;
+	static const int WIDTH_PARTE_BAIXO;
+	static const int BORDA_DIREITA;
 };
 
 #endif

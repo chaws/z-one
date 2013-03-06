@@ -20,7 +20,8 @@ enum EstadoJogo
 
 enum EstadoInterno{
 	COMPRANDO,
-	OBSERVANDO
+	OBSERVANDO,
+	PAUSADO
 };
 
 class ImagemCompra : public Desenhavel
