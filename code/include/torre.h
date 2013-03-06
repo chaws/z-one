@@ -44,7 +44,6 @@ private:
 
 	Uint32 comecaAtacar;
 	Inimigo *alvo;
-	Tempo * tempo;
 	void configurarTorre(TipoTorre tipo);
 	bool isInimigoProximo(Inimigo * inimigo);
 	int removerAtaquesTerminados();
@@ -56,7 +55,7 @@ public:
 	vector<Desenhavel *> * vetorDesenhaveis;
 	vector<Mutavel *> * vetorMutaveis;
 
-	Torre(TipoTorre tipo, int x, int y, Tempo * tempo, Wave * waveAtual, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis);
+	Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis);
 	~Torre();
 
 	int fazerLogica();

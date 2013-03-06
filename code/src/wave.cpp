@@ -34,7 +34,7 @@ void Wave::configurarWave()
 	switch(this->idWave)
 	{
 		case NORMAL:
-			this->intervaloCriacaoInimigos = 0.5 * Tela::FPS;
+			this->intervaloCriacaoInimigos = 5 * Tela::FPS;
 			this->quantidadeInimigos = 2;
 			break;
 	}
@@ -79,13 +79,12 @@ int Wave::removerInimigosMortos()
 			Util::removerElementoVetor(this->vetorMutaveis, inimigoQueSeraDeletado);
 				
 			this->vetorInimigos->erase(vetorInimigos->begin() + i);
-
 			
 			if(inimigoQueSeraDeletado->pontosVida > 0 && this->mestreAtual)
 			{
 				this->mestreAtual->pontosVida--;
 				Hud::atualizarHP(this->mestreAtual->pontosVida);
-
+				
 				// ESSA LINHA VAI FICAR AQUI SÓ POR ENQUANTO, PQ ELA SO EXECUTA QUANDO A TORRE MATA
 				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
 				if (this->mestreAtual->pontosVida == 0)
@@ -99,8 +98,6 @@ int Wave::removerInimigosMortos()
 			} else { // Aqui quer dizer que ele morreu pq alguma torre matou
 				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
 			}
-			
-			delete inimigoQueSeraDeletado;
 			
 			this->indiceVetorInimigo--;
 			this->quantidadeInimigos--;

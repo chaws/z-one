@@ -148,6 +148,11 @@ int Inimigo::fazerLogica()
 	
 	this->pixelsAndados += this->velocidade;
 	
+	if(this->pontosVida <= 0)
+	{
+		this->estaMorto = true;
+	}
+	
 	return 0;
 }
 

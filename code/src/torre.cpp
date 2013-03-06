@@ -11,13 +11,13 @@ using namespace std;
 const int Torre::WIDTH = 40;
 const int Torre::HEIGHT = 40;
 
-Torre::Torre(TipoTorre tipo, int x, int y, Tempo * tempo, Wave * waveAtual, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis)
+Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *> * vetorDesenhaveis, vector<Mutavel *> * vetorMutaveis)
 {
+	this->rect =  new SDL_Rect;
 	this->rect->x=x;
 	this->rect->y=y;
 	this->rect->w=Torre::WIDTH;
 	this->rect->h=Torre::HEIGHT;
-	this->tempo = tempo;
 	this->vetorAtaques =  new vector<Ataque *>;
 	this->vetorInimigos = waveAtual->pegarVetorInimigos();
 	this->alvo = NULL;
@@ -36,8 +36,8 @@ Torre::Torre(TipoTorre tipo, int x, int y, Tempo * tempo, Wave * waveAtual, vect
 			this->alcance.y = y-(Torre::HEIGHT/2);
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
-			this->DPS = 1;
-			this->dano = 2;
+			this->DPS = 2;
+			this->dano = 50;
 			break;
 
 		case SHURIKEN:
@@ -97,20 +97,16 @@ int Torre::realizarUpgrade()
 
 int Torre::fazerLogica()
 {
-	if(this->estado!=ATACANDO){
+	if(this->estado == VIGIANDO){
 		for(unsigned int j=0; j < vetorInimigos->size(); j++)
 		{
 			if(isInimigoProximo(vetorInimigos->at(j))){
 				this->estado = ATACANDO;
 				this->alvo = vetorInimigos->at(j);
 			}
+			
 		}
-	}
-	//TODO:tem que melhorar essa condicional
-	else if (this->alvo->estaMorto){
-		this->estado = VIGIANDO;
 	} 
-	
 	if (this->estado == ATACANDO) 
 	{ //arrumar essa criação de balas, tah alocando uma imagem pra cada bala
  	
@@ -123,15 +119,15 @@ int Torre::fazerLogica()
 			this->alvo->pontosVida -= this->dano;
 			comecaAtacar=0;
 		}
-		
+		comecaAtacar++;
 		//confere se o inimigo ainda esta proximo
-		if(!isInimigoProximo(this->alvo)){
+		if(!this->alvo || this->alvo->estaMorto || !isInimigoProximo(this->alvo)){
 			//se não estiver, para de atacar e perde o alvo
-			this->estado = VIGIANDO;//atacando = false;
+			this->estado = VIGIANDO;
 			this->alvo = NULL;
 			this->comecaAtacar = Tela::FPS / this->DPS;
 		}
-		comecaAtacar++;
+		
 	} 
 	
 	this->removerAtaquesTerminados();
@@ -145,12 +141,11 @@ int Torre::removerAtaquesTerminados()
 	{
 		if (this->vetorAtaques->at(i)->cheguei)
 		{
+			
 			Ataque * ataqueQueSeraDeletado = this->vetorAtaques->at(i);
 			Util::removerElementoVetor(this->vetorDesenhaveis, ataqueQueSeraDeletado);
 			Util::removerElementoVetor(this->vetorMutaveis, ataqueQueSeraDeletado);
 			this->vetorAtaques->erase(this->vetorAtaques->begin() + i);
-			delete ataqueQueSeraDeletado;
-			cout << "saiu do if" << endl;
 		}
 	}
 	
