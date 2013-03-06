@@ -38,6 +38,18 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 			this->pontosVida = this->pontosVidaTotal = 100;
 			this->pontosExperiencia = 50;
 			this->velocidade = 2;
+
+			// this->rect->x = this->rect->x-5;
+			this->rect->y = this->rect->y-5;
+
+			this->hp_verde.x = this->rect->x;
+			this->hp_verde.y = this->rect->y-5;
+			this->hp_verde.w = 40;
+			this->hp_verde.h = 5;
+			this->hp_vermelho.x = this->rect->x;
+			this->hp_vermelho.y = this->rect->y-5;
+			this->hp_vermelho.w = 40;
+			this->hp_vermelho.h = 5;
 			break;
 
 		case SAQUEADOR:

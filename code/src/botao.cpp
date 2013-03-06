@@ -4,6 +4,7 @@
 #include <iostream>
 #include <util.h>
 #include <torre.h>
+#include <ambiente.h>
 
 using namespace std;
 
@@ -48,7 +49,30 @@ Botao::Botao(SDL_Surface * imagem, TipoTorre tipo)
 	this->rect->h = imagem->h;
 	
 	this->tipo = tipo;
-	
+
+	// switch(this->tipo){
+	// 	case SHURIKEN:
+	// 		sprintf(preco,"10");
+	// 		break;
+	// 	case KATANA:
+	// 		sprintf(preco,"10");
+	// 		break;
+	// 	case NUNCHAKU:
+	// 		sprintf(preco,"30");
+	// 		break;
+	// 	case KUNAI:
+	// 		sprintf(preco,"30");
+	// 		break;
+	// 	case MARIKI:
+	// 		sprintf(preco,"50");
+	// 		break;
+	// 	case BOMBA:
+	// 		sprintf(preco,"50");
+	// 		break;
+	// }
+
+	// this->texto_preco = Ambiente::carregarTexto(preco);
+
 	this->imagem = imagem;
 	this->clicado = false;	
 }
@@ -98,6 +122,7 @@ Botao::~Botao()
 int Botao::desenhar()
 {
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	// SDL_BlitSurface(this->texto_preco,NULL,SDL_GetVideoSurface(),this->rect);
 	return 0;
 }
 

@@ -17,6 +17,8 @@ private:
 	
 	TipoTorre tipo;
 
+	char preco[4];
+	SDL_Surface * texto_preco;
 public:
 
 	// Construtores sem coordenadas: O CRIADOR DO BOTAO SE VIRA PARA POSICIONA-LO
