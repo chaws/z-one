@@ -61,6 +61,39 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->DPS = 10;
 			this->dano = 30;
 			break;
+		
+		case KUNAI:
+			this->imagem=Ambiente::carregarImagem("ninja_kunai.png");
+			this->ataque=Ambiente::carregarImagem("kunai.png");
+			this->alcance.x = x-Torre::WIDTH;
+			this->alcance.y = y-Torre::HEIGHT;
+			this->alcance.w = Torre::WIDTH*3;
+			this->alcance.h = Torre::HEIGHT*3;
+			this->DPS = 10;
+			this->dano = 30;
+			break;
+		
+		case NUNCHAKU:
+			this->imagem=Ambiente::carregarImagem("ninja_nunchaku.png");
+			this->ataque=Ambiente::carregarImagem("katana.png");
+			this->alcance.x = x-(Torre::WIDTH/2);
+			this->alcance.y = y-(Torre::HEIGHT/2);
+			this->alcance.w = Torre::WIDTH*2;
+			this->alcance.h = Torre::HEIGHT*2;
+			this->DPS = 2;
+			this->dano = 10;
+			break;
+
+		case MARIKI:
+			this->imagem=Ambiente::carregarImagem("ninja_mariki.png");
+			this->ataque=Ambiente::carregarImagem("katana.png");
+			this->alcance.x = x-(Torre::WIDTH/2);
+			this->alcance.y = y-(Torre::HEIGHT/2);
+			this->alcance.w = Torre::WIDTH*2;
+			this->alcance.h = Torre::HEIGHT*2;
+			this->DPS = 2;
+			this->dano = 10;
+			break;
 	}
 	
 	this->comecaAtacar= Tela::FPS / this->DPS;
