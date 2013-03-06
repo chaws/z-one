@@ -27,7 +27,9 @@ private:
 	int deltaY;
 	int velocidade;
 	int pixelsAndados;
-	bool recemCriado;	
+	bool recemCriado;
+	SDL_Rect hp_verde;
+	SDL_Rect hp_vermelho;	
 
 	
 	int setarProximaPosicao();
@@ -39,7 +41,8 @@ public:
 	~Inimigo();
 
 	bool estaMorto;
-	int pontosVida;  			// DEPOIS VER ISSO :D
+	int pontosVida;
+	int pontosVidaTotal;  			// DEPOIS VER ISSO :D
 	int pontosExperiencia;
 
 	int desenhar();
