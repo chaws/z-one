@@ -17,10 +17,6 @@ private:
 	// Serve para pegar os numeros e escrever na tela de forma formatada
 	char informacoesTopo[256]; 
 
-	// Esses dois abaixo servem para representar as waves que ja foram do total
-	// Ex: 6/20, ja foram 6 de 20
-	static int numeradorWave;
-	static int denominadorWave;
 
 	// Botoes de controle
 	static Botao * botaoPausa;
@@ -48,7 +44,13 @@ public:
 	// Pontos
 	static int pontosXP;
 	static int pontosHP;
+	
+	// Esses dois abaixo servem para representar as waves que ja foram do total
+	// Ex: 6/20, ja foram 6 de 20
+	static int numeradorWave;
+	static int denominadorWave;
 
+	
 	int desenhar();
 	int detectarEvento();
 

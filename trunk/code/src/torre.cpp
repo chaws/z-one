@@ -33,10 +33,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case KATANA:
 			this->imagem=Ambiente::carregarImagem("ninja_katana.png");
 			this->ataque=Ambiente::carregarImagem("katana.png");
-			this->alcance.x = x-(Torre::WIDTH/2);
-			this->alcance.y = y-(Torre::HEIGHT/2);
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 2;
 			this->dano = 20;
 			break;
@@ -44,10 +44,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case BOMBA:
 			this->imagem=Ambiente::carregarImagem("ninja_bomba.png");
 			this->ataque=Ambiente::carregarImagem("bomba.png");
-			this->alcance.x = x-Torre::WIDTH;
-			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*10;
-			this->alcance.h = Torre::HEIGHT*10;
+			this->alcance.w = Torre::WIDTH*8;
+			this->alcance.h = Torre::HEIGHT*8;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 1;
 			this->dano = 30;
 			break;
@@ -55,10 +55,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case SHURIKEN:
 			this->imagem=Ambiente::carregarImagem("ninja_shuriken.png");
 			this->ataque=Ambiente::carregarImagem("shuriken.png");
-			this->alcance.x = x-Torre::WIDTH;
-			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*5;
-			this->alcance.h = Torre::HEIGHT*5;
+			this->alcance.w = Torre::WIDTH*4;
+			this->alcance.h = Torre::HEIGHT*4;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 5;
 			this->dano = 12;
 			break;
@@ -66,10 +66,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case KUNAI:
 			this->imagem=Ambiente::carregarImagem("ninja_kunai.png");
 			this->ataque=Ambiente::carregarImagem("kunai.png");
-			this->alcance.x = x-Torre::WIDTH;
-			this->alcance.y = y-Torre::HEIGHT;
-			this->alcance.w = Torre::WIDTH*5;
-			this->alcance.h = Torre::HEIGHT*5;
+			this->alcance.w = Torre::WIDTH*4;
+			this->alcance.h = Torre::HEIGHT*4;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 3;
 			this->dano = 15;
 			break;
@@ -77,10 +77,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case NUNCHAKU:
 			this->imagem=Ambiente::carregarImagem("ninja_nunchaku.png");
 			this->ataque=Ambiente::carregarImagem("katana.png");
-			this->alcance.x = x-(Torre::WIDTH/2);
-			this->alcance.y = y-(Torre::HEIGHT/2);
 			this->alcance.w = Torre::WIDTH*2;
 			this->alcance.h = Torre::HEIGHT*2;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 2;
 			this->dano = 20;
 			break;
@@ -88,10 +88,10 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 		case MARIKI:
 			this->imagem=Ambiente::carregarImagem("ninja_mariki.png");
 			this->ataque=Ambiente::carregarImagem("katana.png");
-			this->alcance.x = x-(Torre::WIDTH/2);
-			this->alcance.y = y-(Torre::HEIGHT/2);
-			this->alcance.w = Torre::WIDTH*2;
-			this->alcance.h = Torre::HEIGHT*2;
+			this->alcance.w = Torre::WIDTH*3;
+			this->alcance.h = Torre::HEIGHT*3;
+			this->alcance.x = x-(this->alcance.w/2 - 20);
+			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 3;
 			this->dano = 15;
 			break;
@@ -134,13 +134,16 @@ bool Torre::estaMaisProximo(Inimigo * candidatoAlvo, Inimigo * alvoAtual)
 	if (!alvoAtual)	
 		return true;
 	
-	int distanciaCadidatoAlvo = pow(pow(Mapa::tileSaida.x - candidatoAlvo->rect->x-20, 2) +  pow(Mapa::tileSaida.y - candidatoAlvo->rect->y-20, 2), 0.5);
-	int distanciaAlvoAtual = pow(pow(Mapa::tileSaida.x - alvoAtual->rect->x-20, 2) +  pow(Mapa::tileSaida.y - alvoAtual->rect->y-20, 2), 0.5);
+	int distanciaCadidatoAlvo = pow(pow((Mapa::tileSaida.x-20) - (candidatoAlvo->rect->x-20), 2) +  pow((Mapa::tileSaida.y-20) - (candidatoAlvo->rect->y-20), 2), 0.5);
+	int distanciaAlvoAtual = pow(pow((Mapa::tileSaida.x-20) - (alvoAtual->rect->x-20), 2) +  pow((Mapa::tileSaida.y-20) - (alvoAtual->rect->y-20), 2), 0.5);
+
 	
 	if (distanciaCadidatoAlvo < distanciaAlvoAtual)
-		return true;
+		return true;	
+
 	else
-		return false;
+		return false;	
+	
 }
 
 int Torre::fazerLogica()
@@ -157,9 +160,11 @@ int Torre::fazerLogica()
 				
 				if (estaMaisProximo(candidatoAlvo, this->alvo))
 					this->alvo = vetorInimigos->at(j);
+				
 			}			
 		}		
 	} 
+	
 	if (this->estado == ATACANDO) 
 	{ //arrumar essa criação de balas, tah alocando uma imagem pra cada bala
  		if ((comecaAtacar == Tela::FPS / this->DPS) )

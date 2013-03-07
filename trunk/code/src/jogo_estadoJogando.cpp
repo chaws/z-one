@@ -17,7 +17,7 @@ int Jogo::estadoJogando()
 	Hud::resetarPontos();
 	
 	// Coloca o mapa na jogada
-	this->mapa = new Mapa(JARDIM_EXTERNO);
+	this->mapa = new Mapa(SALA_ARTES_NEGRAS);
 	this->vetorDesenhaveis->push_back(this->mapa);
 	this->vetorEscutaveis->push_back(this->mapa);
 	
@@ -31,7 +31,8 @@ int Jogo::estadoJogando()
 	this->vetorDesenhaveis->push_back(this->hud);
 	this->vetorEscutaveis->push_back(this->hud);
 	
-	this->wave = new Wave(NORMAL, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
+	// Coloca a wave na jogada
+	this->wave = new Wave(Hud::numeradorWave, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
 	
 	while(Util::estadoJogo == JOGANDO)
 	{
@@ -53,4 +54,3 @@ int Jogo::estadoJogando()
 			
 	return 0;	
 }
-

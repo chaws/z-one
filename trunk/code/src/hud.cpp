@@ -17,7 +17,7 @@ const int Hud::HEIGHT_PARTE_BAIXO 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_BAIXO 	= Tela::WIDTH;
 const int Hud::BORDA_DIREITA 		= 40;
 int Hud::pontosXP = 0;
-int Hud::pontosHP = 10;
+int Hud::pontosHP = 0;
 int Hud::numeradorWave = 0;
 int Hud::denominadorWave = 0;
 Botao * Hud::botaoPausa;
@@ -113,11 +113,11 @@ void Hud::atualizarInformacoes()
 
 	sprintf(informacoesTopo, "HP %02i", Hud::pontosHP);
 	SDL_Surface * textoHP = Ambiente::carregarTexto(string(informacoesTopo), FONTE_HUD);
-	SDL_Rect retanguloHP = {245, 10, 0, 0};
+	SDL_Rect retanguloHP = {255, 10, 0, 0};
 	
 	sprintf(informacoesTopo, "WAVE %02i/%02i", Hud::numeradorWave, Hud::denominadorWave);
 	SDL_Surface * textoWV = Ambiente::carregarTexto(string(informacoesTopo), FONTE_HUD);
-	SDL_Rect retanguloWV = {350, 10, 0, 0};
+	SDL_Rect retanguloWV = {370, 10, 0, 0};
 	
 	SDL_BlitSurface(textoXP, NULL, SDL_GetVideoSurface(), &retanguloXP);
 	SDL_BlitSurface(textoHP, NULL, SDL_GetVideoSurface(), &retanguloHP);
@@ -187,8 +187,8 @@ void Hud::resetarPontos()
 {
 	Hud::pontosXP = 500;
 	Hud::pontosHP = 10;
-	Hud::numeradorWave = 0;
-	Hud::denominadorWave = 0;
+	Hud::numeradorWave = 1;
+	Hud::denominadorWave = 10;
 }
 
 void Hud::desenharBotaoPause()
