@@ -20,16 +20,20 @@ enum TipoBotao
 	BOTAO_PAUSE
 };
 
+struct Preco : public Desenhavel
+{
+	int desenhar();
+	Preco(int preco);
+	~Preco();
+};
+
 class Botao : public Escutavel
 {
 private:
 	string rotulo;
 	bool clicado;
-	
 	TipoBotao tipo;
 
-	char preco[4];
-	SDL_Surface * texto_preco;
 	bool estaHabilitado();
 public:
 
@@ -41,7 +45,9 @@ public:
 	// Construtores mais complexos, contemplando as coordenadas do botao
 	Botao(int x, int y, int w, int h, string rotulo);
 	Botao(int x, int y, int w, int h, SDL_Surface * imagem);
-
+	
+	Preco * preco;
+	
 	~Botao();
 
 	int desenhar();

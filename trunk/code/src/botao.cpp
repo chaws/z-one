@@ -9,6 +9,31 @@
 
 using namespace std;
 
+int Preco::desenhar()
+{
+	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	
+	return 0;
+}
+
+Preco::Preco(int preco)
+{
+	this->rect = new SDL_Rect;
+	this->rect->x = -1;
+	this->rect->y = -1;
+	
+	char precoString [10];
+	sprintf(precoString, "%d", preco);
+	this->imagem = Ambiente::carregarTexto(string(precoString), FONTE_PRECO);
+	
+}
+
+Preco::~Preco()
+{
+	delete this->rect;
+	SDL_FreeSurface(this->imagem);
+}
+
 Botao::Botao(string rotulo)
 {
 	this->rect = new SDL_Rect;
@@ -17,7 +42,7 @@ Botao::Botao(string rotulo)
 
 	// Futuramente o width e o height podem ser independentes hehe
 
-	this->imagem = Ambiente::carregarTexto(rotulo);
+	this->imagem = Ambiente::carregarTexto(rotulo, FONTE_HUD);
 
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
@@ -42,36 +67,37 @@ Botao::Botao(SDL_Surface * imagem)
 Botao::Botao(SDL_Surface * imagem, TipoBotao tipo)
 {
 	this->rect = new SDL_Rect;
-	this->rect->x = -1;
-	this->rect->y = -1;
+	this->rect->x = 0;
+	this->rect->y = 0;
 
 	// Futuramente o width e o height podem ser independentes hehe
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
 	this->tipo = tipo;
-
-	// switch(this->tipo){
-	// 	case SHURIKEN:
-	// 		sprintf(preco,"10");
-	// 		break;
-	// 	case KATANA:
-	// 		sprintf(preco,"10");
-	// 		break;
-	// 	case NUNCHAKU:
-	// 		sprintf(preco,"30");
-	// 		break;
-	// 	case KUNAI:
-	// 		sprintf(preco,"30");
-	// 		break;
-	// 	case MARIKI:
-	// 		sprintf(preco,"50");
-	// 		break;
-	// 	case BOMBA:
-	// 		sprintf(preco,"50");
-	// 		break;
-	// }
-
-	// this->texto_preco = Ambiente::carregarTexto(preco);
+	
+	switch (this->tipo)
+	{
+		case BOTAO_SHURIKEN:	
+			this->preco = new Preco(PRECO_SHURIKEN);
+			break;
+		case BOTAO_KATANA:
+			this->preco = new Preco(PRECO_KATANA);
+			break;
+		case BOTAO_NUNCHAKU:
+			this->preco = new Preco(PRECO_NUNCHAKU);
+			break;
+		case BOTAO_MARIKI:
+			this->preco = new Preco(PRECO_MARIKI);
+			break;
+		case BOTAO_KUNAI:
+			this->preco = new Preco(PRECO_KUNAI);
+			break;
+		case BOTAO_BOMBA:
+			this->preco = new Preco(PRECO_BOMBA);
+			break;
+		default:
+			this->preco = NULL;
+	}
 
 	this->imagem = imagem;
 	this->clicado = false;	
@@ -88,7 +114,7 @@ Botao::Botao(int x, int y, int w, int h, string rotulo)
 	this->rect->h = h;
 
 	// Futuramente o width e o height podem ser independentes hehe
-	this->imagem = Ambiente::carregarTexto(rotulo);
+	this->imagem = Ambiente::carregarTexto(rotulo, FONTE_HUD);
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
 
@@ -168,11 +194,16 @@ int Botao::desenhar()
 	
 	if (!estaHabilitado())
 		alpha = 120;
-		
-	SDL_SetAlpha(this->imagem, SDL_SRCALPHA, alpha);
-	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);	
 	
-	// SDL_BlitSurface(this->texto_preco,NULL,SDL_GetVideoSurface(),this->rect);
+	if (this->preco)
+	{
+		SDL_SetAlpha(this->preco->imagem, SDL_SRCALPHA, SDL_ALPHA_TRANSPARENT); // NÃO FUNCIONA :(
+		SDL_BlitSurface(this->preco->imagem, NULL, SDL_GetVideoSurface(), this->preco->rect);	
+	}
+	
+	SDL_SetAlpha(this->imagem, SDL_SRCALPHA, alpha);
+	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	
 	return 0;
 }
 

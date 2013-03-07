@@ -15,13 +15,12 @@ const int Hud::HEIGHT_PARTE_CIMA 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_CIMA 	= Tela::WIDTH;
 const int Hud::HEIGHT_PARTE_BAIXO 	= Mapa::TILE_HEIGHT;
 const int Hud::WIDTH_PARTE_BAIXO 	= Tela::WIDTH;
-const int Hud::BORDA_DIREITA 		= 10;
+const int Hud::BORDA_DIREITA 		= 40;
 int Hud::pontosXP = 0;
 int Hud::pontosHP = 10;
 int Hud::numeradorWave = 0;
 int Hud::denominadorWave = 0;
 Botao * Hud::botaoPausa;
-
 
 Hud::Hud()
 {
@@ -36,7 +35,7 @@ Hud::Hud()
 	this->botaoNinjaShuriken = new Botao(Ambiente::carregarImagem("botao_ninja_shuriken.png"),BOTAO_SHURIKEN);
 	this->botaoNinjaKunai 	 = new Botao(Ambiente::carregarImagem("botao_ninja_kunai.png"),BOTAO_KUNAI);
 	this->botaoNinjaBomba 	 = new Botao(Ambiente::carregarImagem("botao_ninja_bomba.png"),BOTAO_BOMBA);
-
+	
 	// Arruma a bagaca toda
 	this->rect = new SDL_Rect;
 	this->rect->x = 0;
@@ -70,22 +69,34 @@ int Hud::configurarHud()
 	
 	// Coloca os botoes em baixo
 	this->botaoNinjaKatana->rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
-	this->botaoNinjaKatana->rect->x = Hud::BORDA_DIREITA;
-
+	this->botaoNinjaKatana->rect->x = 10;
+	this->botaoNinjaKatana->preco->rect->y = this->botaoNinjaKatana->rect->y + 15;
+	this->botaoNinjaKatana->preco->rect->x = this->botaoNinjaKatana->rect->x + 40;
+	
 	this->botaoNinjaNunchaku->rect->x = this->botaoNinjaKatana->rect->x + this->botaoNinjaKatana->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaNunchaku->rect->y = this->botaoNinjaKatana->rect->y;
-
+	this->botaoNinjaNunchaku->preco->rect->x = this->botaoNinjaNunchaku->rect->x + 40;
+	this->botaoNinjaNunchaku->preco->rect->y = this->botaoNinjaNunchaku->rect->y + 15;
+	
 	this->botaoNinjaMariki->rect->x = this->botaoNinjaNunchaku->rect->x + this->botaoNinjaNunchaku->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaMariki->rect->y = this->botaoNinjaKatana->rect->y;
+	this->botaoNinjaMariki->preco->rect->x = this->botaoNinjaMariki->rect->x + 40;
+	this->botaoNinjaMariki->preco->rect->y = this->botaoNinjaMariki->rect->y + 15;
 
 	this->botaoNinjaShuriken->rect->x = this->botaoNinjaMariki->rect->x + this->botaoNinjaMariki->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaShuriken->rect->y = this->botaoNinjaKatana->rect->y;
+	this->botaoNinjaShuriken->preco->rect->x = this->botaoNinjaShuriken->rect->x + 40;
+	this->botaoNinjaShuriken->preco->rect->y = this->botaoNinjaShuriken->rect->y + 15;
 
 	this->botaoNinjaKunai->rect->x = this->botaoNinjaShuriken->rect->x + this->botaoNinjaShuriken->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaKunai->rect->y = this->botaoNinjaKatana->rect->y;
+	this->botaoNinjaKunai->preco->rect->x = this->botaoNinjaKunai->rect->x + 40;
+	this->botaoNinjaKunai->preco->rect->y = this->botaoNinjaKunai->rect->y + 15;
 
 	this->botaoNinjaBomba->rect->x = this->botaoNinjaKunai->rect->x + this->botaoNinjaKunai->rect->w + Hud::BORDA_DIREITA;
 	this->botaoNinjaBomba->rect->y = this->botaoNinjaKatana->rect->y;
+	this->botaoNinjaBomba->preco->rect->x = this->botaoNinjaBomba->rect->x + 40;
+	this->botaoNinjaBomba->preco->rect->y = this->botaoNinjaBomba->rect->y + 15;
 
 	// Coloca a colorkey para mostrar o mapa, que fica atras do hud
 	Uint32 colorkey = SDL_MapRGB(this->imagem->format, 0xFF, 0, 0xFF);
@@ -97,15 +108,15 @@ int Hud::configurarHud()
 void Hud::atualizarInformacoes()
 {
 	sprintf(informacoesTopo, "XP %08i", Hud::pontosXP);
-	SDL_Surface * textoXP = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Surface * textoXP = Ambiente::carregarTexto(string(informacoesTopo), FONTE_HUD);
 	SDL_Rect retanguloXP = {10, 10, 0, 0};
 
 	sprintf(informacoesTopo, "HP %02i", Hud::pontosHP);
-	SDL_Surface * textoHP = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Surface * textoHP = Ambiente::carregarTexto(string(informacoesTopo), FONTE_HUD);
 	SDL_Rect retanguloHP = {245, 10, 0, 0};
 	
 	sprintf(informacoesTopo, "WAVE %02i/%02i", Hud::numeradorWave, Hud::denominadorWave);
-	SDL_Surface * textoWV = Ambiente::carregarTexto(string(informacoesTopo));
+	SDL_Surface * textoWV = Ambiente::carregarTexto(string(informacoesTopo), FONTE_HUD);
 	SDL_Rect retanguloWV = {350, 10, 0, 0};
 	
 	SDL_BlitSurface(textoXP, NULL, SDL_GetVideoSurface(), &retanguloXP);
@@ -174,7 +185,7 @@ void Hud::somarWave()
 
 void Hud::resetarPontos()
 {
-	Hud::pontosXP = 1000;
+	Hud::pontosXP = 500;
 	Hud::pontosHP = 10;
 	Hud::numeradorWave = 0;
 	Hud::denominadorWave = 0;
