@@ -4,6 +4,7 @@
 #include <iostream>
 #include <util.h>
 #include <torre.h>
+#include <hud.h>
 #include <ambiente.h>
 
 using namespace std;
@@ -47,7 +48,6 @@ Botao::Botao(SDL_Surface * imagem, TipoBotao tipo)
 	// Futuramente o width e o height podem ser independentes hehe
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
-	
 	this->tipo = tipo;
 
 	// switch(this->tipo){
@@ -119,9 +119,59 @@ Botao::~Botao()
 	//if(this->rect) 	 delete this->rect;
 }
 
+bool Botao::estaHabilitado()
+{
+	bool estaHabilitado = false;
+	
+	switch (this->tipo)
+	{
+		case BOTAO_SHURIKEN:
+			if (Hud::pontosXP >= PRECO_SHURIKEN)
+				estaHabilitado = true;
+			
+			break;
+		case BOTAO_KATANA:
+			if (Hud::pontosXP >= PRECO_KATANA)
+				estaHabilitado = true;
+			
+			break;
+		case BOTAO_NUNCHAKU:
+			if (Hud::pontosXP >= PRECO_NUNCHAKU)
+				estaHabilitado = true;
+			
+			break;
+		case BOTAO_MARIKI:
+			if (Hud::pontosXP >= PRECO_MARIKI)
+				estaHabilitado = true;
+			
+			break;
+		case BOTAO_KUNAI:
+			if (Hud::pontosXP >= PRECO_KUNAI)
+				estaHabilitado = true;
+			
+			break;
+		case BOTAO_BOMBA:
+			if (Hud::pontosXP >= PRECO_BOMBA)
+				estaHabilitado = true;
+			
+			break;
+		default:
+			estaHabilitado =  true;
+	}
+	
+	return estaHabilitado;
+}
+
 int Botao::desenhar()
 {
-	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	int alpha =  255;
+	
+	if (!estaHabilitado())
+		alpha = 120;
+		
+	SDL_SetAlpha(this->imagem, SDL_SRCALPHA, alpha);
+	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);	
+	
 	// SDL_BlitSurface(this->texto_preco,NULL,SDL_GetVideoSurface(),this->rect);
 	return 0;
 }
@@ -149,9 +199,52 @@ int Botao::detectarEvento()
 						Util::estadoInterno = OBSERVANDO;
 				}	
 				else {
-					Util::estadoInterno = COMPRANDO;
-					Util::torreCompra = (TipoTorre) this->tipo;
-					Util::imagemCompra.configurarImagem((TipoTorre) this->tipo);
+					bool podeComprar = false;
+					switch (this->tipo)
+					{
+						case BOTAO_SHURIKEN:
+							if (Hud::pontosXP >= PRECO_SHURIKEN){
+								podeComprar = true;
+							}
+							
+							break;
+						case BOTAO_KATANA:
+							if (Hud::pontosXP >= PRECO_KATANA){
+								podeComprar = true;
+							}
+							
+							break;
+						case BOTAO_NUNCHAKU:
+							if (Hud::pontosXP >= PRECO_NUNCHAKU){
+								podeComprar = true;
+							}
+							
+							break;
+						case BOTAO_MARIKI:
+							if (Hud::pontosXP >= PRECO_MARIKI){
+								podeComprar = true;
+							}
+							
+							break;
+						case BOTAO_KUNAI:
+							if (Hud::pontosXP >= PRECO_KUNAI){
+								podeComprar = true;
+							}
+							
+							break;
+						case BOTAO_BOMBA:
+							if (Hud::pontosXP >= PRECO_BOMBA){
+								podeComprar = true;
+							}
+							
+							break;
+					}
+					if (podeComprar)
+					{
+						Util::estadoInterno = COMPRANDO;
+						Util::torreCompra = (TipoTorre) this->tipo;
+						Util::imagemCompra.configurarImagem((TipoTorre) this->tipo);
+					} 
 				}
 			}
 		}

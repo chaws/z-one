@@ -48,7 +48,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.y = y-Torre::HEIGHT;
 			this->alcance.w = Torre::WIDTH*10;
 			this->alcance.h = Torre::HEIGHT*10;
-			this->DPS = 1;
+			this->DPS = 0.5;
 			this->dano = 30;
 			break;
 

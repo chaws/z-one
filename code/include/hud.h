@@ -13,10 +13,6 @@ private:
 	// Dimensoes do retangulo superior
 	static const int HEIGHT_PARTE_CIMA;
 	static const int WIDTH_PARTE_CIMA;
-	
-	// Pontos
-	static int pontosXP;
-	static int pontosHP;
 
 	// Serve para pegar os numeros e escrever na tela de forma formatada
 	char informacoesTopo[256]; 
@@ -48,6 +44,10 @@ private:
 public:
 	Hud();
 	~Hud();
+	
+	// Pontos
+	static int pontosXP;
+	static int pontosHP;
 
 	int desenhar();
 	int detectarEvento();
