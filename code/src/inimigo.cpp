@@ -37,7 +37,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 			this->imagem = Ambiente::carregarImagem("pirata_capitao.png");
 			this->pontosVida = this->pontosVidaTotal = 300;
 			this->pontosExperiencia = 50;
-			this->velocidade = 2.5;
+			this->velocidade = 2;
 			break;
 
 		case SAQUEADOR:

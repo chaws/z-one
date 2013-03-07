@@ -28,6 +28,11 @@ void Mapa::configurarMapa()
 		case SALA_BANHO:
 			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
 			break;
+			
+		case SALA_ARTES_NEGRAS:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("darkmagicRoom.map");
+			break;
+
 	}
 }
 

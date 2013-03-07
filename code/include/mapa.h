@@ -28,13 +28,13 @@ enum TipoMapa
 {
 	JARDIM_EXTERNO,
 	SALA_BANHO,
-	SALA_TREINAMENTO
+	SALA_TREINAMENTO,
+	SALA_ARTES_NEGRAS
 };
 
 class Mapa : public Escutavel
 {	
 private:
-	TipoMapa tipo;
 	PontoTile tileEntrada;
 	void configurarMapa();
 	void gerarSuperficieEmBranco();
@@ -48,6 +48,7 @@ public:
 	static const int TILES_POR_LINHA;
 	static PontoTile tileSaida;
 	
+	TipoMapa tipo;
 	vector<Tile> * tiles;
 	Mapa(TipoMapa tipo);
 	~Mapa();
