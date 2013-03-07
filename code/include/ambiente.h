@@ -9,6 +9,13 @@
 
 using namespace std;
 
+enum TipoFonte
+{
+	FONTE_HUD,
+	FONTE_PRECO,
+	FONTE_MENU_INICIAL
+};
+
 class Ambiente
 {
 private:
@@ -19,10 +26,12 @@ private:
 
 public:
 	static SDL_Surface * carregarImagem(string caminho);
-	static SDL_Surface * carregarTexto(string texto);
+	static SDL_Surface * carregarTexto(string texto, TipoFonte tipo);
 	static SDL_Surface * carregarIcone(string caminho);
 	static vector<Tile> * carregarConfiguracaoMapa(string caminho);
-	static TTF_Font * fonte;
+	static TTF_Font * fonteHUD;
+	static TTF_Font * fontePreco;
+	static TTF_Font * fonteMenuInicial;
 	static void carregarFonte();
 };
 
