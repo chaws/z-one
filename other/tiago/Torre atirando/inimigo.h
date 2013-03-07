@@ -22,6 +22,11 @@ class inimigo{
 
 	int vida_total;
 
+	int offset;
+	double frame;
+	int direcao[2];
+	int pixeis_andados;
+	SDL_Rect clip[10];
 public:
 	bool isVivo;
 	SDL_Rect box; //retangulo que representa o inimigo
@@ -31,6 +36,7 @@ public:
 	void show();
 	void move(Uint32 deltaTime);
 	void update(Uint32 deltaTime);
+	void mudarFrame();
 
 };
 

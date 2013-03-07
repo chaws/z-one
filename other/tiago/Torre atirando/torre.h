@@ -15,6 +15,7 @@
 
 #define ESTADOS 2 //quantidade de estados que um ninja pode ter
 #define FRAMES 4
+
 #define ESPERANDO 0
 #define ATACANDO 1
 
@@ -25,8 +26,8 @@ class torre{
 	SDL_Surface* ataque;
 	Uint32 cor;
 	
-	int frame;
-	SDL_Rect frames[ESTADOS][FRAMES];
+	// int frame;
+	// SDL_Rect frames[ESTADOS][FRAMES];
 
 	int estado;
 	bool atirei;
@@ -39,7 +40,7 @@ class torre{
 	int dano;
 	SDL_Rect box;
 	bool mouseOver;
-
+	int comprado;
 	bool atacando;
 	inimigo *alvo;
 	

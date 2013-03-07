@@ -9,6 +9,7 @@
 #include "timer.h"
 #include "botao.h"
 
+
 using namespace std;
 
 #define KATANA 1
@@ -37,6 +38,8 @@ using namespace std;
 
 int main(){
 
+	SDL_Init(SDL_INIT_EVERYTHING);
+
 	//elementos do jogo
 	vector<bala*> balas;
 	vector<torre*> ninjas;
@@ -47,7 +50,7 @@ int main(){
 	int gameEstate = 1; //gameEstate inicial
 	int tipo_torre = 0; //tipo de torre sendo comprada
 
-	SDL_Init(SDL_INIT_EVERYTHING);
+	
 
 	SDL_Surface* screen;
 	screen=SDL_SetVideoMode(SCREEN_W,SCREEN_H,32,SDL_SWSURFACE); //inicializa a tela
@@ -66,7 +69,9 @@ int main(){
 	// ninjas.push_back(new torre(KATANA,200,170));
 	//criando inimigos
 	piratas.push_back(new inimigo(CAPITAO,300,100));
-	piratas.push_back(new inimigo(SAQUEADOR,100,220));
+	piratas.push_back(new inimigo(SAQUEADOR,300,200));
+	piratas.push_back(new inimigo(PERNADEPAU,300,300));
+	piratas.push_back(new inimigo(CORSARIO,300,400));
 
 	//criando os botões
 	botao *botaoShuriken = new botao(SHURIKEN,0,SCREEN_H-40);
@@ -77,7 +82,7 @@ int main(){
 	//inicia o timer
 	delta.start();
 
-	//Loop do jogo	
+	// Loop do jogo	
 	while(running){
 		//Coloca os milisegundos na variável start
 		start = SDL_GetTicks();
@@ -120,7 +125,9 @@ int main(){
 
 								if(botao_refresh->clicked(x,y)){
 									piratas.push_back(new inimigo(CAPITAO,300,100));
-									piratas.push_back(new inimigo(SAQUEADOR,100,220));
+									piratas.push_back(new inimigo(SAQUEADOR,300,200));
+									piratas.push_back(new inimigo(PERNADEPAU,300,300));
+									piratas.push_back(new inimigo(CORSARIO,300,400));
 								}
 							}
 						break;
@@ -139,8 +146,17 @@ int main(){
 						case SDL_MOUSEBUTTONDOWN:
 							//realiza a compra
 							if(event.button.button == SDL_BUTTON_LEFT){
-								ninjas.push_back(new torre(tipo_torre,event.button.x - 20,event.button.y - 20));
+								// cout << "preparando para construir" << endl;
+								// cout << "quantidade antes: " << ninjas.size() << endl;
+								torre * t = new torre(tipo_torre,event.button.x - 20,event.button.y - 20);
+
+								// cout << "Ponteiro torre = " << t << endl;
+								ninjas.push_back(t);
+								// cout << "quantidade depois: " << ninjas.size() << endl;
+
+								// cout << "Sucesso!" << endl;
 								SDL_FreeSurface(compra);
+								// cout << "Sucesso compra!\n" <<endl;
 								gameEstate = NORMAL;
 							}
 							//cancela a compra
@@ -157,18 +173,23 @@ int main(){
 		
 		/**LOGICA**/
 		//movimenta os piratas
+		// cout << "update pirata" << endl;
 		for(int i=0;i<piratas.size();i++){
 			piratas[i]->update(delta.get_ticks());
 		}
+		// cout << "update ninjas" << endl;
 		
 		for(int i=0;i<ninjas.size();i++){
 			ninjas[i]->update(delta.get_ticks(), &piratas, &balas);
 		}
+		// cout << "update balas" << endl;
 
 		//movimenta as balas
 		for(int i=0;i<balas.size();i++){
 			balas[i]->update(delta.get_ticks());
 		}
+
+		// cout << "deletando balas" << endl;
 
 		//deleta as balas que ja completaram o caminho
 		for(int i=0;i<balas.size();i++){
@@ -179,6 +200,8 @@ int main(){
 		}
 
 		//conferir os pontos de vida dos inimigos e deletar os mortos
+		// cout << "matando piratas" << endl;
+
 		for(int i=0;i<piratas.size();i++){
 			if(!piratas[i]->isVivo){
 				delete piratas.at(i);
@@ -186,43 +209,51 @@ int main(){
 				
 			}
 		}
+		// cout << "reseta tempo." << endl;
+
 		//apos a logica 
 		delta.start(); //reinicia o timer
 
 		/**RENDERIZACAO**/
 		//redesenha a tela com uma cor
 		SDL_FillRect(screen,&screen->clip_rect,corFundo);
-		
+		// cout << "desenha ninjas" << endl;	
 		//desenha os ninjas
 		for(int i=0;i<ninjas.size();i++){
+			// cout << "desenhando ninja " << i << "de " << ninjas.size() << endl;
 			ninjas[i]->show();
+			// cout << "desenhei ninja " << i << "de " << ninjas.size() << endl;
 		}
-
+		// cout << "desenha piratas." << endl;
 		//desenha o pirata
 		for(int i=0;i<piratas.size();i++){
 			piratas[i]->show();
 		}
-
+		// cout << "desenha as balas." << endl;
 		//desenha as balas na tela
 		for(int i=0;i<balas.size();i++){
 			balas[i]->show();
 		}
-
+		// cout << "desenha compra." << endl;
 		if(gameEstate == COMPRANDO){
 			SDL_BlitSurface(compra,NULL,SDL_GetVideoSurface(),&compra_box);
 		}
 
+		// cout << "desenha botoes." << endl;	
 		//desenhando os botões
 		botaoShuriken->show();
 		botaoBomba->show();
 		botao_refresh->show();
 		//mostra a tela desenhada
+		// cout << "desenha tela" << endl;
 		SDL_Flip(screen);
 		
 		//Regula FPS
 		if(1000/FPS > SDL_GetTicks()-start)
 			SDL_Delay(1000/FPS-(SDL_GetTicks()-start));
 	}
+
+	SDL_FreeSurface(screen);
 
 	SDL_Quit();
 	return 0;
