@@ -44,6 +44,33 @@ int Jogo::detectarTodosEventos()
 							
 							if (this->mapa->tiles->at(indice) == UTILIZAVEL)
 							{
+								switch (Util::torreCompra)
+								{
+									case SHURIKEN:
+										Hud::pontosXP -= PRECO_SHURIKEN;
+										
+										break;
+									case KATANA:
+										Hud::pontosXP -= PRECO_KATANA;
+										
+										break;
+									case NUNCHAKU:
+										Hud::pontosXP -= PRECO_NUNCHAKU;
+										
+										break;
+									case MARIKI:
+										Hud::pontosXP -= PRECO_MARIKI;
+										
+										break;
+									case KUNAI:
+										Hud::pontosXP -= PRECO_KUNAI;
+										
+										break;
+									case BOMBA:
+										Hud::pontosXP -= PRECO_BOMBA;
+										
+										break;
+								}
 								Torre * torre = new Torre(Util::torreCompra, x, y, this->wave,this->vetorDesenhaveis,this->vetorMutaveis);
 								this->vetorDesenhaveis->push_back(torre);
 								this->vetorMutaveis->push_back(torre);
