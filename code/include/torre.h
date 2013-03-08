@@ -46,6 +46,10 @@ private:
 	bool atirei;
 	SDL_Rect alcance; //area de percepcao da torre
 
+	SDL_Rect clip[6];
+	double frame;
+	bool ataquei;
+	
 	float DPS; //tiros por segundo
 	float velocidadeTiro; // velocidade do tiro
 

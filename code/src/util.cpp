@@ -14,13 +14,14 @@ using namespace std;
 EstadoJogo Util::estadoJogo = ENTRADA_JOGO; 
 EstadoInterno Util::estadoInterno = TRANSICAO_WAVE;
 EstadoInterno Util::ultimoEstadoInterno = OBSERVANDO;
-TipoMapa Util::mapaAtual = SALA_ARTES_NEGRAS;
+TipoMapa Util::mapaAtual = JARDIM_EXTERNO;
 TipoTorre Util::torreCompra;
 ImagemCompra Util::imagemCompra;
+SDL_Rect ImagemCompra::clip_compra = {0,0,40,40};
 
 int ImagemCompra::desenharImagemCompra()
 {
-	SDL_BlitSurface(Util::imagemCompra.imagem, NULL, SDL_GetVideoSurface(),Util::imagemCompra.rect);
+	SDL_BlitSurface(Util::imagemCompra.imagem, &ImagemCompra::clip_compra, SDL_GetVideoSurface(),Util::imagemCompra.rect);
 	
 	return 0;
 }
