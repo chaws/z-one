@@ -49,7 +49,8 @@ void Wave::configurarComboio()
 }
 
 void Wave::lancarInimigo()
-{			
+{	
+	this->vetorInimigos->at(this->indiceVetorInimigo)->estaNoJogo = true;	
 	this->vetorDesenhaveis->push_back(this->vetorInimigos->at(this->indiceVetorInimigo));
 	this->vetorMutaveis->push_back(this->vetorInimigos->at(this->indiceVetorInimigo));
 	this->indiceVetorInimigo++;
@@ -107,7 +108,7 @@ void Wave::configurarWave()
 	switch(this->mapaAtual->tipo)
 	{
 		case JARDIM_EXTERNO:
-			this->quantidadeComboios = 2;
+			this->quantidadeComboios = 3 - (int) (this->numeroWave * 0.2);
 			this->intervaloEntreComboios = 8*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->intervaloCriacaoInimigos = 3*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->atrasoEntreComboios = this->intervaloEntreComboios - 2*Tela::FPS;
@@ -148,7 +149,7 @@ void Wave::configurarWave()
 			break;
 		
 		case SALA_ARTES_NEGRAS:
-			this->quantidadeComboios = 1 - (int) (this->numeroWave * 0.3);
+			this->quantidadeComboios = 3 - (int) (this->numeroWave * 0.2);
 			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->atrasoEntreComboios = this->intervaloEntreComboios - 2*Tela::FPS;

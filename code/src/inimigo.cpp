@@ -16,7 +16,9 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 	this->tileAtual = this->tileAnterior = mapaAtual->tileEntrada;
 	this->rect->x = this->tileAtual.x * (Mapa::TILE_WIDTH);
 	this->rect->y = this->tileAtual.y * Mapa::TILE_HEIGHT;
-
+	
+	this->estaNoJogo = false;
+	
 	this->hp_verde.x = this->rect->x;
 	this->hp_verde.y = this->rect->y-5;
 	this->hp_verde.w = 40;

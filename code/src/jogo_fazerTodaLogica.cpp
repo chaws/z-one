@@ -18,9 +18,16 @@ int Jogo::fazerTodaLogica()
 	{
 		delete this->wave;
 		
-		if (Hud::numeradorWave == 10)
+		if (Hud::numeradorWave == 10) // 
 		{
 			// ACABOU O MAPA, AQUI TEM QUE DAR UM JEITO DE TROCAR (mudar estado)
+			delete this->vetorDesenhaveis;
+			delete this->vetorMutaveis;
+			delete this->vetorEscutaveis;
+			delete this->mestre;
+			delete this->mapa;
+			Util::mapaAtual = (TipoMapa) (Util::mapaAtual + 1);
+			this->estadoJogando();
 		} else
 		{
 			Util::estadoInterno = TRANSICAO_WAVE;
