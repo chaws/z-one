@@ -12,7 +12,7 @@
 using namespace std;
 
 EstadoJogo Util::estadoJogo = ENTRADA_JOGO; 
-EstadoInterno Util::estadoInterno = OBSERVANDO;
+EstadoInterno Util::estadoInterno = TRANSICAO_WAVE;
 EstadoInterno Util::ultimoEstadoInterno = OBSERVANDO;
 TipoMapa Util::mapaAtual = SALA_ARTES_NEGRAS;
 TipoTorre Util::torreCompra;
