@@ -51,6 +51,7 @@ int Jogo::rodar()
 			case SAIDA_APLICATIVO:
 				this->estadoFimJogo();
 				break;
+
 		}
 	} while(Util::estadoJogo != SAIDA_APLICATIVO);
 	
