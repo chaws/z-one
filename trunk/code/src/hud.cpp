@@ -176,7 +176,7 @@ int Hud::fazerLogica()
 		if(Util::estadoInterno != PAUSADO)
 			Util::trocarEstadoInterno(PAUSADO);
 		else
-			Util::trocarEstadoInterno(OBSERVANDO);
+			Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
 	}
 	
 	if (Hud::botaoIniciarWave->foiClicado() && Util::estadoInterno == TRANSICAO_WAVE)

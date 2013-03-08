@@ -87,8 +87,7 @@ int ImagemCompra::configurarImagem(TipoTorre tipo)
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
 			Util::imagemCompra.rect->x = 6*Hud::BORDA_DIREITA + 5*Mapa::TILE_WIDTH - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
-			break;
-		
+			break;		
 		
 	}
 	
