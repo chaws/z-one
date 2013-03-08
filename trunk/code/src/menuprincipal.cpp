@@ -34,13 +34,13 @@ MenuPrincipal::MenuPrincipal()
 	this->logoRect.x = 30;
 	this->logoRect.y = 35;
 	
-	this->desenho = Ambiente::carregarImagem("menu_principal.png");
+	this->desenho = Ambiente::carregarImagem("menu_principal2.png");
 	this->desenhoRect.x = 0;
 	this->desenhoRect.y = 0;
 	
-	this->rodape = Ambiente::carregarTexto(string("Ninja Siege, by Z-one Team. Under GPL."), FONTE_PRECO);
-	this->rodapeRect.x = 250;
-	this->rodapeRect.y = 580;
+	this->rodape = Ambiente::carregarTexto(string("Ninja Siege, by Z-one Team. 2013."), FONTE_MENU_INICIAL);
+	this->rodapeRect.x = 240;
+	this->rodapeRect.y = 560;
 }
 
 MenuPrincipal::~MenuPrincipal()

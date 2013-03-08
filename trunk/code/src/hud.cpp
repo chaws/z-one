@@ -61,7 +61,7 @@ int Hud::configurarHud()
 	SDL_FillRect(this->imagem, &retanguloParaTransparencia, SDL_MapRGB(this->imagem->format, 0xFF, 0, 0xFF));
 	
 	// Insere as duas barras
-	this->barra = Ambiente::carregarImagem("menu.png");
+	this->barra = Ambiente::carregarImagem("menu1.png");
 	
 	this->botaoIniciarWave->rect->x = 690;
 	this->botaoIniciarWave->rect->y = 0;
