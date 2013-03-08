@@ -148,7 +148,7 @@ void Wave::configurarWave()
 			break;
 		
 		case SALA_ARTES_NEGRAS:
-			this->quantidadeComboios = 3 - (int) (this->numeroWave * 0.3);
+			this->quantidadeComboios = 1 - (int) (this->numeroWave * 0.3);
 			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->atrasoEntreComboios = this->intervaloEntreComboios - 2*Tela::FPS;

@@ -17,7 +17,8 @@ enum TipoBotao
 	BOTAO_MARIKI,
 	BOTAO_KUNAI,
 	BOTAO_BOMBA,
-	BOTAO_PAUSE
+	BOTAO_PAUSE,
+	BOTAO_INIT_WAVE
 };
 
 struct Preco : public Desenhavel

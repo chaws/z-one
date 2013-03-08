@@ -8,8 +8,8 @@
 
 using namespace std;
 
-int Jogo::estadoJogando()
-{	
+int Jogo::configurarFaseAtual()
+{
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 	this->vetorMutaveis =  new vector<Mutavel *>;
@@ -17,10 +17,9 @@ int Jogo::estadoJogando()
 	Hud::resetarPontos();
 	
 	// Coloca o mapa na jogada
-	this->mapa = new Mapa(SALA_ARTES_NEGRAS);
+	this->mapa = new Mapa(Util::mapaAtual);
 	this->vetorDesenhaveis->push_back(this->mapa);
 	this->vetorEscutaveis->push_back(this->mapa);
-	
 	
 	// Coloca o mestre na jogada
 	this->mestre = new Mestre(this->mapa);
@@ -33,6 +32,12 @@ int Jogo::estadoJogando()
 	
 	// Coloca a wave na jogada
 	this->wave = new Wave(Hud::numeradorWave, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
+}
+
+int Jogo::estadoJogando()
+{	
+	
+	this->configurarFaseAtual();
 	
 	while(Util::estadoJogo == JOGANDO)
 	{

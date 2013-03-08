@@ -15,7 +15,9 @@ int Jogo::estadoJogandoPausado()
 	while(SDL_PollEvent(&Escutavel::evento))
 	{
 		detectarSaidaAplicativo();
-		Hud::detectarEventoBotaoPause();
+		Hud::botaoPausa->detectarEvento();
+		if (Hud::botaoPausa->foiClicado())
+			Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
 	}
 
 	// Tem que arrumar isso aqui
@@ -27,7 +29,8 @@ int Jogo::estadoJogandoPausado()
 	
 	SDL_FreeSurface(transparecerTela);
 	
-	Hud::desenharBotaoPause();
+	Hud::botaoPausa->desenhar();
 				
 	return 0;	
 }
+

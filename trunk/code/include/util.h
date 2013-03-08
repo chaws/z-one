@@ -21,7 +21,8 @@ enum EstadoJogo
 enum EstadoInterno{
 	COMPRANDO,
 	OBSERVANDO,
-	PAUSADO
+	PAUSADO,
+	TRANSICAO_WAVE
 };
 
 class ImagemCompra : public Desenhavel
@@ -39,8 +40,12 @@ class Util
 public:
 	static EstadoJogo estadoJogo;
 	static EstadoInterno estadoInterno;
+	static EstadoInterno ultimoEstadoInterno;
 	static TipoTorre torreCompra;
 	static ImagemCompra imagemCompra;
+	static TipoMapa mapaAtual;
+	
+	static void trocarEstadoInterno(EstadoInterno novoEstado);
 	
 	template <class C>
 	static void removerElementoVetor(vector<C *> * vetor, Desenhavel * desenhavel)

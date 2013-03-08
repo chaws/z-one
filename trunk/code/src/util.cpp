@@ -11,8 +11,10 @@
 
 using namespace std;
 
-EstadoJogo Util::estadoJogo = ENTRADA_JOGO; // ENTRADA_JOGO
+EstadoJogo Util::estadoJogo = ENTRADA_JOGO; 
 EstadoInterno Util::estadoInterno = OBSERVANDO;
+EstadoInterno Util::ultimoEstadoInterno = OBSERVANDO;
+TipoMapa Util::mapaAtual = SALA_ARTES_NEGRAS;
 TipoTorre Util::torreCompra;
 ImagemCompra Util::imagemCompra;
 
@@ -31,6 +33,12 @@ int ImagemCompra::desenhar()
 ImagemCompra::~ImagemCompra()
 {
 	
+}
+
+void Util::trocarEstadoInterno(EstadoInterno novoEstado)
+{
+	Util::ultimoEstadoInterno = Util::estadoInterno;
+	Util::estadoInterno = novoEstado;
 }
 
 ImagemCompra::ImagemCompra()

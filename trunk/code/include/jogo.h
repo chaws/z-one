@@ -40,6 +40,7 @@ private:
 	int desenharTudo();
 	int fazerTodaLogica();
 	int estadoJogandoPausado();
+	int configurarFaseAtual();
 
 public:
 	Jogo();

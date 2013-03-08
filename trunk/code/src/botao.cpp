@@ -181,6 +181,11 @@ bool Botao::estaHabilitado()
 				estaHabilitado = true;
 			
 			break;
+		case BOTAO_INIT_WAVE:
+			if (Util::estadoInterno == TRANSICAO_WAVE)
+				estaHabilitado = true;
+			
+			break;
 		default:
 			estaHabilitado =  true;
 	}
@@ -209,7 +214,6 @@ int Botao::desenhar()
 
 int Botao::detectarEvento()
 {
-	static bool estaPausado =  false;
 	if(Escutavel::evento.type == SDL_MOUSEBUTTONDOWN)
 	{
 		if(Escutavel::evento.button.button == SDL_BUTTON_LEFT)
@@ -222,61 +226,6 @@ int Botao::detectarEvento()
 				this->rect->y <= y && y <= this->rect->y + this->rect->h)
 			{
 				this->clicado = true;
-				if (this->tipo == BOTAO_PAUSE)
-				{
-					if(Util::estadoInterno != PAUSADO)
-						Util::estadoInterno = PAUSADO;
-					else
-						Util::estadoInterno = OBSERVANDO;
-				}	
-				else {
-					bool podeComprar = false;
-					switch (this->tipo)
-					{
-						case BOTAO_SHURIKEN:
-							if (Hud::pontosXP >= PRECO_SHURIKEN){
-								podeComprar = true;
-							}
-							
-							break;
-						case BOTAO_KATANA:
-							if (Hud::pontosXP >= PRECO_KATANA){
-								podeComprar = true;
-							}
-							
-							break;
-						case BOTAO_NUNCHAKU:
-							if (Hud::pontosXP >= PRECO_NUNCHAKU){
-								podeComprar = true;
-							}
-							
-							break;
-						case BOTAO_MARIKI:
-							if (Hud::pontosXP >= PRECO_MARIKI){
-								podeComprar = true;
-							}
-							
-							break;
-						case BOTAO_KUNAI:
-							if (Hud::pontosXP >= PRECO_KUNAI){
-								podeComprar = true;
-							}
-							
-							break;
-						case BOTAO_BOMBA:
-							if (Hud::pontosXP >= PRECO_BOMBA){
-								podeComprar = true;
-							}
-							
-							break;
-					}
-					if (podeComprar)
-					{
-						Util::estadoInterno = COMPRANDO;
-						Util::torreCompra = (TipoTorre) this->tipo;
-						Util::imagemCompra.configurarImagem((TipoTorre) this->tipo);
-					} 
-				}
 			}
 		}
 	}
