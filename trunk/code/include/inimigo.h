@@ -31,6 +31,10 @@ private:
 	SDL_Rect hp_verde;
 	SDL_Rect hp_vermelho;	
 
+	int offset;
+	double frame;
+	bool direcaoEsquerda;
+	SDL_Rect clip[10];
 	
 	int setarProximaPosicao();
 	bool ehCaminho(int posicao);
