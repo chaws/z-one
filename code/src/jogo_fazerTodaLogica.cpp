@@ -3,12 +3,14 @@
 #include <iostream>
 #include <util.h>
 
+using namespace std;
+
 int Jogo::fazerTodaLogica()
 {	
 	for(unsigned int i = 0; i < this->vetorMutaveis->size(); i++) 
 		this->vetorMutaveis->at(i)->fazerLogica();
 		
-	if( Util::estadoInterno != TRANSICAO_WAVE && this->wave) 
+	if(Util::estadoInterno!=TRANSICAO_WAVE && !(Util::estadoInterno==COMPRANDO && Util::ultimoEstadoInterno==TRANSICAO_WAVE) && this->wave) 
 		this->wave->fazerLogica();
 		
 	if(this->hud)
