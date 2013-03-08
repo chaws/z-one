@@ -32,6 +32,11 @@ enum TipoMapa
 	JARDIM_EXTERNO
 };
 
+struct Ponto{
+	int x;
+	int y;
+};
+
 class Mapa : public Escutavel
 {	
 private:
@@ -50,9 +55,10 @@ public:
 	
 	TipoMapa tipo;
 	vector<Tile> * tiles;
+	vector<Ponto> tilesOcupados;
 	Mapa(TipoMapa tipo);
 	~Mapa();
-	int desenhar();	
+	int desenhar();
 	int detectarEvento();
 	
 	friend class Inimigo;

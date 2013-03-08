@@ -141,6 +141,8 @@ Mapa::Mapa(TipoMapa tipo)
 	this->rect->h = Tela::HEIGHT;
 	this->imagem = NULL;
 	
+
+
 	this->configurarMapa();
 	this->gerarSuperficieMapa();
 }

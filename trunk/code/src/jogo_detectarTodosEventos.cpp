@@ -42,7 +42,7 @@ int Jogo::detectarTodosEventos()
 							
 							int indice = (tileY * 20) + tileX;
 							
-							if (this->mapa->tiles->at(indice) == UTILIZAVEL)
+							if (this->mapa->tiles->at(indice) == UTILIZAVEL && !isTileOcupado(x,y))
 							{
 								switch (Util::torreCompra)
 								{
@@ -71,6 +71,10 @@ int Jogo::detectarTodosEventos()
 										
 										break;
 								}
+								Ponto p;
+								p.x = x;
+								p.y = y;
+								mapa->tilesOcupados.push_back(p);
 								Torre * torre = new Torre(Util::torreCompra, x, y, this->wave,this->vetorDesenhaveis,this->vetorMutaveis);
 								this->vetorDesenhaveis->push_back(torre);
 								this->vetorMutaveis->push_back(torre);
