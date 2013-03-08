@@ -23,8 +23,8 @@ MenuPrincipal::MenuPrincipal()
 	this->botaoAjuda->rect->y = 400;
 
 	this->botaoSair = new Botao(Ambiente::carregarImagem("botao_sair.png"), BOTAO_SAIR);
-	this->botaoSair->rect->x = 750;
-	this->botaoSair->rect->y = 5;
+	this->botaoSair->rect->x = 743;
+	this->botaoSair->rect->y = 10;
 
 	this->botaoCreditos = new Botao(Ambiente::carregarImagem("botao_creditos.png"), BOTAO_CREDITOS);
 	this->botaoCreditos->rect->x = 590;
