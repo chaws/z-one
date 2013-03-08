@@ -29,7 +29,8 @@ enum TipoMapa
 	SALA_BANHO,
 	SALA_TREINAMENTO,
 	SALA_ARTES_NEGRAS,
-	JARDIM_EXTERNO
+	JARDIM_EXTERNO,
+	SALA_GUARDA
 };
 
 struct Ponto{
@@ -46,6 +47,7 @@ private:
 	void gerarSuperficieMapa();
 	static const int NUMERO_TOTAL_TILES;
 	
+	SDL_Rect clip[5];
 
 public:
 	static const int TILE_WIDTH;

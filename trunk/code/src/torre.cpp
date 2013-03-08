@@ -96,6 +96,16 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->dano = 15;
 			break;
 	}
+
+	this->ataquei = false;
+	this->frame = 0.;
+	for(int i=0;i<6;i++){
+		this->clip[i].x = 40*i;
+		this->clip[i].y = 0;
+		this->clip[i].w = 40;
+		this->clip[i].h = 40;
+	}
+	
 	
 	this->comecaAtacar= Tela::FPS / this->DPS;
 	
@@ -109,7 +119,8 @@ Torre::~Torre()
 
 int Torre::desenhar()
 {
-	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	SDL_BlitSurface(this->imagem, &this->clip[(int) (this->frame)], SDL_GetVideoSurface(), this->rect);
+	// SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
 	return 0;
 }
 
@@ -162,7 +173,7 @@ int Torre::fazerLogica()
 					this->alvo = vetorInimigos->at(j);
 				
 			}			
-		}		
+		}	
 	} 
 	
 	if (this->estado == ATACANDO) 
@@ -175,7 +186,18 @@ int Torre::fazerLogica()
 			this->vetorMutaveis->push_back(novoAtaque); 
 			this->alvo->pontosVida -= this->dano;
 			comecaAtacar=0;
+			this->ataquei = true;
+			this->frame = 0.;
 		}
+		
+		if(ataquei){
+			this->frame += 0.2f;
+			if(this->frame >= 6){
+				this->frame = 0.;
+				ataquei = false;
+			}
+		}
+		
 		comecaAtacar++;
 		//confere se o inimigo ainda esta proximo
 		if(!this->alvo || this->alvo->estaMorto || !isInimigoProximo(this->alvo)){
@@ -183,6 +205,10 @@ int Torre::fazerLogica()
 			this->estado = VIGIANDO;
 			this->alvo = NULL;
 			this->comecaAtacar = 0;
+			if(this->frame > 3)
+				this->frame = 5;
+			else
+				this->frame = 0.;
 		}
 		
 	} 

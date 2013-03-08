@@ -33,6 +33,7 @@ public:
 	~ImagemCompra();
 	int desenhar();
 	static int desenharImagemCompra();
+	static SDL_Rect clip_compra;
 };
 
 class Util
@@ -44,7 +45,7 @@ public:
 	static TipoTorre torreCompra;
 	static ImagemCompra imagemCompra;
 	static TipoMapa mapaAtual;
-	
+
 	static void trocarEstadoInterno(EstadoInterno novoEstado);
 	
 	template <class C>

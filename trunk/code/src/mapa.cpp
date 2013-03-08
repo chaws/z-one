@@ -33,6 +33,9 @@ void Mapa::configurarMapa()
 			this->tiles = Ambiente::carregarConfiguracaoMapa("darkmagicRoom.map");
 			break;
 
+		case SALA_GUARDA:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
+			break;
 	}
 }
 
@@ -49,12 +52,48 @@ void Mapa::gerarSuperficieMapa()
 	int contX = 0;
 	int contY = 0;
 	
-	SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("acid.png");
-	SDL_Surface * tileCaminho 		= Ambiente::carregarImagem("wooden_floor.bmp");
-	SDL_Surface * tileUtilizavel 	= Ambiente::carregarImagem("bricks.png");
-	SDL_Surface * tileEntrada 		= Ambiente::carregarImagem("red_carpet.bmp");
-	SDL_Surface * tileSaida 		= Ambiente::carregarImagem("red_carpet.bmp");
-	SDL_Surface * tileParaBlit 		=  NULL;
+	int tile_aux;
+	for(int i=0;i<5;i++){
+		// 0 caminho
+		// 1 torre
+		// 2 bloqueio
+		// 3 saida (objetivos dos inimigos)
+		// 4 entrada (por onde os inimigos chegam)
+		this->clip[i].x=i*40;
+		this->clip[i].y=0;
+		this->clip[i].w=40;
+		this->clip[i].h=40;
+	}
+
+	SDL_Surface* tileset = NULL;
+	switch(this->tipo)
+	{
+		case JARDIM_EXTERNO:
+			tileset = Ambiente::carregarImagem("tileset_jardimexterno.png");
+			break;
+		case SALA_ARTES_NEGRAS:
+			tileset = Ambiente::carregarImagem("tileset_artesnegras.png");
+			break;
+		case SALA_GUARDA:
+			tileset = Ambiente::carregarImagem("tileset_guarda.png");
+			break;
+		case SALA_TREINAMENTO:
+
+		case SALA_BANHO:
+		
+		default:
+			tileset = Ambiente::carregarImagem("tileset_default.png");
+		break;
+
+	}
+
+
+	// SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("acid.png");
+	// SDL_Surface * tileCaminho 		= Ambiente::carregarImagem("wooden_floor.bmp");
+	// SDL_Surface * tileUtilizavel 	= Ambiente::carregarImagem("bricks.png");
+	// SDL_Surface * tileEntrada 		= Ambiente::carregarImagem("red_carpet.bmp");
+	// SDL_Surface * tileSaida 		= Ambiente::carregarImagem("red_carpet.bmp");
+	// SDL_Surface * tileParaBlit 		=  NULL;
 
 	SDL_Rect tileRect = {0, 0, Mapa::TILE_WIDTH, Mapa::TILE_HEIGHT};
 	bool achouEntrada = false;
@@ -65,15 +104,20 @@ void Mapa::gerarSuperficieMapa()
 		switch(this->tiles->at(i))
 		{
 			case NAO_UTILIZAVEL:
-				tileParaBlit = tileNaoUtilizavel;
+				// tileParaBlit = tileNaoUtilizavel;
+				tile_aux = 2;
 				break;
 
 			case CAMINHO:
-				tileParaBlit = tileCaminho;
+				// tileParaBlit = tileCaminho;
+				tile_aux = 0;
+
 				break;
 
 			case UTILIZAVEL:
-				tileParaBlit = tileUtilizavel;
+				// tileParaBlit = tileUtilizavel;
+				tile_aux = 1;
+
 				break;
 			
 			case ENTRADA:
@@ -83,7 +127,8 @@ void Mapa::gerarSuperficieMapa()
 					this->tileEntrada.y = (i / Mapa::TILES_POR_LINHA) + 1;
 					achouEntrada = true;
 				}
-				tileParaBlit = tileEntrada;
+				// tileParaBlit = tileEntrada;
+				tile_aux = 4;
 				break;
 				
 			case SAIDA:
@@ -93,14 +138,16 @@ void Mapa::gerarSuperficieMapa()
 					Mapa::tileSaida.y = (i / Mapa::TILES_POR_LINHA);
 					achouSaida = true;
 				}
-				tileParaBlit = tileSaida;
+				// tileParaBlit = tileSaida;
+				tile_aux = 3;
 				break;
 		}
 
 		tileRect.x = contX * Mapa::TILE_WIDTH;
 		tileRect.y = contY * Mapa::TILE_HEIGHT;
 		
-		SDL_BlitSurface(tileParaBlit, NULL, this->imagem, &tileRect);
+		SDL_BlitSurface(tileset, &clip[tile_aux], this->imagem, &tileRect);
+		// SDL_BlitSurface(tileParaBlit, NULL, this->imagem, &tileRect);
 
 		contX++;
 		if(contX == Tela::WIDTH/Mapa::TILE_WIDTH)
@@ -111,11 +158,13 @@ void Mapa::gerarSuperficieMapa()
 		
 	}
 
-	SDL_FreeSurface(tileNaoUtilizavel);
-	SDL_FreeSurface(tileCaminho);
-	SDL_FreeSurface(tileUtilizavel);
-	SDL_FreeSurface(tileEntrada);
-	SDL_FreeSurface(tileSaida);
+	SDL_FreeSurface(tileset);
+
+	// SDL_FreeSurface(tileNaoUtilizavel);
+	// SDL_FreeSurface(tileCaminho);
+	// SDL_FreeSurface(tileUtilizavel);
+	// SDL_FreeSurface(tileEntrada);
+	// SDL_FreeSurface(tileSaida);
 }
 
 int Mapa::desenhar()
