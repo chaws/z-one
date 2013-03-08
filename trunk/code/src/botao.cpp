@@ -182,7 +182,7 @@ bool Botao::estaHabilitado()
 			
 			break;
 		case BOTAO_INIT_WAVE:
-			if (Util::estadoInterno == TRANSICAO_WAVE)
+			if (Util::estadoInterno == TRANSICAO_WAVE || (Util::estadoInterno == COMPRANDO && Util::ultimoEstadoInterno == TRANSICAO_WAVE))
 				estaHabilitado = true;
 			
 			break;
