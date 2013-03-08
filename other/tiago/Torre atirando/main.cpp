@@ -56,7 +56,7 @@ int main(){
 	screen=SDL_SetVideoMode(SCREEN_W,SCREEN_H,32,SDL_SWSURFACE); //inicializa a tela
 	SDL_WM_SetCaption("Torre atirando",NULL);
 
-	Uint32 corFundo = SDL_MapRGB(screen->format,0xaa,0xaa,0xaa);
+	Uint32 corFundo = SDL_MapRGB(screen->format,0x41,0x69,0xe1);
 
 	SDL_Event event; //captura eventos
 	Uint32 start; //regular fps
