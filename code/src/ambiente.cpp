@@ -30,7 +30,7 @@ void Ambiente::carregarFonte()
 	if (!Ambiente::fontePreco)
 		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
 		
-	Ambiente::fonteMenuInicial = TTF_OpenFont(caminho.c_str(), 23);
+	Ambiente::fonteMenuInicial = TTF_OpenFont(caminho.c_str(), 12);
 	if (!Ambiente::fonteMenuInicial)
 		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
 }
