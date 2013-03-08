@@ -26,10 +26,10 @@ enum Tile
 
 enum TipoMapa
 {
-	JARDIM_EXTERNO,
 	SALA_BANHO,
 	SALA_TREINAMENTO,
-	SALA_ARTES_NEGRAS
+	SALA_ARTES_NEGRAS,
+	JARDIM_EXTERNO
 };
 
 class Mapa : public Escutavel

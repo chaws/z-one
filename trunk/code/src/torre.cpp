@@ -154,7 +154,7 @@ int Torre::fazerLogica()
 	{
 		for(unsigned int j = 0; j < vetorInimigos->size(); j++)
 		{
-			if(isInimigoProximo(vetorInimigos->at(j))){
+			if(vetorInimigos->at(j)->estaNoJogo && isInimigoProximo(vetorInimigos->at(j))){
 				this->estado = ATACANDO;
 				candidatoAlvo = vetorInimigos->at(j);
 				

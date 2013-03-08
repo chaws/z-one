@@ -45,6 +45,7 @@ public:
 	~Inimigo();
 
 	bool estaMorto;
+	bool estaNoJogo;
 	int pontosVida;
 	int pontosVidaTotal;  			// DEPOIS VER ISSO :D
 	int pontosExperiencia;
