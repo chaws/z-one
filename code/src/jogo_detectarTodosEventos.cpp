@@ -9,6 +9,7 @@ int Jogo::detectarTodosEventos()
 {	
 	
 	switch(Util::estadoInterno){
+		case TRANSICAO_WAVE:
 		case OBSERVANDO:
 			while(SDL_PollEvent(&Escutavel::evento)){
 				for(unsigned int i = 0; i < vetorEscutaveis->size(); i++)
@@ -21,7 +22,6 @@ int Jogo::detectarTodosEventos()
 			
 			while(SDL_PollEvent(&Escutavel::evento))
 			{
-				
 				switch(Escutavel::evento.type){
 					case SDL_MOUSEMOTION:
 						
@@ -74,7 +74,7 @@ int Jogo::detectarTodosEventos()
 								Torre * torre = new Torre(Util::torreCompra, x, y, this->wave,this->vetorDesenhaveis,this->vetorMutaveis);
 								this->vetorDesenhaveis->push_back(torre);
 								this->vetorMutaveis->push_back(torre);
-								Util::estadoInterno = OBSERVANDO;
+								Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
 							}
 							else
 							{
@@ -83,7 +83,7 @@ int Jogo::detectarTodosEventos()
 							
 						}
 						if(Escutavel::evento.button.button == SDL_BUTTON_RIGHT){
-							Util::estadoInterno = OBSERVANDO;
+							Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
 						}
 				}
 				detectarSaidaAplicativo();

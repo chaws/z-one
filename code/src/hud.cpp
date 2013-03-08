@@ -1,6 +1,7 @@
 #include <hud.h>
 #include <ambiente.h>
 #include <mapa.h>
+#include <util.h>
 #include <tela.h>
 #include <botao.h>
 #include <stdio.h>
@@ -26,7 +27,7 @@ Hud::Hud()
 {
 	// Iniciando botoes de cima
 	Hud::botaoPausa = new Botao(Ambiente::carregarImagem("botao_pause2.png"), BOTAO_PAUSE);
-	//this->botaoProximaWave = new Botao(Ambiente::carregarImagem("botao_musica.png"));
+	this->botaoIniciarWave = new Botao(Ambiente::carregarImagem("botao_init.png"), BOTAO_INIT_WAVE);
 
 	// Iniciando os botoes de baixo
 	this->botaoNinjaKatana 	 = new Botao(Ambiente::carregarImagem("botao_ninja_katana.png"),BOTAO_KATANA);
@@ -62,10 +63,11 @@ int Hud::configurarHud()
 	// Insere as duas barras
 	this->barra = Ambiente::carregarImagem("menu.png");
 	
-	//this->botaoProximaWave->rect->x = 600;
-	//this->botaoProximaWave->rect->y = 0;
+	this->botaoIniciarWave->rect->x = 690;
+	this->botaoIniciarWave->rect->y = 0;
 	Hud::botaoPausa->rect->x = 750;
 	Hud::botaoPausa->rect->y = 0;
+	
 	
 	// Coloca os botoes em baixo
 	this->botaoNinjaKatana->rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
@@ -148,18 +150,79 @@ int Hud::desenhar()
 	this->botaoNinjaMariki->desenhar();
 	this->botaoNinjaNunchaku->desenhar();
 	this->botaoNinjaBomba->desenhar();
+	this->botaoIniciarWave->desenhar();
+	
 	return 0;
 }
 
 int Hud::detectarEvento()
-{
+{	
 	Hud::botaoPausa->detectarEvento();
+	this->botaoIniciarWave->detectarEvento();
 	this->botaoNinjaKatana->detectarEvento();
 	this->botaoNinjaKunai->detectarEvento();
 	this->botaoNinjaShuriken->detectarEvento();
 	this->botaoNinjaMariki->detectarEvento();
 	this->botaoNinjaNunchaku->detectarEvento();
 	this->botaoNinjaBomba->detectarEvento();
+	
+	return 0;
+}
+
+int Hud::fazerLogica()
+{
+	if (Hud::botaoPausa->foiClicado())
+	{
+		if(Util::estadoInterno != PAUSADO)
+			Util::trocarEstadoInterno(PAUSADO);
+		else
+			Util::trocarEstadoInterno(OBSERVANDO);
+	}
+	
+	if (Hud::botaoIniciarWave->foiClicado() && Util::estadoInterno == TRANSICAO_WAVE)
+	{
+		Util::trocarEstadoInterno(OBSERVANDO);
+	}
+	
+	bool podeComprar = false;
+			
+	if (this->botaoNinjaShuriken->foiClicado() && Hud::pontosXP >= PRECO_SHURIKEN)
+	{
+		podeComprar = true;
+		Util::torreCompra = SHURIKEN;
+	}
+	else if (this->botaoNinjaKatana->foiClicado() && Hud::pontosXP >= PRECO_KATANA)
+	{
+		podeComprar = true;
+		Util::torreCompra = KATANA;
+	}
+	else if (this->botaoNinjaNunchaku->foiClicado() && Hud::pontosXP >= PRECO_NUNCHAKU)
+	{
+		podeComprar = true;
+		Util::torreCompra = NUNCHAKU;
+	}	
+	else if (this->botaoNinjaMariki->foiClicado() && Hud::pontosXP >= PRECO_MARIKI)
+	{
+		podeComprar = true;
+		Util::torreCompra = MARIKI;
+	}
+	else if (this->botaoNinjaKunai->foiClicado() && Hud::pontosXP >= PRECO_KUNAI)
+	{
+		podeComprar = true;
+		Util::torreCompra = KUNAI;
+	}
+	else if (this->botaoNinjaBomba->foiClicado() && Hud::pontosXP >= PRECO_BOMBA)
+	{
+		podeComprar = true;
+		Util::torreCompra = BOMBA;
+	}
+	
+	if (podeComprar)
+	{
+		Util::trocarEstadoInterno(COMPRANDO);
+		Util::imagemCompra.configurarImagem(Util::torreCompra);
+	} 
+	
 	return 0;
 }
 
@@ -189,14 +252,4 @@ void Hud::resetarPontos()
 	Hud::pontosHP = 10;
 	Hud::numeradorWave = 1;
 	Hud::denominadorWave = 10;
-}
-
-void Hud::desenharBotaoPause()
-{
-	Hud::botaoPausa->desenhar();
-}
-
-void Hud::detectarEventoBotaoPause()
-{
-	Hud::botaoPausa->detectarEvento();
 }

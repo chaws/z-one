@@ -19,8 +19,7 @@ private:
 
 
 	// Botoes de controle
-	static Botao * botaoPausa;
-	Botao * botaoProximaWave;
+	Botao * botaoIniciarWave;
 
 	// Botoes para adicionar torres
 	Botao * botaoNinjaKatana;
@@ -49,18 +48,18 @@ public:
 	// Ex: 6/20, ja foram 6 de 20
 	static int numeradorWave;
 	static int denominadorWave;
-
+	
+	static Botao * botaoPausa;
 	
 	int desenhar();
 	int detectarEvento();
+	int fazerLogica();
 
 	static void somarXP(int xp);
 	static void atualizarHP(int pontosVidaMestre);
 	static void setarQuantidadeWaves(int denominador);
 	static void somarWave();
-	static void resetarPontos();
-	static void detectarEventoBotaoPause();
-	static void desenharBotaoPause();
+	static void resetarPontos();	
 	
 	// Dimensoes do retangulo inferior
 	static const int HEIGHT_PARTE_BAIXO;
