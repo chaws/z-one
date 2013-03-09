@@ -109,14 +109,14 @@ void Wave::configurarWave()
 	{
 		case SALA_GUARDA:
 			this->quantidadeComboios = 2;
-			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->intervaloCriacaoInimigos = 3*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->atrasoEntreComboios = 2*Tela::FPS;
+			this->intervaloEntreComboios = 5*Tela::FPS;
+			this->intervaloCriacaoInimigos = 3*Tela::FPS;
+			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 2;
 				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 1;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
 			} else if (this->numeroWave < 7)
@@ -149,17 +149,17 @@ void Wave::configurarWave()
 			break;
 		
 		case SALA_ARTES_NEGRAS:
-			this->quantidadeComboios = 4;
-			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->atrasoEntreComboios = 2*Tela::FPS;
+			this->quantidadeComboios = 3;
+			this->intervaloEntreComboios = 5*Tela::FPS;
+			this->intervaloCriacaoInimigos = 3*Tela::FPS;
+			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
-				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 2;
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
 				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 2;
 				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 2;
-				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 2;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 1;
 			} else if (this->numeroWave < 7)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 3;
@@ -191,9 +191,9 @@ void Wave::configurarWave()
 			
 		case JARDIM_EXTERNO:
 			this->quantidadeComboios = 5;
-			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->atrasoEntreComboios = 2*Tela::FPS;
+			this->intervaloEntreComboios = 4*Tela::FPS;
+			this->intervaloCriacaoInimigos = 2*Tela::FPS;
+			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
@@ -256,14 +256,6 @@ int Wave::removerInimigosMortos()
 				this->mestreAtual->pontosVida--;
 				Hud::atualizarHP(this->mestreAtual->pontosVida);
 				
-				if (this->mestreAtual->pontosVida == 0)
-				{
-					Util::removerElementoVetor(this->vetorDesenhaveis, this->mestreAtual);
-					Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
-					delete this->mestreAtual;
-					Util::estadoJogo = ENTRADA_JOGO;
-					Util::estadoInterno = TRANSICAO_WAVE;
-				}
 			} else { // Aqui quer dizer que ele morreu pq alguma torre matou
 				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);
 			}

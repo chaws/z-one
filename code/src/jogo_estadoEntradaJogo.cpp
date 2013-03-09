@@ -30,8 +30,8 @@ int Jogo::estadoEntradaJogo()
 			break;
 		}
 	}
-	
-	Util::estadoJogo = MENU_PRINCIPAL;
+	if (Util::estadoJogo != SAIDA_APLICATIVO)
+		Util::estadoJogo = MENU_PRINCIPAL;
 	
 	delete this->vetorDesenhaveis;
 	
