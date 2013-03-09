@@ -6,17 +6,26 @@
 using namespace std;
 
 int Jogo::fazerTodaLogica()
-{	
+{		
 	for(unsigned int i = 0; i < this->vetorMutaveis->size(); i++) 
 		this->vetorMutaveis->at(i)->fazerLogica();
-		
+	
+	if (this->mestre && this->mestre->pontosVida == 0)
+	{
+		Util::removerElementoVetor(this->vetorDesenhaveis, this->mestre);
+		Util::removerElementoVetor(this->vetorMutaveis, this->mestre);
+		delete this->mestre;
+		Util::estadoJogo = ENTRADA_JOGO; // AQUI QUER DIZER GAME-OVER
+		Util::trocarEstadoInterno(TRANSICAO_WAVE);
+	}
+	
 	if(Util::estadoInterno!=TRANSICAO_WAVE && !(Util::estadoInterno==COMPRANDO && Util::ultimoEstadoInterno==TRANSICAO_WAVE) && this->wave) 
 		this->wave->fazerLogica();
 		
 	if(this->hud)
 		this->hud->fazerLogica();
 		
-	if(this->wave->waveTerminou)
+	if(this->wave && this->wave->waveTerminou)
 	{
 		delete this->wave;
 		
@@ -27,6 +36,8 @@ int Jogo::fazerTodaLogica()
 			if (Util::mapaAtual == JARDIM_EXTERNO)
 			{
 				Util::estadoJogo = ENTRADA_JOGO;
+				Util::trocarEstadoInterno(TRANSICAO_WAVE);
+				Util::mapaAtual = (TipoMapa) 0;
 			} else
 			{
 				delete this->vetorDesenhaveis;
