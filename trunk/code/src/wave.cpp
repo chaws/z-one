@@ -107,37 +107,37 @@ void Wave::configurarWave()
 {
 	switch(this->mapaAtual->tipo)
 	{
-		case JARDIM_EXTERNO:
-			this->quantidadeComboios = 3 - (int) (this->numeroWave * 0.2);
-			this->intervaloEntreComboios = 8*Tela::FPS - (int) (this->numeroWave * 0.3);
+		case SALA_GUARDA:
+			this->quantidadeComboios = 2;
+			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->intervaloCriacaoInimigos = 3*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->atrasoEntreComboios = this->intervaloEntreComboios - 2*Tela::FPS;
+			this->atrasoEntreComboios = 2*Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 5;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 0;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 1;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
 			} else if (this->numeroWave < 7)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 5;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
-				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 2;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 1;
 			
 			} else if (this->numeroWave < 10)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
 				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 5;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 2;
 			
 			} else if (this->numeroWave == 10)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
 				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 0;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 5;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 5;			
 			}
 				
@@ -149,10 +149,10 @@ void Wave::configurarWave()
 			break;
 		
 		case SALA_ARTES_NEGRAS:
-			this->quantidadeComboios = 3 - (int) (this->numeroWave * 0.2);
+			this->quantidadeComboios = 4;
 			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
 			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
-			this->atrasoEntreComboios = this->intervaloEntreComboios - 2*Tela::FPS;
+			this->atrasoEntreComboios = 2*Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
@@ -180,6 +180,47 @@ void Wave::configurarWave()
 				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 5;
 				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 5;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 5;			
+			}
+				
+			this->quantidadeInimigosPorComboio =  this->quantidadeInimigosTipoPorComboio[CAPITAO] 
+												+ this->quantidadeInimigosTipoPorComboio[SAQUEADOR]
+												+ this->quantidadeInimigosTipoPorComboio[CORSARIO]
+												+ this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU];
+			this->quantidadeInimigosWave = this->quantidadeInimigosPorComboio * this->quantidadeComboios;
+			break;
+			
+		case JARDIM_EXTERNO:
+			this->quantidadeComboios = 5;
+			this->intervaloEntreComboios = 5*Tela::FPS - (int) (this->numeroWave * 0.3);
+			this->intervaloCriacaoInimigos = 2*Tela::FPS - (int) (this->numeroWave * 0.3);
+			this->atrasoEntreComboios = 2*Tela::FPS;
+			
+			if (this->numeroWave < 4)
+			{
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 0;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 5;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
+			} else if (this->numeroWave < 7)
+			{
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 2;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 4;
+			
+			} else if (this->numeroWave < 10)
+			{
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 8;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 2;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 8;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 2;
+			
+			} else if (this->numeroWave == 10)
+			{
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 8;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 8;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 8;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 8;			
 			}
 				
 			this->quantidadeInimigosPorComboio =  this->quantidadeInimigosTipoPorComboio[CAPITAO] 
@@ -221,6 +262,7 @@ int Wave::removerInimigosMortos()
 					Util::removerElementoVetor(this->vetorMutaveis, this->mestreAtual);
 					delete this->mestreAtual;
 					Util::estadoJogo = ENTRADA_JOGO;
+					Util::estadoInterno = TRANSICAO_WAVE;
 				}
 			} else { // Aqui quer dizer que ele morreu pq alguma torre matou
 				Hud::somarXP(inimigoQueSeraDeletado->pontosExperiencia);

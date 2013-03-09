@@ -13,7 +13,8 @@ enum TipoFonte
 {
 	FONTE_HUD,
 	FONTE_PRECO,
-	FONTE_MENU_INICIAL
+	FONTE_MENU_INICIAL,
+	FONTE_MENSAGENS
 };
 
 class Ambiente
@@ -32,6 +33,7 @@ public:
 	static TTF_Font * fonteHUD;
 	static TTF_Font * fontePreco;
 	static TTF_Font * fonteMenuInicial;
+	static TTF_Font * fonteMensagens;
 	static void carregarFonte();
 };
 

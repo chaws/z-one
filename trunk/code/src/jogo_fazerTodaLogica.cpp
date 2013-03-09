@@ -20,19 +20,30 @@ int Jogo::fazerTodaLogica()
 	{
 		delete this->wave;
 		
-		if (Hud::numeradorWave == 10) // 
+		if (Hud::numeradorWave == Hud::denominadorWave) // 
 		{
-			// ACABOU O MAPA, AQUI TEM QUE DAR UM JEITO DE TROCAR (mudar estado)
-			delete this->vetorDesenhaveis;
-			delete this->vetorMutaveis;
-			delete this->vetorEscutaveis;
-			delete this->mestre;
-			delete this->mapa;
-			Util::mapaAtual = (TipoMapa) (Util::mapaAtual + 1);
-			this->estadoJogando();
+			// PASSOU DE FASE
+			
+			if (Util::mapaAtual == JARDIM_EXTERNO)
+			{
+				Util::estadoJogo = ENTRADA_JOGO;
+			} else
+			{
+				delete this->vetorDesenhaveis;
+				delete this->vetorMutaveis;
+				delete this->vetorEscutaveis;
+				delete this->mestre;
+				delete this->mapa;
+				
+				Util::mapaAtual = (TipoMapa) (Util::mapaAtual + 1);
+				Util::trocarEstadoInterno(TRANSICAO_WAVE);
+			
+				this->estadoJogando();
+			}
+				
 		} else
 		{
-			Util::estadoInterno = TRANSICAO_WAVE;
+			Util::trocarEstadoInterno(TRANSICAO_WAVE);
 			Hud::numeradorWave++;
 			this->wave = new Wave(Hud::numeradorWave, this->vetorDesenhaveis, this->vetorMutaveis, this->mapa, this->mestre);
 		}
