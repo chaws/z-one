@@ -10,6 +10,8 @@ using namespace std;
 
 int Jogo::configurarFaseAtual()
 {
+	this->inicioDeFase();	
+	
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 	this->vetorMutaveis =  new vector<Mutavel *>;

@@ -41,6 +41,8 @@ private:
 	int fazerTodaLogica();
 	int estadoJogandoPausado();
 	int configurarFaseAtual();
+	int inicioDeFase();
+	int fimDeJogo();
 	bool isTileOcupado(int x, int y);
 
 public:

@@ -18,6 +18,7 @@ const string Ambiente::CAMINHO_FONT = "media/font/";
 TTF_Font * Ambiente::fonteHUD = NULL;
 TTF_Font * Ambiente::fontePreco = NULL;
 TTF_Font * Ambiente::fonteMenuInicial = NULL;
+TTF_Font * Ambiente::fonteMensagens = NULL;
 
 void Ambiente::carregarFonte()
 {
@@ -32,6 +33,10 @@ void Ambiente::carregarFonte()
 		
 	Ambiente::fonteMenuInicial = TTF_OpenFont(caminho.c_str(), 12);
 	if (!Ambiente::fonteMenuInicial)
+		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
+		
+	Ambiente::fonteMensagens = TTF_OpenFont(caminho.c_str(), 30);
+	if (!Ambiente::fonteMensagens)
 		cout << "Erro na hora de carregar a fonte: " << TTF_GetError() << endl;
 }
 
@@ -51,6 +56,12 @@ SDL_Surface * Ambiente::carregarTexto(string texto, TipoFonte tipo)
 			break;
 		case FONTE_MENU_INICIAL:
 			fonte = Ambiente::fonteMenuInicial;
+			break;
+		case FONTE_MENSAGENS:
+			fonte = Ambiente::fonteMensagens;
+			colorFonte.r=225;
+			colorFonte.g=211;
+			colorFonte.b=185;
 			break;
 	}
 	
