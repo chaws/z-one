@@ -50,20 +50,20 @@ int Jogo::inicioDeFase()
 	switch (Util::mapaAtual)
 	{
 		case JARDIM_EXTERNO:
-			mensagem = Ambiente::carregarTexto(string("Fase 3: Jardim Externo."), FONTE_MENSAGENS);	
-			mensagemRect.x = 110;
+			mensagem = Ambiente::carregarTexto(string("Andar 1: Jardim Externo."), FONTE_MENSAGENS);	
+			mensagemRect.x = 100;
 			mensagemRect.y = 310;
 			
 			break;
 		case SALA_ARTES_NEGRAS:
-			mensagem = Ambiente::carregarTexto(string("Fase 2: Sala de Artes Negras."), FONTE_MENSAGENS);	
-			mensagemRect.x = 18;
+			mensagem = Ambiente::carregarTexto(string("Andar 2: Sala de Artes Negras."), FONTE_MENSAGENS);	
+			mensagemRect.x = 10;
 			mensagemRect.y = 310;
 
 			break;
 		case SALA_GUARDA:
-			mensagem = Ambiente::carregarTexto(string("Fase 1: Sala de Guarda."), FONTE_MENSAGENS);	
-			mensagemRect.x = 120;
+			mensagem = Ambiente::carregarTexto(string("Andar 3: Sala de Guarda."), FONTE_MENSAGENS);	
+			mensagemRect.x = 110;
 			mensagemRect.y = 310;
 
 			break;

@@ -11,6 +11,13 @@ using namespace std;
 
 Jogo::Jogo()
 {
+	// Inicializa todos os componentes do SDL
+    SDL_Init(SDL_INIT_EVERYTHING);
+    // Inicia a ferramenta pra trabalhar com fontes
+    TTF_Init();
+    // Inicia a ferramenta para trabalhar com áudio
+	Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 4096);
+	
 	this->tela =  new Tela;
 	this->tempo = new Tempo;
 	this->hud =   new Hud;
@@ -24,6 +31,13 @@ Jogo::~Jogo()
 	if(this->vetorDesenhaveis) delete this->vetorDesenhaveis;
 	if(this->vetorEscutaveis) delete this->vetorEscutaveis;
 	if(this->vetorMutaveis) delete this->vetorMutaveis;
+	
+	// Fecha o SDL_mixer
+    Mix_CloseAudio();
+	// Fecha o SDL_ttf
+    TTF_Quit();
+    // Libera todas as alocações do SDL
+    SDL_Quit();
 }
 
 int Jogo::rodar()

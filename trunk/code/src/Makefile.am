@@ -26,7 +26,7 @@ ninjasiege_SOURCES = main.cpp mapa.cpp jogo.cpp tela.cpp escutavel.cpp tempo.cpp
 					 util.cpp botao.cpp hud.cpp jogo_estadosInternos.cpp menuprincipal.cpp
 
 # Libraries needed to build program
-ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lm
+ninjasiege_LDADD = -lSDL -lSDL_ttf -lSDL_image -lSDL_mixer -lm
 
 # Include flags
 INCLUDES = -I../include -Wall -Wno-long-long -W -pedantic -ansi

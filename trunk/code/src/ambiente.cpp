@@ -4,6 +4,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
 
 #include <string>
 #include <iostream>
@@ -69,7 +70,7 @@ SDL_Surface * Ambiente::carregarTexto(string texto, TipoFonte tipo)
 	
 	if(!retorno)
 	{
-		cout << "Pala pra carregar fonte: " << SDL_GetError() << endl;
+		cout << "Erro ao renderizar fonte: " << SDL_GetError() << endl;
 		return NULL;
 	}
 	
@@ -86,7 +87,7 @@ SDL_Surface * Ambiente::carregarImagem(string caminho)
 
 	if(!loadedImage)
 	{
-		cout << "Erro ao abrir: " << SDL_GetError() << endl;
+		cout << "Erro ao abrir musica: " << SDL_GetError() << endl;
 		return NULL;
 	}
 
@@ -113,11 +114,26 @@ SDL_Surface * Ambiente::carregarIcone(string caminho)
 	
 	if(!loadedImage)
 	{
-		cout << "Erro ao abrir: " << SDL_GetError() << endl;
+		cout << "Erro ao abrir icone: " << SDL_GetError() << endl;
 		return NULL;
 	}      
     
     return loadedImage;
+}
+
+Mix_Music * Ambiente::carregarMusica(string caminho)
+{
+	caminho = Ambiente::CAMINHO_AUDIO + caminho;
+	Mix_Music * musica = NULL;
+	musica = Mix_LoadMUS(caminho.c_str());
+	
+	if(!musica)
+	{
+		cout << "Erro ao abrir musica: " << Mix_GetError << endl;
+		return NULL;
+	}      
+    
+    return musica;
 }
 
 

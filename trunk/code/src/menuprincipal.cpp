@@ -3,6 +3,10 @@
 #include <jogo.h>
 #include <util.h>
 #include <ambiente.h>
+#include <SDL/SDL_mixer.h>
+#include <iostream>
+
+using namespace std;
 
 MenuPrincipal::MenuPrincipal()
 {
@@ -41,6 +45,10 @@ MenuPrincipal::MenuPrincipal()
 	this->rodape = Ambiente::carregarTexto(string("Ninja Siege, by Z-one Team. 2013."), FONTE_MENU_INICIAL);
 	this->rodapeRect.x = 240;
 	this->rodapeRect.y = 560;
+	
+	this->musicaFundo = Ambiente::carregarMusica("04 All of Us.mp3");
+	Mix_VolumeMusic(80);
+	Mix_PlayMusic(this->musicaFundo, -1);
 }
 
 MenuPrincipal::~MenuPrincipal()
@@ -54,6 +62,8 @@ MenuPrincipal::~MenuPrincipal()
 	SDL_FreeSurface(this->logo);
 	SDL_FreeSurface(this->desenho);
 	SDL_FreeSurface(this->rodape);
+	Mix_HaltMusic();
+	Mix_FreeMusic(this->musicaFundo);
 }
 
 int MenuPrincipal::detectarEvento()

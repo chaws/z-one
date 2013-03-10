@@ -15,7 +15,7 @@ int Jogo::estadoEntradaJogo()
 	LogoFading * logoFading = new LogoFading();	
 		
 	this->vetorDesenhaveis->push_back(logoFading);
-
+	
 	while(Util::estadoJogo == ENTRADA_JOGO)
 	{
 		
