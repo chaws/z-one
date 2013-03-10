@@ -4,6 +4,7 @@
 #include <escutavel.h>
 #include <botao.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 
 class MenuPrincipal : public Escutavel
 {
@@ -21,6 +22,7 @@ private:
 	SDL_Rect logoRect;
 	SDL_Surface * rodape;
 	SDL_Rect rodapeRect;
+	Mix_Music * musicaFundo;
 	
 public:
 	MenuPrincipal();

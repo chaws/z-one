@@ -22,7 +22,7 @@ int Jogo::estadoMenuJogo()
 		this->desenharTudo();
 		
 		this->tela->renderizar();
-
+		
 		this->tempo->atrasarTempo();
 	}
 	

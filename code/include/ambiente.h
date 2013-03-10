@@ -4,6 +4,7 @@
 #include <mapa.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 #include <string>
 #include <vector>
 
@@ -27,6 +28,7 @@ private:
 
 public:
 	static SDL_Surface * carregarImagem(string caminho);
+	static Mix_Music * carregarMusica(string caminho);
 	static SDL_Surface * carregarTexto(string texto, TipoFonte tipo);
 	static SDL_Surface * carregarIcone(string caminho);
 	static vector<Tile> * carregarConfiguracaoMapa(string caminho);

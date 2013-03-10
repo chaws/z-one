@@ -3,6 +3,7 @@
 
 #include <tela.h>
 #include <desenhavel.h>
+#include <SDL/SDL_mixer.h>
 
 class LogoFading : public Desenhavel
 {
@@ -12,6 +13,7 @@ private:
 	static const int QUANTIDADE_FRAMES_TERMINAR_FADING;
 	int alpha;
 	int incremento;
+	Mix_Music * musicaFundo;
 
 public:	
 	LogoFading();
