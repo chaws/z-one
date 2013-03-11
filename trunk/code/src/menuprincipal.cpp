@@ -46,7 +46,7 @@ MenuPrincipal::MenuPrincipal()
 	this->rodapeRect.x = 240;
 	this->rodapeRect.y = 560;
 	
-	this->musicaFundo = Ambiente::carregarMusica("04 All of Us.mp3");
+	this->musicaFundo = Ambiente::carregarMusica("04_All_of_Us.mp3");
 	Mix_VolumeMusic(80);
 	Mix_PlayMusic(this->musicaFundo, -1);
 }

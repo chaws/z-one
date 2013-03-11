@@ -47,6 +47,7 @@ private:
 	void gerarSuperficieEmBranco();
 	void gerarSuperficieMapa();
 	static const int NUMERO_TOTAL_TILES;
+	Mix_Music * musicaFundo;
 	
 	SDL_Rect clip[5];
 

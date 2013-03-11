@@ -189,11 +189,34 @@ Mapa::Mapa(TipoMapa tipo)
 	this->rect->w = Tela::WIDTH;
 	this->rect->h = Tela::HEIGHT;
 	this->imagem = NULL;
-	
-
-
 	this->configurarMapa();
 	this->gerarSuperficieMapa();
+	
+	switch(this->tipo)
+	{
+		case JARDIM_EXTERNO:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("externGarden.map");
+			break;
+
+		case SALA_TREINAMENTO:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("trainingRoom.map");
+			break;
+
+		case SALA_BANHO:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
+			break;
+			
+		case SALA_ARTES_NEGRAS:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("darkmagicRoom.map");
+			break;
+
+		case SALA_GUARDA:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
+			this->musicaFundo = Ambiente::carregarMusica("06_Searching.mp3");
+			break;
+	}
+	Mix_VolumeMusic(80);
+	Mix_PlayMusic(this->musicaFundo, -1);
 }
 
 Mapa::~Mapa()
