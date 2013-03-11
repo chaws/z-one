@@ -3,6 +3,7 @@
 
 #include <escutavel.h>
 #include <vector>
+#include <SDL/SDL_mixer.h>
 
 struct PontoTile
 {

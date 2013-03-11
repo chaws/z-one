@@ -80,7 +80,7 @@ Inimigo::Inimigo(int tipo, Mapa * mapaAtual)
 			this->imagem = Ambiente::carregarImagem("pirata_corsario.png");
 			this->pontosVida = this->pontosVidaTotal = 30;
 			this->pontosExperiencia = 1;
-			this->velocidade = 3;
+			this->velocidade = 2.5;
 			break;
 
 		case PERNA_DE_PAU:
