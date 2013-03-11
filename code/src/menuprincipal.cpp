@@ -93,15 +93,15 @@ int MenuPrincipal::desenhar()
 	
 	this->botaoNovoJogo->desenhar();
 	
-	this->botaoContinuar->desenhar();
+	// this->botaoContinuar->desenhar();
 	
-	this->botaoConfiguracoes->desenhar();
+	// this->botaoConfiguracoes->desenhar();
 	
 	this->botaoSair->desenhar();
 	
-	this->botaoCreditos->desenhar();
+	// this->botaoCreditos->desenhar();
 	
-	this->botaoAjuda->desenhar();
+	// this->botaoAjuda->desenhar();
 	
 	SDL_BlitSurface(this->logo, NULL, SDL_GetVideoSurface(), &this->logoRect);
 	

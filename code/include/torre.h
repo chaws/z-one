@@ -20,12 +20,12 @@ enum TipoTorre
 	BOMBA
 };
 
-const int PRECO_SHURIKEN=200;
-const int PRECO_KATANA=250;
-const int PRECO_NUNCHAKU=150;
-const int PRECO_MARIKI=170;
-const int PRECO_KUNAI=180;
-const int PRECO_BOMBA=270;
+const int PRECO_SHURIKEN=10;
+const int PRECO_KATANA=10;
+const int PRECO_NUNCHAKU=30;
+const int PRECO_MARIKI=60;
+const int PRECO_KUNAI=50;
+const int PRECO_BOMBA=90;
 
 enum EstadoTorre
 {

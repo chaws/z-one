@@ -110,35 +110,35 @@ void Wave::configurarWave()
 		case SALA_GUARDA:
 			this->quantidadeComboios = 2;
 			this->intervaloEntreComboios = 5*Tela::FPS;
-			this->intervaloCriacaoInimigos = 3*Tela::FPS;
+			this->intervaloCriacaoInimigos = (3*Tela::FPS)/2;
 			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 2;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 1;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 0;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 5;
 				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
 			} else if (this->numeroWave < 7)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 2;
-				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 1;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 5;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 0;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
 			
 			} else if (this->numeroWave < 10)
 			{
-				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
-				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 3;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
-				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 2;
+				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 0;
+				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 0;
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 0;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 5;
 			
 			} else if (this->numeroWave == 10)
 			{
 				this->quantidadeInimigosTipoPorComboio[CAPITAO] = 1;
 				this->quantidadeInimigosTipoPorComboio[SAQUEADOR] = 0;
-				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 3;
-				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 5;			
+				this->quantidadeInimigosTipoPorComboio[CORSARIO] = 0;
+				this->quantidadeInimigosTipoPorComboio[PERNA_DE_PAU] = 0;
 			}
 				
 			this->quantidadeInimigosPorComboio =  this->quantidadeInimigosTipoPorComboio[CAPITAO] 
@@ -151,7 +151,7 @@ void Wave::configurarWave()
 		case SALA_ARTES_NEGRAS:
 			this->quantidadeComboios = 3;
 			this->intervaloEntreComboios = 5*Tela::FPS;
-			this->intervaloCriacaoInimigos = 3*Tela::FPS;
+			this->intervaloCriacaoInimigos = (3*Tela::FPS)/2;
 			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
@@ -192,7 +192,7 @@ void Wave::configurarWave()
 		case JARDIM_EXTERNO:
 			this->quantidadeComboios = 5;
 			this->intervaloEntreComboios = 4*Tela::FPS;
-			this->intervaloCriacaoInimigos = 2*Tela::FPS;
+			this->intervaloCriacaoInimigos = (3*Tela::FPS)/2;
 			this->atrasoEntreComboios = this->intervaloEntreComboios - Tela::FPS;
 			
 			if (this->numeroWave < 4)
