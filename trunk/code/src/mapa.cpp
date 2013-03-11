@@ -25,7 +25,7 @@ void Mapa::configurarMapa()
 			this->tiles = Ambiente::carregarConfiguracaoMapa("trainingRoom.map");
 			break;
 
-		case SALA_BANHO:
+		case SALA_REUNIAO:
 			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
 			break;
 			
@@ -79,7 +79,7 @@ void Mapa::gerarSuperficieMapa()
 			break;
 		case SALA_TREINAMENTO:
 
-		case SALA_BANHO:
+		case SALA_REUNIAO:
 		
 		default:
 			tileset = Ambiente::carregarImagem("tileset_default.png");

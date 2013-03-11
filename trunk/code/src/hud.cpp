@@ -248,7 +248,7 @@ void Hud::somarWave()
 
 void Hud::resetarPontos()
 {
-	Hud::pontosXP = 500;
+	Hud::pontosXP = 50;
 	Hud::pontosHP = 10;
 	Hud::numeradorWave = 1;
 	Hud::denominadorWave = 10;
