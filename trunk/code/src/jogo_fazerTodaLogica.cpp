@@ -15,8 +15,9 @@ int Jogo::fazerTodaLogica()
 		Util::removerElementoVetor(this->vetorDesenhaveis, this->mestre);
 		Util::removerElementoVetor(this->vetorMutaveis, this->mestre);
 		delete this->mestre;
-		Util::estadoJogo = ENTRADA_JOGO; // AQUI QUER DIZER GAME-OVER
+		Util::estadoJogo = FIM_JOGO; // AQUI QUER DIZER GAME-OVER
 		Util::trocarEstadoInterno(TRANSICAO_WAVE);
+		Mix_HaltMusic();
 	}
 	
 	if(Util::estadoInterno!=TRANSICAO_WAVE && !(Util::estadoInterno==COMPRANDO && Util::ultimoEstadoInterno==TRANSICAO_WAVE) && this->wave) 

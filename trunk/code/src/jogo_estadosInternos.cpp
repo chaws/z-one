@@ -42,7 +42,7 @@ int Jogo::estadoJogandoPausado()
 int Jogo::inicioDeFase()
 {
 	int atraso=0;
-	int fimInicioFase = Tela::FPS * 7;
+	int fimInicioFase = Tela::FPS * 6;
 	int fimFading = Tela::FPS * 5;
 	int alpha = 1;
 	
@@ -53,21 +53,33 @@ int Jogo::inicioDeFase()
 	SDL_Rect mensagemRect;
 	switch (Util::mapaAtual)
 	{
+		case SALA_TREINAMENTO:
+			mensagem = Ambiente::carregarTexto(string("Andar 4: Sala de Treinamento."), FONTE_MENSAGENS);	
+			mensagemRect.x = 35;
+			mensagemRect.y = 310;
+			
+			break;
 		case JARDIM_EXTERNO:
 			mensagem = Ambiente::carregarTexto(string("Andar 1: Jardim Externo."), FONTE_MENSAGENS);	
-			mensagemRect.x = 100;
+			mensagemRect.x = 105;
 			mensagemRect.y = 310;
 			
 			break;
 		case SALA_ARTES_NEGRAS:
-			mensagem = Ambiente::carregarTexto(string("Andar 2: Sala de Artes Negras."), FONTE_MENSAGENS);	
-			mensagemRect.x = 10;
+			mensagem = Ambiente::carregarTexto(string("Andar 3: Sala de Artes Negras."), FONTE_MENSAGENS);	
+			mensagemRect.x = 12;
 			mensagemRect.y = 310;
 
 			break;
 		case SALA_GUARDA:
-			mensagem = Ambiente::carregarTexto(string("Andar 3: Sala de Guarda."), FONTE_MENSAGENS);	
-			mensagemRect.x = 110;
+			mensagem = Ambiente::carregarTexto(string("Andar 4: Sala de Guarda."), FONTE_MENSAGENS);	
+			mensagemRect.x = 105;
+			mensagemRect.y = 310;
+
+			break;
+		case SALA_REUNIAO:
+			mensagem = Ambiente::carregarTexto(string("Andar 5: Sala de Reuniao."), FONTE_MENSAGENS);	
+			mensagemRect.x = 105;
 			mensagemRect.y = 310;
 
 			break;

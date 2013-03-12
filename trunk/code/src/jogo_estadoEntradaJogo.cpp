@@ -1,7 +1,7 @@
 #include <jogo.h>
 #include <util.h>
 #include <ambiente.h>
-#include <logofading.h>
+#include <fading.h>
 #include <SDL/SDL.h>
 #include <iostream>
 
@@ -12,7 +12,7 @@ int Jogo::estadoEntradaJogo()
 	this->vetorDesenhaveis =  new vector<Desenhavel *>;
 	this->vetorEscutaveis =  new vector<Escutavel *>;
 
-	LogoFading * logoFading = new LogoFading();	
+	Fading * logoFading = new Fading("z_one_logo_800_600.png", "intro.mp3", 6);	
 		
 	this->vetorDesenhaveis->push_back(logoFading);
 	

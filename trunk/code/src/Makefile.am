@@ -21,7 +21,7 @@ ninjasiege_SOURCES = main.cpp mapa.cpp jogo.cpp tela.cpp escutavel.cpp tempo.cpp
 					 jogo_detectarSaidaAplicativo.cpp jogo_detectarTodosEventos.cpp jogo_estadoEntradaJogo.cpp \
 					 jogo_estadoFimJogo.cpp jogo_estadoJogando.cpp jogo_estadoMenuJogo.cpp \
 					 jogo_estadoSairAplicativo.cpp jogo_desenharTudo.cpp \
-					 torre.cpp inimigo.cpp logofading.cpp jogo_fazerTodaLogica.cpp \
+					 torre.cpp inimigo.cpp fading.cpp jogo_fazerTodaLogica.cpp \
 					 mestre.cpp wave.cpp ataque.cpp \
 					 util.cpp botao.cpp hud.cpp jogo_estadosInternos.cpp menuprincipal.cpp
 
