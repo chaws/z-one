@@ -174,7 +174,10 @@ int Hud::fazerLogica()
 	if (Hud::botaoPausa->foiClicado())
 	{
 		if(Util::estadoInterno != PAUSADO)
+		{
 			Util::trocarEstadoInterno(PAUSADO);
+			Mix_PauseMusic();
+		}
 		else
 			Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
 	}

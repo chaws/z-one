@@ -13,7 +13,7 @@ image/menu_principal2.png image/ninja_bomba.png image/ninja_gordo.png image/ninj
 image/ninja_mariki.png image/ninja_nunchaku.png image/ninja_shuriken.png image/pirata_capitao.png image/pirata_corsario.png \
 image/pirata_pernadepau.png image/pirata_saqueador.png image/shuriken.png image/tileset_artesnegras.png image/tileset_default.png \
 image/tileset_guarda.png image/tileset_jardimexterno.png font/lastninja.ttf maps/darkmagicRoom.map maps/default.map \
-maps/dungeonRoom.map maps/externGarden.map maps/guardRoom.map maps/meetingRoom.map maps/showerRoom.map maps/trainingRoom.map \
+maps/externGarden.map maps/guardRoom.map maps/meetingRoom.map maps/trainingRoom.map \
 audio/intro.mp3 audio/04_All_of_Us.mp3
 
 

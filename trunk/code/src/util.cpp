@@ -62,31 +62,31 @@ int ImagemCompra::configurarImagem(TipoTorre tipo)
 		case NUNCHAKU:
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_nunchaku.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
-			Util::imagemCompra.rect->x = 2*Hud::BORDA_DIREITA + Mapa::TILE_WIDTH - 30;
+			Util::imagemCompra.rect->x = 2*Hud::BORDA_DIREITA + (Mapa::TILE_WIDTH*2) - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
 			break;
 		case MARIKI:
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_mariki.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
-			Util::imagemCompra.rect->x = 3*Hud::BORDA_DIREITA + 2*Mapa::TILE_WIDTH - 30;
+			Util::imagemCompra.rect->x = 3*Hud::BORDA_DIREITA + 2*(Mapa::TILE_WIDTH*2) - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
 			break;
 		case SHURIKEN:
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_shuriken.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
-			Util::imagemCompra.rect->x = 4*Hud::BORDA_DIREITA + 3*Mapa::TILE_WIDTH - 30;
+			Util::imagemCompra.rect->x = 4*Hud::BORDA_DIREITA + 3*(Mapa::TILE_WIDTH*2) - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
 			break;
 		case KUNAI:
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_kunai.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
-			Util::imagemCompra.rect->x = 5*Hud::BORDA_DIREITA + 4*Mapa::TILE_WIDTH - 30;
+			Util::imagemCompra.rect->x = 5*Hud::BORDA_DIREITA + 4*(Mapa::TILE_WIDTH*2) - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
 			break;
 		case BOMBA:
 			Util::imagemCompra.imagem = Ambiente::carregarImagem("ninja_bomba.png");
 			SDL_SetAlpha(Util::imagemCompra.imagem, SDL_SRCALPHA, 127);
-			Util::imagemCompra.rect->x = 6*Hud::BORDA_DIREITA + 5*Mapa::TILE_WIDTH - 30;
+			Util::imagemCompra.rect->x = 6*Hud::BORDA_DIREITA + 5*(Mapa::TILE_WIDTH*2) - 30;
 			Util::imagemCompra.rect->y = Tela::HEIGHT - Hud::HEIGHT_PARTE_BAIXO;
 			break;		
 		
