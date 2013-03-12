@@ -59,7 +59,7 @@ Botao::Botao(SDL_Surface * imagem)
 	// Futuramente o width e o height podem ser independentes hehe
 	this->rect->w = imagem->w; 
 	this->rect->h = imagem->h;
-
+	
 	this->imagem = imagem;
 	this->clicado = false;	
 }
@@ -95,12 +95,23 @@ Botao::Botao(SDL_Surface * imagem, TipoBotao tipo)
 		case BOTAO_BOMBA:
 			this->preco = new Preco(PRECO_BOMBA);
 			break;
+		case BOTAO_INIT_WAVE:
+			this->atrasoPiscaBotao = 1;
 		default:
 			this->preco = NULL;
 	}
 
 	this->imagem = imagem;
-	this->clicado = false;	
+	this->clicado = false;
+	
+	this->frame = 0;
+	
+	this->clip[0].h = this->clip[1].h = this->imagem->h;
+	this->clip[0].w = this->clip[1].w = this->imagem->w/2;
+	
+	this->clip[0].y = this->clip[1].y = 0;
+	this->clip[0].x = 0;
+	this->clip[1].x = this->imagem->w/2;
 }
 
 Botao::Botao(int x, int y, int w, int h, string rotulo)
@@ -196,20 +207,52 @@ bool Botao::estaHabilitado()
 int Botao::desenhar()
 {
 	int alpha =  255;
-	
+
 	if (!estaHabilitado())
 		alpha = 120;
-	
-	if (this->preco)
+		
+	if(!mouseEstaSobre() && estaHabilitado() && this->tipo == BOTAO_INIT_WAVE)
+	{	
+		if (this->atrasoPiscaBotao == 0.5*Tela::FPS)
+		{
+			if(this->frame)
+				this->frame = 0;
+			else
+				this->frame = 1;
+
+			this->atrasoPiscaBotao=1;
+		}
+		this->atrasoPiscaBotao++;
+	} else
 	{
-		SDL_SetAlpha(this->preco->imagem, SDL_SRCALPHA, SDL_ALPHA_TRANSPARENT); // NÃO FUNCIONA :(
-		SDL_BlitSurface(this->preco->imagem, NULL, SDL_GetVideoSurface(), this->preco->rect);	
+		if (this->preco)
+		{
+			SDL_BlitSurface(this->preco->imagem, NULL, SDL_GetVideoSurface(), this->preco->rect);	
+		}		
 	}
 	
 	SDL_SetAlpha(this->imagem, SDL_SRCALPHA, alpha);
-	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	SDL_BlitSurface(this->imagem, &this->clip[frame], SDL_GetVideoSurface(), this->rect);
 	
 	return 0;
+}
+
+bool Botao::mouseEstaSobre()
+{
+	if(Escutavel::evento.type == SDL_MOUSEMOTION && !Escutavel::evento.active.gain)
+	{
+		int x = Escutavel::evento.motion.x;
+		int y = Escutavel::evento.motion.y;
+		
+		if(this->rect->x <= x && x <= this->rect->x + this->rect->w &&
+				this->rect->y <= y && y <= this->rect->y + this->rect->h)
+			return true;
+		else 
+			return false;
+		
+	}
+	
+	return false;
 }
 
 int Botao::detectarEvento()
@@ -229,6 +272,12 @@ int Botao::detectarEvento()
 			}
 		}
 	}
+	
+	if (mouseEstaSobre())
+		this->frame = 1;
+	else
+		this->frame = 0;
+	
 	return 0;
 }
 

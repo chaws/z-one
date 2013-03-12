@@ -40,10 +40,14 @@ private:
 	string rotulo;
 	bool clicado;
 	TipoBotao tipo;
-
+	SDL_Rect clip[2];
+	int frame;
+	int atrasoPiscaBotao; // SOMENTE PARA O BOTÃO DE INIT
+	bool mouseEstaSobre();
 	bool estaHabilitado();
+	
 public:
-
+	
 	// Construtores sem coordenadas: O CRIADOR DO BOTAO SE VIRA PARA POSICIONA-LO
 	Botao(string rotulo);
 	Botao(SDL_Surface * imagem);

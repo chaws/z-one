@@ -18,7 +18,11 @@ int Jogo::estadoJogandoPausado()
 		detectarSaidaAplicativo();
 		Hud::botaoPausa->detectarEvento();
 		if (Hud::botaoPausa->foiClicado())
-			Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
+		{
+            //Resume the music
+            Mix_ResumeMusic();
+            Util::trocarEstadoInterno(Util::ultimoEstadoInterno);
+		}
 	}
 
 	// Tem que arrumar isso aqui
