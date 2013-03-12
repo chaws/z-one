@@ -37,7 +37,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.h = Torre::HEIGHT*2;
 			this->alcance.x = x-(this->alcance.w/2 - 20);
 			this->alcance.y = y-(this->alcance.h/2 - 20);
-			this->DPS = 3;
+			this->DPS = 2;
 			this->dano = 6;
 			break;
 
@@ -49,7 +49,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.x = x-(this->alcance.w/2 - 20);
 			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 1;
-			this->dano = 4;
+			this->dano = 15;
 			break;
 
 		case SHURIKEN:
@@ -60,7 +60,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.x = x-(this->alcance.w/2 - 20);
 			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 6;
-			this->dano = 2;
+			this->dano = 1;
 			break;
 		
 		case KUNAI:

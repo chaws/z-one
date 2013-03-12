@@ -20,8 +20,8 @@ enum TipoTorre
 	BOMBA
 };
 
-const int PRECO_SHURIKEN=10;
-const int PRECO_KATANA=10;
+const int PRECO_SHURIKEN=20;
+const int PRECO_KATANA=20;
 const int PRECO_NUNCHAKU=30;
 const int PRECO_MARIKI=60;
 const int PRECO_KUNAI=50;
