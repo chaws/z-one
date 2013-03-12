@@ -26,7 +26,7 @@ void Mapa::configurarMapa()
 			break;
 
 		case SALA_REUNIAO:
-			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
+			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
 			break;
 			
 		case SALA_ARTES_NEGRAS:
@@ -34,7 +34,7 @@ void Mapa::configurarMapa()
 			break;
 
 		case SALA_GUARDA:
-			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
+			this->tiles = Ambiente::carregarConfiguracaoMapa("guardRoom.map");
 			break;
 	}
 }
@@ -78,8 +78,11 @@ void Mapa::gerarSuperficieMapa()
 			tileset = Ambiente::carregarImagem("tileset_guarda.png");
 			break;
 		case SALA_TREINAMENTO:
-
+			tileset = Ambiente::carregarImagem("tileset_treinamento.png");
+			break;
 		case SALA_REUNIAO:
+			tileset = Ambiente::carregarImagem("tileset_reuniao.png");
+			break;
 		
 		default:
 			tileset = Ambiente::carregarImagem("tileset_default.png");
@@ -204,8 +207,8 @@ Mapa::Mapa(TipoMapa tipo)
 			this->musicaFundo = Ambiente::carregarMusica("Jumpshot.mp3");
 			break;
 
-		case SALA_BANHO:
-			this->tiles = Ambiente::carregarConfiguracaoMapa("showerRoom.map");
+		case SALA_REUNIAO:
+			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
 			this->musicaFundo = Ambiente::carregarMusica("09_Come_and_Find Me_-_B_mix.mp3");
 			break;
 			
@@ -215,7 +218,7 @@ Mapa::Mapa(TipoMapa tipo)
 			break;
 
 		case SALA_GUARDA:
-			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
+			this->tiles = Ambiente::carregarConfiguracaoMapa("guardRoom.map");
 			this->musicaFundo = Ambiente::carregarMusica("02_HHavok-main.mp3");
 			break;
 	}
