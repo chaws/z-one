@@ -14,6 +14,7 @@ image/ninja_mariki.png image/ninja_nunchaku.png image/ninja_shuriken.png image/p
 image/pirata_pernadepau.png image/pirata_saqueador.png image/shuriken.png image/tileset_artesnegras.png image/tileset_default.png \
 image/tileset_guarda.png image/tileset_jardimexterno.png font/lastninja.ttf maps/darkmagicRoom.map maps/default.map \
 maps/externGarden.map maps/guardRoom.map maps/meetingRoom.map maps/trainingRoom.map \
-audio/intro.mp3 audio/04_All_of_Us.mp3
+audio/intro.mp3 audio/Corp\ on\ Road.mp3 audio/SubSidised.mp3 audio/Theme\ Menu.mp3 audio/War\ song.mp3 audio/Without.mp3 \
+audio/Zander\ Noriega\ -\ Fight\ Them\ Until\ We\ Cant.mp3 audio/ZombiesAreComing.mp3
 
 

@@ -61,8 +61,10 @@ int Jogo::rodar()
 			case FIM_JOGO:
 				this->estadoFimJogo();
 				break;
+		
 			case CREDITOS:
 				break;
+				
 			case SAIDA_APLICATIVO:
 				this->estadoFimJogo();
 				break;
