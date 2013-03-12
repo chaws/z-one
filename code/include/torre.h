@@ -21,11 +21,11 @@ enum TipoTorre
 };
 
 const int PRECO_SHURIKEN=20;
-const int PRECO_KATANA=20;
+const int PRECO_KATANA=15;
 const int PRECO_NUNCHAKU=30;
 const int PRECO_MARIKI=60;
 const int PRECO_KUNAI=50;
-const int PRECO_BOMBA=90;
+const int PRECO_BOMBA=60;
 
 enum EstadoTorre
 {

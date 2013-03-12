@@ -82,7 +82,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.x = x-(this->alcance.w/2 - 20);
 			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 2;
-			this->dano = 3;
+			this->dano = 7;
 			break;
 
 		case MARIKI:
@@ -93,7 +93,7 @@ Torre::Torre(TipoTorre tipo, int x, int y, Wave * waveAtual, vector<Desenhavel *
 			this->alcance.x = x-(this->alcance.w/2 - 20);
 			this->alcance.y = y-(this->alcance.h/2 - 20);
 			this->DPS = 1;
-			this->dano = 4;
+			this->dano = 15;
 			break;
 	}
 
@@ -120,7 +120,6 @@ Torre::~Torre()
 int Torre::desenhar()
 {
 	SDL_BlitSurface(this->imagem, &this->clip[(int) (this->frame)], SDL_GetVideoSurface(), this->rect);
-	// SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
 	return 0;
 }
 

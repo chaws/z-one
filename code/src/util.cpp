@@ -14,7 +14,7 @@ using namespace std;
 EstadoJogo Util::estadoJogo = ENTRADA_JOGO; 
 EstadoInterno Util::estadoInterno = TRANSICAO_WAVE;
 EstadoInterno Util::ultimoEstadoInterno = OBSERVANDO;
-TipoMapa Util::mapaAtual = SALA_GUARDA;
+TipoMapa Util::mapaAtual = SALA_REUNIAO;
 TipoTorre Util::torreCompra;
 ImagemCompra Util::imagemCompra;
 SDL_Rect ImagemCompra::clip_compra = {0,0,40,40};

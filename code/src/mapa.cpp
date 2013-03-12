@@ -19,6 +19,7 @@ void Mapa::configurarMapa()
 	{
 		case JARDIM_EXTERNO:
 			this->tiles = Ambiente::carregarConfiguracaoMapa("externGarden.map");
+			this->mascara = Ambiente::carregarImagem("mascara_jardim.png");
 			break;
 
 		case SALA_TREINAMENTO:
@@ -27,10 +28,12 @@ void Mapa::configurarMapa()
 
 		case SALA_REUNIAO:
 			this->tiles = Ambiente::carregarConfiguracaoMapa("meetingRoom.map");
+			this->mascara = Ambiente::carregarImagem("mascara_sala_reuniao.png");
 			break;
 			
 		case SALA_ARTES_NEGRAS:
 			this->tiles = Ambiente::carregarConfiguracaoMapa("darkmagicRoom.map");
+			this->mascara = Ambiente::carregarImagem("mascara_artesnegras.png");
 			break;
 
 		case SALA_GUARDA:
@@ -90,14 +93,6 @@ void Mapa::gerarSuperficieMapa()
 
 	}
 
-
-	// SDL_Surface * tileNaoUtilizavel = Ambiente::carregarImagem("acid.png");
-	// SDL_Surface * tileCaminho 		= Ambiente::carregarImagem("wooden_floor.bmp");
-	// SDL_Surface * tileUtilizavel 	= Ambiente::carregarImagem("bricks.png");
-	// SDL_Surface * tileEntrada 		= Ambiente::carregarImagem("red_carpet.bmp");
-	// SDL_Surface * tileSaida 		= Ambiente::carregarImagem("red_carpet.bmp");
-	// SDL_Surface * tileParaBlit 		=  NULL;
-
 	SDL_Rect tileRect = {0, 0, Mapa::TILE_WIDTH, Mapa::TILE_HEIGHT};
 	bool achouEntrada = false;
 	bool achouSaida = false;
@@ -107,18 +102,15 @@ void Mapa::gerarSuperficieMapa()
 		switch(this->tiles->at(i))
 		{
 			case NAO_UTILIZAVEL:
-				// tileParaBlit = tileNaoUtilizavel;
 				tile_aux = 2;
 				break;
 
 			case CAMINHO:
-				// tileParaBlit = tileCaminho;
 				tile_aux = 0;
 
 				break;
 
 			case UTILIZAVEL:
-				// tileParaBlit = tileUtilizavel;
 				tile_aux = 1;
 
 				break;
@@ -130,7 +122,6 @@ void Mapa::gerarSuperficieMapa()
 					this->tileEntrada.y = (i / Mapa::TILES_POR_LINHA) + 1;
 					achouEntrada = true;
 				}
-				// tileParaBlit = tileEntrada;
 				tile_aux = 4;
 				break;
 				
@@ -141,7 +132,6 @@ void Mapa::gerarSuperficieMapa()
 					Mapa::tileSaida.y = (i / Mapa::TILES_POR_LINHA);
 					achouSaida = true;
 				}
-				// tileParaBlit = tileSaida;
 				tile_aux = 3;
 				break;
 		}
@@ -150,7 +140,6 @@ void Mapa::gerarSuperficieMapa()
 		tileRect.y = contY * Mapa::TILE_HEIGHT;
 		
 		SDL_BlitSurface(tileset, &clip[tile_aux], this->imagem, &tileRect);
-		// SDL_BlitSurface(tileParaBlit, NULL, this->imagem, &tileRect);
 
 		contX++;
 		if(contX == Tela::WIDTH/Mapa::TILE_WIDTH)
@@ -163,16 +152,12 @@ void Mapa::gerarSuperficieMapa()
 
 	SDL_FreeSurface(tileset);
 
-	// SDL_FreeSurface(tileNaoUtilizavel);
-	// SDL_FreeSurface(tileCaminho);
-	// SDL_FreeSurface(tileUtilizavel);
-	// SDL_FreeSurface(tileEntrada);
-	// SDL_FreeSurface(tileSaida);
 }
 
 int Mapa::desenhar()
 {
 	SDL_BlitSurface(this->imagem, NULL, SDL_GetVideoSurface(), this->rect);
+	if (this->mascara)	SDL_BlitSurface(this->mascara, NULL, SDL_GetVideoSurface(), this->rect);
 	return 0;
 }
 
@@ -192,6 +177,7 @@ Mapa::Mapa(TipoMapa tipo)
 	this->rect->w = Tela::WIDTH;
 	this->rect->h = Tela::HEIGHT;
 	this->imagem = NULL;
+	this->mascara = NULL;
 	this->configurarMapa();
 	this->gerarSuperficieMapa();
 	

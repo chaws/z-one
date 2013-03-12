@@ -28,8 +28,8 @@ enum Tile
 enum TipoMapa
 {
 	SALA_REUNIAO,
-	SALA_GUARDA,
 	SALA_ARTES_NEGRAS,
+	SALA_GUARDA,
 	SALA_TREINAMENTO,
 	JARDIM_EXTERNO
 };
@@ -48,7 +48,7 @@ private:
 	void gerarSuperficieMapa();
 	static const int NUMERO_TOTAL_TILES;
 	Mix_Music * musicaFundo;
-	
+	SDL_Surface * mascara;
 	SDL_Rect clip[5];
 
 public:
